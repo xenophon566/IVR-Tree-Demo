@@ -3,8 +3,9 @@ import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import { GLOBAL, SET_TIMEOUT } from "@core/services";
 import * as CryptoJS from "crypto-js";
-import html2canvas from "html2canvas";
+import { ConfigService } from "@core/services/config.service";
 import { environment } from "@env/environment";
+import html2canvas from "html2canvas";
 
 /**
  * Utilities Service
@@ -19,7 +20,7 @@ export class UtilitiesService {
     /**
      * @ignore
      */
-    constructor(private location: Location, private router: Router) {}
+    constructor(private location: Location, private router: Router, private configService: ConfigService) {}
 
     cryptoToken: string = "AngularCBECrypto";
 
@@ -48,6 +49,42 @@ export class UtilitiesService {
     }
 
     /**
+     * getMockSession
+     *
+     * @return {*}
+     * @memberof UtilitiesService
+     */
+    getMockSession() {
+        if (this.configService.isMockMode()) return sessionStorage.getItem("mock");
+        else return null;
+    }
+
+    /**
+     * setMockSession
+     *
+     * @memberof UtilitiesService
+     */
+    async setMockSession() {
+        const config = await this.configService.loadLocalConfig();
+        let protocol = this.configParser(`${config["PROTOCOL"]}`);
+        const hostname = this.configParser(`${config["HOSTNAME"]}`);
+        let apiPort = this.configParser(`${config["PORT"]}`);
+        const apiPath = this.configParser(`${config["API_PATH"]}`);
+
+        protocol = !!protocol ? protocol + "//" : "";
+        apiPort = !!apiPort ? ":" + apiPort : "";
+
+        const hostUrl = !!protocol && !!hostname ? protocol + hostname + apiPort + apiPath : null;
+
+        if (this.configService.isMockMode()) {
+            if (!sessionStorage.getItem("mock")) sessionStorage.setItem("mock", hostUrl);
+        }
+
+        const isNotMock = !!~location.href.indexOf("mock=false") || !!~parent.location.href.indexOf("mock=false");
+        if (isNotMock) sessionStorage.removeItem("mock");
+    }
+
+    /**
      * getEnableChannels
      *
      * @param {string} [channelStr='']
@@ -72,6 +109,46 @@ export class UtilitiesService {
      */
     navigateTo(url: string): void {
         this.router.navigate([url]);
+    }
+
+    /**
+     * isLogin
+     *
+     * @return {boolean}
+     * @memberof UtilitiesService
+     */
+    isLogin() {
+        const tkn = this.getCookie("tkn");
+        const uid = this.getCookie("uid");
+        const tid = this.getCookie("tid");
+        const isTid = !!~environment.env.indexOf("stage") ? true : !!tid;
+        const isCookieData = !!tkn && !!uid && isTid;
+        const encryptData = localStorage.getItem("encryptData");
+        const isEncryptData = !!~environment.env.indexOf("stage") ? true : !!encryptData;
+
+        return isCookieData && isEncryptData;
+    }
+
+    /**
+     * logout
+     *
+     * @memberof UtilitiesService
+     */
+    logout() {
+        this.delCookie("eid");
+        this.delCookie("en");
+        this.delCookie("uid");
+        this.delCookie("un");
+        this.delCookie("aid");
+        this.delCookie("tkn");
+        this.delCookie("tid");
+
+        sessionStorage.removeItem("tid");
+        sessionStorage.removeItem("detail");
+
+        localStorage.removeItem("encryptData");
+
+        this.navigateTo("auth/login");
     }
 
     /**
