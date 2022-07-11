@@ -1,7 +1,5 @@
-import { ProfileDialogComponent } from './components/header/dialog';
+import { ProfileDialogComponent } from "./components/header/dialog";
 import {
-    HeaderComponent,
-    FooterComponent,
     BreadcrumbComponent,
     TextareaComponent,
     CardContentComponent,
@@ -18,23 +16,14 @@ import {
     QaMediaCardComponent,
     ReplyContentComponent,
     OperatorComponent,
-    AlertDialogComponent,
-    ConfirmDialogComponent,
-    CropperDialogComponent,
-    HtmlDialogComponent,
-    OauthSettingDialogComponent,
-    BasicTableComponent,
     CheckboxTableComponent,
     InputSearchComponent,
-    SortTableComponent,
     PaginationComponent,
     QaTextIndependentComponent,
-    DataTableComponent,
-    DragTableComponent,
     LabelEditorComponent,
     QaPlayComponent,
     QaQuoteComponent,
-} from './components';
+} from "./components";
 
 /**
  * Cbe-Admin components
@@ -42,7 +31,6 @@ import {
  * @export {const} COMPONENTS
  */
 export const COMPONENTS = [
-    ProfileDialogComponent,
     HeaderComponent,
     FooterComponent,
     BreadcrumbComponent,
@@ -62,19 +50,9 @@ export const COMPONENTS = [
     QaMediaCardComponent,
     ReplyContentComponent,
     OperatorComponent,
-    AlertDialogComponent,
-    ConfirmDialogComponent,
-    CropperDialogComponent,
-    HtmlDialogComponent,
-    OauthSettingDialogComponent,
-    BasicTableComponent,
-    CheckboxTableComponent,
     InputSearchComponent,
-    SortTableComponent,
     QaTextIndependentComponent,
     PaginationComponent,
-    DataTableComponent,
-    DragTableComponent,
     LabelEditorComponent,
     QaPlayComponent,
     QaQuoteComponent,
