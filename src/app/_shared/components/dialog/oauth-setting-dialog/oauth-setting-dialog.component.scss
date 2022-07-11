@@ -1,0 +1,22 @@
+.oauth-setting-dialog {
+    .body {
+        .content {
+            width: 32rem;
+
+            .title {
+                padding: 0.2rem 0;
+            }
+
+            .slash-eye {
+                position: absolute;
+                right: 0.7rem;
+                margin-top: 0.7rem;
+                padding: 0;
+            }
+        }
+    }
+
+    .footer {
+        text-align: right;
+    }
+}

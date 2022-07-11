@@ -21,6 +21,11 @@ import {
     LabelEditorComponent,
     QaPlayComponent,
     QaQuoteComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent,
+    CropperDialogComponent,
+    HtmlDialogComponent,
+    OauthSettingDialogComponent,
 } from "./components";
 
 /**
@@ -52,6 +57,11 @@ export const COMPONENTS = [
     LabelEditorComponent,
     QaPlayComponent,
     QaQuoteComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent,
+    CropperDialogComponent,
+    HtmlDialogComponent,
+    OauthSettingDialogComponent,
 ];
 
 /**
@@ -78,4 +88,5 @@ export const COMPONENTS_LIST = {
     QaTextIndependentComponent,
     QaPlayComponent,
     QaQuoteComponent,
+    
 };

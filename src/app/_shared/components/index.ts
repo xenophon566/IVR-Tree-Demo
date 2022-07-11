@@ -25,3 +25,11 @@ export * from "./qa-play/qa-play.component";
 export * from "./qa-quote/qa-quote.component";
 
 export * from "./label-editor/label-editor.component";
+
+// dialog
+export * from './dialog/alert-dialog/alert-dialog.component';
+export * from './dialog/confirm-dialog/confirm-dialog.component';
+export * from './dialog/template-dialog/template-dialog.component';
+export * from './dialog/cropper-dialog/cropper-dialog.component';
+export * from './dialog/html-dialog/html-dialog.component';
+export * from './dialog/oauth-setting-dialog/oauth-setting-dialog.component';

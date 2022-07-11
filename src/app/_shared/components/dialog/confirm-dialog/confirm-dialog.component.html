@@ -1,0 +1,17 @@
+<nb-card class="confirm-dialog">
+  <nb-card-header *ngIf="!!title">{{ title }}</nb-card-header>
+  <nb-card-header *ngIf="!title">{{ DIALOG.CONFIRM_DIALOG.TITLE }}</nb-card-header>
+  <nb-card-body>
+      <div *ngIf="!!content">{{ content }}</div>
+      <div *ngIf="!content">{{ DIALOG.CONFIRM_DIALOG.CONTENT }}</div>
+  </nb-card-body>
+  <nb-card-footer>
+      <button nbButton size="small" status="info" (click)="confirm()" id="confirm-confirm-btn">
+          {{ DIALOG.CONFIRM_DIALOG.CONFIRM }}
+      </button>
+      &nbsp;
+      <button nbButton size="small" status="basic" (click)="cancel()" id="confirm-cancel-btn">
+          {{ DIALOG.CONFIRM_DIALOG.CANCEL }}
+      </button>
+  </nb-card-footer>
+</nb-card>

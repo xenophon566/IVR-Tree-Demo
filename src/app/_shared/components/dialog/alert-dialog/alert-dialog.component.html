@@ -1,0 +1,11 @@
+<nb-card class="alert-dialog">
+  <nb-card-header>{{ DIALOG.ALERT_DIALOG.TITLE }}</nb-card-header>
+  <nb-card-body>
+      <div>{{ content }}</div>
+  </nb-card-body>
+  <nb-card-footer>
+      <button nbButton size="small" status="info" (click)="close()" id="alert_close_btn">
+          {{ DIALOG.ALERT_DIALOG.CLOSE }}
+      </button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,67 @@
+<nb-card class="oauth-setting-dialog">
+  <nb-card-body class="body">
+      <div class="content">
+          <div class="title">驗證登入系統顯示名稱</div>
+          <div class="input-group mb-2">
+              <nb-select fullWidth [(selected)]="selectedItem" [disabled]="type === 'edit' ? true : false">
+                  <nb-option *ngFor="let channel of oauthChannelList" [value]="channel.text">
+                      {{ channel.text }}
+                  </nb-option>
+              </nb-select>
+          </div>
+          <div class="title">驗證登入系統參數名稱​</div>
+          <div class="input-group mb-2">
+              <input type="text" class="form-control" value="{{ selectedItem | lowercase }}" disabled />
+          </div>
+          <div class="title">驗證token URL​</div>
+          <div class="input-group mb-2">
+              <input type="text" class="form-control" [(ngModel)]="oauthSettingList.FOAuthTokenUrl" />
+          </div>
+          <div class="title">驗證authorization URL​</div>
+          <div class="input-group mb-2">
+              <input type="text" class="form-control" [(ngModel)]="oauthSettingList.FOAuthAuthorizeUrl" />
+          </div>
+          <div class="title">驗證client ID​</div>
+          <div class="input-group mb-2">
+              <input type="text" class="form-control" [(ngModel)]="oauthSettingList.FOAuthClientId" />
+          </div>
+          <div class="title">驗證client secret​</div>
+          <div class="input-group mb-2">
+              <input
+                  nbInput
+                  fullWidth
+                  [type]="showPassword ? 'text' : 'password'"
+                  [(ngModel)]="oauthSettingList.FOAuthClientSecret"
+              />
+              <button
+                  class="slash-eye"
+                  nbSuffix
+                  nbButton
+                  ghost
+                  (mousedown)="toggleShowPassword(true)"
+                  (mouseup)="toggleShowPassword(false)"
+                  (mouseleave)="toggleShowPassword(false)"
+              >
+                  <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'" pack="eva"></nb-icon>
+              </button>
+          </div>
+          <div class="title">驗證scope</div>
+          <div class="input-group mb-2">
+              <input type="text" class="form-control" [(ngModel)]="oauthSettingList.FOAuthScope" />
+          </div>
+          <div class="input-group mb-0">
+              <span>
+                  啟用此驗證登入作為智能問答的答案編輯區"需登入驗證"項目
+                  <input type="checkbox" [(ngModel)]="oauthSettingList.FOAuthAnswerEnable" />
+              </span>
+          </div>
+      </div>
+  </nb-card-body>
+  <nb-card-footer class="footer">
+      <button nbButton size="small" status="basic" (click)="cancel()">
+          {{ DIALOG.CONFIRM_DIALOG.CANCEL }}
+      </button>
+      &nbsp;
+      <button nbButton size="small" status="info" (click)="confirm()">{{ DIALOG.CONFIRM_DIALOG.SAVE }}</button>
+  </nb-card-footer>
+</nb-card>

@@ -1,5 +1,11 @@
-@import "../../../../../_styles/modules/color";
-@import "../../../../../_styles/components/partial";
+%font-medium-normal {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-normal;
+}
+
+$cbe-basic-text-color: rgb(68, 68, 68);
+$cbe-basic-text-hover-color: #a7a8bf;
+$cbe-basic-reply-button-border-color: #cccccc;
 
 .reply {
     margin-bottom: 4%;

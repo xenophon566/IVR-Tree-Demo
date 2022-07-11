@@ -1,0 +1,73 @@
+<nb-card class="cropper-dialog">
+  <nb-card-header>
+      <div class="title">{{ "DIALOG.CROPPER_DIALOG.TITLE" | translate }}</div>
+      <div class="ratio-btn" *ngIf="componentType === 'CardImage'">
+          <button
+              nbButton
+              outline
+              size="small"
+              [nbTooltip]="DIALOG.CROPPER_DIALOG.APPLICABLE_TO_1_1"
+              nbTooltipPlacement="top"
+              (click)="setAspectRatio(1 / 1)"
+          >
+              1:1
+          </button>
+          <button
+              nbButton
+              outline
+              size="small"
+              [nbTooltip]="DIALOG.CROPPER_DIALOG.APPLICABLE_TO_1_151"
+              nbTooltipPlacement="top"
+              (click)="setAspectRatio(1.51 / 1)"
+          >
+              1.51:1
+          </button>
+          <button
+              nbButton
+              outline
+              size="small"
+              [nbTooltip]="DIALOG.CROPPER_DIALOG.APPLICABLE_TO_1_191"
+              nbTooltipPlacement="top"
+              (click)="setAspectRatio(1.91 / 1)"
+          >
+              1.91:1
+          </button>
+          <button
+              nbButton
+              outline
+              size="small"
+              [nbTooltip]="DIALOG.CROPPER_DIALOG.APPLICABLE_TO_1_251"
+              nbTooltipPlacement="top"
+              (click)="setAspectRatio(2.51 / 1)"
+          >
+              2.51:1
+          </button>
+      </div>
+      <div class="tip">
+          <nb-icon class="warning fa" icon="warning" pack="font-awesome"></nb-icon>
+          <span>{{ "DIALOG.CROPPER_DIALOG.TIP_MESSAGE" | translate }}</span>
+      </div>
+  </nb-card-header>
+  <nb-card-body>
+      <div>{{ content }}</div>
+      <angular-cropper #angularCropper [cropperOptions]="config" [imageUrl]="imageUrl"></angular-cropper>
+  </nb-card-body>
+  <nb-card-footer>
+      <div class="btn-area">
+          <span class="reset">
+              <button nbButton outline size="small" status="warning" (click)="reset()">
+                  {{ "DIALOG.CROPPER_DIALOG.RESET" | translate }}
+              </button>
+          </span>
+          <span>
+              <button nbButton outline size="small" status="info" (click)="confirm()">
+                  {{ "DIALOG.CROPPER_DIALOG.CONFIRM" | translate }}
+              </button>
+              &nbsp;
+              <button nbButton outline size="small" status="basic" (click)="cancel()">
+                  {{ "DIALOG.CROPPER_DIALOG.CANCEL" | translate }}
+              </button>
+          </span>
+      </div>
+  </nb-card-footer>
+</nb-card>

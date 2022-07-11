@@ -1,5 +1,7 @@
-@import "../../../../../_styles/components/partial";
-@import "../../../../../_styles/modules/color";
+%font-medium-normal {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-normal;
+}
 
 .qa-editor {
     border: 0;

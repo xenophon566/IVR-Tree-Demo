@@ -1,5 +1,6 @@
-@import "../../../../../_styles/modules/color";
-@import "../../../../../_styles/modules/typography";
+$cbe-basic-text-color: rgb(68, 68, 68);
+$cbe-basic-text-hover-color: #a7a8bf;
+$cbe-basic-reply-button-border-color: #cccccc;
 
 .qa-block {
     position: relative;

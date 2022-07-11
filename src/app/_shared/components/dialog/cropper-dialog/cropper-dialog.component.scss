@@ -1,0 +1,44 @@
+@import "../../../../../../_styles/modules/color";
+@import "../../../../../../_styles/modules/typography";
+
+.cropper-dialog {
+    width: 72vw;
+    min-width: 20vw;
+    max-height: 85vh;
+    margin: 0 auto;
+
+    nb-card-header {
+        .ratio-btn {
+            padding: 2% 0 0;
+        }
+
+        .tip {
+            color: $cbe-primary-warning-color;
+            padding: 2% 0 0;
+            font-size: $font-size-smaller;
+
+            nb-icon {
+                font-size: $font-size-smaller;
+            }
+        }
+    }
+
+    nb-card-body {
+    }
+
+    nb-card-footer {
+        text-align: right;
+
+        .btn-area {
+            display: flex;
+            justify-content: space-between;
+
+            .reset {
+                button {
+                    box-shadow: none;
+                    background-color: rgba(255, 170, 0, 0.08);
+                }
+            }
+        }
+    }
+}

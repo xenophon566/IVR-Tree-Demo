@@ -1,5 +1,17 @@
-@import "../../../../../_styles/modules/color";
-@import "../../../../../_styles/modules/typography";
+// font family
+$cbe-font-family: cwTeXYen, sourcehansans-tc, 微軟正黑體, "Noto Sans TC", "Source Sans Pro", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+
+// font size
+$font-size-large: 1.125rem;
+$font-size-normal: 1rem;
+$font-size-medium: 0.875rem;
+$font-size-small: 0.8125rem;
+$font-size-smaller: 0.75rem;
+
+$cbe-basic-text-color: rgb(68, 68, 68);
+$cbe-basic-text-hover-color: #a7a8bf;
+$cbe-basic-reply-button-border-color: #cccccc;
 
 .text {
     .header {

@@ -1,5 +1,12 @@
-@import "../../../../../_styles/modules/color";
-@import "../../../../../_styles/components/partial";
+%font-medium-normal {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-normal;
+}
+
+%tabs-font-style {
+    font-family: $cbe-font-family;
+    @extend %font-medium-normal;
+}
 
 .tabs-frame {
     border-bottom: 1px solid #edf1f7;
