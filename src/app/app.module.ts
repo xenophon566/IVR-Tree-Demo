@@ -36,7 +36,6 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
     imports: [
-        SmartQaEditorComponent,
         AppRoutingModule,
         BrowserModule,
         HttpClientModule,
@@ -60,7 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
             },
         }),
     ],
-    declarations: [AppComponent, HomeComponent, DemoButtonsComponent, DemoFirebaseComponent],
+    declarations: [AppComponent, HomeComponent, DemoButtonsComponent, DemoFirebaseComponent, SmartQaEditorComponent],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

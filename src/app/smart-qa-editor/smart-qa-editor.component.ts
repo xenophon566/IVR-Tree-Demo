@@ -1,11 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { LanguageService, UtilitiesService, PostMessageService } from "@core/utils";
 import { HttpService } from "@core/services";
 import { QaEditorService, ReplyContentService, SmartQaEditorService } from "@core/state";
 import { TabsFrameService } from "@core/state/tabs-frame/tabs-frame.service";
 import { environment } from "@env/environment";
 import { GlobalService } from "@core/services";
-import { ChangeDetectorRef } from "@angular/core";
 
 /**
  * Smart QaEditor Component

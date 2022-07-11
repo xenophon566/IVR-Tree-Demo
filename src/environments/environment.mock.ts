@@ -14,6 +14,6 @@
 
 export const environment = {
     production: false,
-    env: "dev",
+    env: "dev-mock",
     whiteList: ["localhost", "127.0.0.1"],
 };

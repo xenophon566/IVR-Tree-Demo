@@ -6,7 +6,7 @@
  * @param {const} environment
  */
 export const environment = {
-    production: true,
-    env: "prod",
-    whiteList: [],
+    production: false,
+    env: "stage",
+    whiteList: ["localhost", "127.0.0.1", "qbi.chainsea.com.tw", "rdqa.chainsea.com.tw"],
 };
