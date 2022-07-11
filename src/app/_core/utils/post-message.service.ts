@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { LanguageService } from "./language.service";
-import { SET_TIMEOUT } from "@core/services";
+import { Injectable } from '@angular/core';
+import { LanguageService } from './language.service';
+import { SET_TIMEOUT } from '@core/services';
 
 /**
  * ### iframe 常數設定
@@ -9,7 +9,7 @@ import { SET_TIMEOUT } from "@core/services";
  * @enum {number}
  */
 export const enum IFRAME {
-    ID = "iframeToCBE",
+    ID = 'iframeToCBE',
 }
 
 /**
@@ -19,14 +19,14 @@ export const enum IFRAME {
  * @class PostMessageService
  */
 @Injectable({
-    providedIn: "root",
+    providedIn: 'root',
 })
 export class PostMessageService {
     /**
      * @ignore
      */
     constructor(private languageService: LanguageService) {
-        this.QA_EDITOR = this.languageService.getLanguages("QA_EDITOR");
+        this.QA_EDITOR = this.languageService.getLanguages('QA_EDITOR');
     }
 
     /**
@@ -45,44 +45,44 @@ export class PostMessageService {
      * @param {string} [url='*']
      * @memberof PostMessageService
      */
-    postMessage(action = "custom", data: any = {}, url = "*") {
+    postMessage(action = 'custom', data: any = {}, url = '*') {
         switch (action) {
-            case "showNotSupportError":
+            case 'showNotSupportError':
                 parent.postMessage(
                     {
-                        type: "doSweetAlert",
+                        type: 'doSweetAlert',
                         data: {
                             title: this.QA_EDITOR.COMMON.ERROR,
                             text: this.QA_EDITOR.COMMON.NOT_SUPPORT_FILETYPE,
-                            type: "error",
+                            type: 'error',
                             confirmButtonText: this.QA_EDITOR.COMMON.COMFIRM,
                         },
                     },
                     url
                 );
                 break;
-            case "showUploadMaxError":
+            case 'showUploadMaxError':
                 parent.postMessage(
                     {
-                        type: "doSweetAlert",
+                        type: 'doSweetAlert',
                         data: {
                             title: this.QA_EDITOR.COMMON.ERROR,
                             text: this.QA_EDITOR.COMMON.UPLOAD_MAX_LIMITED_ERROR,
-                            type: "error",
+                            type: 'error',
                             confirmButtonText: this.QA_EDITOR.COMMON.COMFIRM,
                         },
                     },
                     url
                 );
                 break;
-            case "doConfirmSweetAlert":
+            case 'doConfirmSweetAlert':
                 parent.postMessage(
                     {
-                        type: "doConfirmSweetAlert",
+                        type: 'doConfirmSweetAlert',
                         data: {
                             title: data.data.title,
                             text: data.data.text,
-                            type: "warning",
+                            type: 'warning',
                             cancelButtonText: data.data.cancelButtonText || this.QA_EDITOR.COMMON.CANCEL,
                             confirmButtonText: data.data.confirmButtonText || this.QA_EDITOR.COMMON.COMFIRM,
                             callbackData: data.data.callbackData,
@@ -91,10 +91,10 @@ export class PostMessageService {
                     url
                 );
                 break;
-            case "doSweetAlert":
+            case 'doSweetAlert':
                 parent.postMessage(JSON.parse(JSON.stringify(data)), url);
                 break;
-            case "custom":
+            case 'custom':
                 parent.postMessage(JSON.parse(JSON.stringify(data)), url);
                 break;
         }
@@ -108,12 +108,12 @@ export class PostMessageService {
      * @param {string} [url='*']
      * @memberof PostMessageService
      */
-    reloadIFrame(iframe, data = {}, url = "*") {
+    reloadIFrame(iframe, data = {}, url = '*') {
         setTimeout(() => {
             if (!!iframe.contentWindow) {
                 if (!!data && !!Object.keys(data).length) iframe.contentWindow.postMessage(data, url);
                 else iframe.contentWindow.location.reload(true);
-            } else console.error("iframe not found");
+            } else console.error('iframe not found');
         }, SET_TIMEOUT.NORMAL);
     }
 
@@ -125,13 +125,13 @@ export class PostMessageService {
     appendIFrame() {
         if (!!document.getElementById(IFRAME.ID)) document.getElementById(IFRAME.ID).remove();
 
-        const iframes = document.getElementsByTagName("iframe");
+        const iframes = document.getElementsByTagName('iframe');
         let iframe = null;
         if (!iframes[0]) {
-            iframe = document.createElement("iframe");
-            iframe.src = "./assets/cbe/index.html";
+            iframe = document.createElement('iframe');
+            iframe.src = './assets/cbe/index.html';
             iframe.id = IFRAME.ID;
-            iframe.style = "display:none";
+            iframe.style = 'display:none';
             document.body.appendChild(iframe);
         } else iframe = iframes[0] || null;
 
