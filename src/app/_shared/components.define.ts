@@ -1,4 +1,3 @@
-import { ProfileDialogComponent } from "./components/header/dialog";
 import {
     BreadcrumbComponent,
     TextareaComponent,
@@ -16,7 +15,6 @@ import {
     QaMediaCardComponent,
     ReplyContentComponent,
     OperatorComponent,
-    CheckboxTableComponent,
     InputSearchComponent,
     PaginationComponent,
     QaTextIndependentComponent,
@@ -31,8 +29,6 @@ import {
  * @export {const} COMPONENTS
  */
 export const COMPONENTS = [
-    HeaderComponent,
-    FooterComponent,
     BreadcrumbComponent,
     InputSearchComponent,
     TextareaComponent,
@@ -79,13 +75,6 @@ export const COMPONENTS_LIST = {
     QaMediaCardComponent,
     ReplyContentComponent,
     OperatorComponent,
-    AlertDialogComponent,
-    ConfirmDialogComponent,
-    CropperDialogComponent,
-    HtmlDialogComponent,
-    OauthSettingDialogComponent,
-    BasicTableComponent,
-    CheckboxTableComponent,
     QaTextIndependentComponent,
     QaPlayComponent,
     QaQuoteComponent,

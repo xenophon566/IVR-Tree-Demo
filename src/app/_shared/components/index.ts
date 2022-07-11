@@ -24,5 +24,4 @@ export * from "./operator/operator.component";
 export * from "./qa-play/qa-play.component";
 export * from "./qa-quote/qa-quote.component";
 
-
 export * from "./label-editor/label-editor.component";
