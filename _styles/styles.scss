@@ -1,0 +1,436 @@
+/**
+* ===========================
+* ### Global Styles & Nebular
+* ===========================
+*/
+
+// ==================================================
+
+/**
+* ### Global Styles & Nebular
+*
+* #### Global Colors
+*/
+// primary
+$ec-primary-color: #337ab7;
+$ec-primary-background-color: #ffffff;
+$ec-primary-hover-color: #598bff;
+$ec-primary-error-color: #ff0000;
+$ec-primary-warning-color: #f39c12;
+$ec-primary-warning-color: #f39c12;
+
+// Colors
+$ec-dark-color: #212529;
+$ec-muted-color: #6c757d;
+
+// Forms
+$ec-primary-button-color: #3c8dbc;
+$ec-basic-text-color: rgb(68, 68, 68);
+$ec-basic-disabled-text-color: #222b45;
+$ec-basic-text-hover-color: #a7a8bf;
+
+// Input
+$ec-primary-input-color: #ffffff;
+$ec-basic-input-placeholder-color: #999999;
+$ec-primary-input-border-color: #e4e9f2;
+
+// Select
+$ec-basic-select-border-color: #333333;
+
+// Card
+$ec-basic-card-background-color: #f8f8f8;
+$ec-basic-card-border-color: #dfe0e2;
+$ec-basic-card-shadow-color: rgba(206, 206, 206, 1);
+
+// Upload frame
+$ec-basic-frame-border-color: rgba(0, 0, 0, 0.4);
+
+// Reply
+$ec-basic-reply-button-border-color: #cccccc;
+
+// Table
+$ec-basic-table-background-color: #f0f0f0;
+$ec-basic-table-header-color: #222b45;
+$ec-basic-table-row-color: #333333;
+
+// Toastr
+$ec-toastr-background-color: #d9edf7;
+$ec-toastr-color: #31708f;
+
+// Button
+$ec-icon-button-background-color: #6c757d;
+
+// APP Icon
+$ec-app-robot: #212529;
+$ec-app-sms: #ffaa00;
+$ec-app-line: #06c755;
+$ec-app-messenger: #006aff;
+$ec-app-instagram: #fd1d1d;
+
+/**
+* ### Global Styles & Nebular
+*
+* #### Global Typography
+*/
+// font family
+$ec-font-family: cwTeXYen, sourcehansans-tc, 微軟正黑體, "Noto Sans TC", "Source Sans Pro", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+
+// font size
+$font-size-large: 1.125rem;
+$font-size-normal: 1rem;
+$font-size-medium: 0.875rem;
+$font-size-small: 0.8125rem;
+$font-size-smaller: 0.75rem;
+
+// font weight
+$font-weight-normal: 400;
+$font-weight-light-bold: 500;
+$font-weight-bold: 700;
+
+// setting by component
+$ec-basic-card-text-font-size: 0.875rem;
+$button-text-font-size: 1rem;
+
+// common
+%font-medium-normal {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-normal;
+}
+
+%font-large-light-bold {
+    font-size: $font-size-large;
+    font-weight: $font-weight-light-bold;
+}
+
+%font-medium-bold {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-bold;
+}
+
+%tabs-font-style {
+    font-family: $ec-font-family;
+    @extend %font-medium-normal;
+}
+
+%validation-font-style {
+    font-family: $ec-font-family;
+    @extend %font-medium-normal;
+}
+
+%editor-header-title,
+%push-notification-field {
+    font-family: $ec-font-family;
+    @extend %font-large-light-bold;
+}
+
+%upload-frame {
+    position: relative;
+    padding: 30%;
+    margin: 0 auto;
+    border: 1px solid $ec-basic-frame-border-color;
+    border-radius: 4px;
+}
+
+%text-ellipsis {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+%title-style {
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+%sub-title-style {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/**
+* ### Global Styles & Nebular
+*
+* #### Global Partial
+*/
+.bg-contain {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.frame {
+    background-color: $ec-primary-background-color;
+    cursor: pointer;
+
+    .upload-frame {
+        @extend %upload-frame;
+    }
+
+    .fileNameArea {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+    }
+}
+
+/**
+* ### Global Styles & Nebular
+*
+* #### Global Nebular
+*/
+@import "~@nebular/theme/styles/theming";
+@import "~@nebular/theme/styles/themes/default";
+@import "~@nebular/theme/styles/globals";
+
+$nb-themes: nb-register-theme(
+    (
+        // layout styles
+        layout-background-color: $ec-primary-background-color,
+        layout-window-mode-background-color: $ec-primary-background-color,
+        footer-background-color: $ec-primary-background-color,
+        // toggle styles
+        toggle-width: 3.125rem,
+        toggle-height: 1.25rem,
+        toggle-switcher-size: 1.15rem,
+        toggle-border-radius: 3rem,
+        toggle-basic-checked-background-color: $ec-primary-button-color,
+        toggle-basic-checked-border-color: $ec-primary-button-color,
+        toggle-basic-checked-switcher-checkmark-color: $ec-primary-button-color,
+        toggle-info-focus-checked-background-color: $ec-primary-button-color,
+        toggle-basic-hover-checked-background-color: $ec-primary-button-color,
+        toggle-basic-hover-checked-border-color: $ec-primary-button-color,
+        toggle-basic-focus-checked-background-color: $ec-primary-button-color,
+        // checkbox styles
+        checkbox-text-font-family: $ec-font-family,
+        checkbox-text-font-size: $font-size-medium,
+        // button styles
+        button-text-font-family: $ec-font-family,
+        button-filled-info-background-color: $ec-primary-button-color,
+        button-filled-info-border-color: $ec-primary-button-color,
+        button-filled-text-transform: unset,
+        button-outline-info-background-color: rgba(0, 149, 255, 0.01),
+        button-outline-info-border-color: $ec-primary-button-color,
+        button-outline-info-text-color: $ec-primary-button-color,
+        button-outline-info-focus-background-color: $ec-primary-input-color,
+        // radio styles
+        radio-text-font-family: $ec-font-family,
+        // select styles
+        select-text-font-family: $ec-font-family,
+        select-placeholder-text-font-family: $ec-font-family,
+        select-medium-text-font-size: $font-size-medium,
+        select-medium-text-font-weight: $font-weight-normal,
+        select-outline-basic-background-color: $ec-primary-background-color,
+        select-outline-basic-hover-background-color: $ec-primary-background-color,
+        select-outline-basic-border-color: $ec-basic-frame-border-color,
+        select-outline-basic-hover-border-color: $ec-basic-frame-border-color,
+        // tabset styles
+        tabset-tab-active-text-color: $ec-primary-color,
+        tabset-tab-active-underline-color: $ec-primary-color,
+        tabset-tab-text-color: $ec-basic-text-color,
+        tabset-background-color: $ec-primary-background-color,
+        tabset-tab-text-font-size: $font-size-smaller,
+        tabset-tab-padding: 0.8rem 1.6rem,
+        // radio styles
+        radio-basic-checked-border-color: $ec-primary-color,
+        radio-basic-inner-circle-color: $ec-primary-color,
+        // input styles
+        input-text-font-family: $ec-font-family,
+        input-basic-background-color: $ec-primary-background-color,
+        input-basic-text-color: $ec-basic-text-color,
+        input-basic-disabled-text-color: $ec-basic-disabled-text-color,
+        input-basic-placeholder-text-color: $ec-basic-input-placeholder-color,
+        input-basic-hover-background-color: $ec-primary-background-color,
+        input-medium-text-font-size: $font-size-medium,
+        input-medium-text-font-weight: $font-weight-normal,
+        // card styles
+        card-header-text-font-family: $ec-font-family,
+        card-text-font-family: $ec-font-family,
+        card-text-font-size: $ec-basic-card-text-font-size,
+        // menu styles
+        menu-text-font-family: $ec-font-family,
+        menu-text-font-size: $font-size-medium,
+        menu-text-font-weight: $font-weight-normal,
+        // list styles
+        list-item-font-family: $ec-font-family,
+        list-item-font-size: $font-size-medium,
+        list-item-font-weight: $font-weight-normal,
+        // tree grid styles
+        tree-grid-header-background-color: $ec-basic-table-background-color,
+        tree-grid-header-text-font-family: $ec-font-family,
+        tree-grid-header-text-font-size: $font-size-medium,
+        tree-grid-header-text-font-weight: $font-weight-bold,
+        tree-grid-row-text-color: $ec-basic-table-row-color,
+        tree-grid-row-text-font-family: $ec-font-family,
+        tree-grid-row-text-font-size: $font-size-medium,
+        tree-grid-row-text-font-weight: $font-weight-normal,
+        tree-grid-header-text-line-height: 1.25rem,
+        tree-grid-row-text-line-height: 1.25rem,
+        tree-grid-cell-padding: 0.5rem,
+        // toastr styles
+        toastr-basic-background-color: $ec-toastr-background-color,
+        toastr-icon-basic-background-color: $ec-toastr-background-color,
+        toastr-destroyable-basic-hover-background-color: $ec-toastr-background-color,
+        toastr-basic-text-color: $ec-toastr-color
+    ),
+    default,
+    default
+);
+
+// install the framework styles
+@include nb-install() {
+    @include nb-theme-global();
+}
+
+/**
+* ### Global Styles & Nebular
+*
+* #### Global Styles
+*/
+* {
+    font-family: "Roboto", Arial, sans-serif;
+    color: #616161;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+router-outlet + * {
+    padding: 0 16px;
+}
+
+/* Text */
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h1,
+h2 {
+    font-weight: lighter;
+}
+
+p {
+    font-size: 14px;
+}
+
+/* Hyperlink */
+
+a {
+    cursor: pointer;
+    color: #1976d2;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* Input */
+input {
+    font-size: 14px;
+    border-radius: 2px;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #bdbdbd;
+}
+
+label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+    text-transform: uppercase;
+}
+
+/* Button */
+.button,
+button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+}
+
+.button:hover,
+button:hover {
+    opacity: 0.8;
+    font-weight: normal;
+}
+
+.button:disabled,
+button:disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+/* Fancy Button */
+.fancy-button {
+    background-color: white;
+    color: #1976d2;
+}
+
+.fancy-button i.material-icons {
+    color: #1976d2;
+    padding-right: 4px;
+}
+
+/* Top Bar */
+app-top-bar {
+    width: 100%;
+    height: 68px;
+    background-color: #1976d2;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+app-top-bar h1 {
+    color: white;
+    margin: 0;
+}
+
+/* Checkout Cart, Shipping Prices */
+.cart-item,
+.shipping-item {
+    width: 100%;
+    min-width: 400px;
+    max-width: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 32px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    background-color: #eeeeee;
+}

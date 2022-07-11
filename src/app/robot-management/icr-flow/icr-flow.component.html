@@ -1,0 +1,38 @@
+<div class="icr-flow">
+    <div class="body" *ngIf="!!questionId">
+        <div *ngIf="isResultExist">
+            <div class="legend-area">
+                <span class="legend" *ngFor="let node of nodePaletteArr">
+                    <span> {{ node.key === "start" ? "開始" : node.key === "end" ? "結束" : "一般" }} &nbsp; </span>
+                    <span class="node-color" [style]="{ 'background-color': node.value }"> </span>
+                </span>
+                <span class="legend" *ngFor="let module of moduleTypePaletteArr">
+                    <span> {{ moduleType[module.key] }} </span>
+                    <span class="node-color" [style]="{ 'background-color': module.value }"> </span>
+                </span>
+                <span class="legend" *ngFor="let connection of connectionPaletteArr">
+                    <span> {{ answerType[connection.key] }} </span>
+                    <span class="connection-color" [style]="{ 'background-color': connection.value }"> </span>
+                    &nbsp;
+                </span>
+            </div>
+            <br />
+            <div class="main-area">
+                <div class="draw-area">
+                    <div class="graph">
+                        <cbe-gojs-ivr [model]="gojsIVRModel" (nodeSelected)="nodeSelected($event)"></cbe-gojs-ivr>
+                    </div>
+                </div>
+                <div class="editor-area">
+                    <div class="editor">
+                        <iframe src="/#/smartQaEditor" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isResultExist">
+            <div style="padding-top: 3.6rem"></div>
+            <p>這個選項沒有資料</p>
+        </div>
+    </div>
+</div>

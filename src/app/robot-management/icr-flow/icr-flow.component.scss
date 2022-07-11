@@ -1,0 +1,95 @@
+.icr-flow {
+  display: flex;
+  width: 100%;
+
+  .side-menu {
+      width: 20%;
+      padding: 1.2rem;
+
+      .side-menu-title {
+          font-size: 1.2rem;
+          font-weight: 600;
+          line-height: 3rem;
+      }
+
+      nb-list {
+          line-height: 2rem;
+
+          nb-list-item {
+              cursor: pointer;
+          }
+      }
+  }
+
+  .body {
+      width: 100%;
+      padding: 1.2rem;
+
+      .channel-menu {
+          margin: 0.5rem 0;
+          border-radius: 4px;
+      }
+
+      .events-menu {
+          margin: 0.5rem 0;
+          border-radius: 4px;
+      }
+
+      .main-area {
+          display: flex;
+          width: 100%;
+
+          .draw-area {
+              display: inline-block;
+              width: 65%;
+
+              .graph {
+                  .diagramDiv {
+                      height: 90vh !important;
+                  }
+              }
+          }
+
+          .editor-area {
+              display: inline-block;
+              width: 35%;
+
+              .editor {
+                  iframe {
+                      width: 34.5vw;
+                      height: 90vh;
+                  }
+              }
+          }
+      }
+
+      .legend-area {
+          display: flex;
+
+          .legend {
+              margin-right: 0.6rem;
+
+              .node-color {
+                  display: inline-block;
+                  width: 1rem;
+                  height: 1rem;
+                  border-radius: 50%;
+              }
+
+              .connection-color {
+                  display: inline-block;
+                  width: 1.2rem;
+                  height: 0.8rem;
+                  border-radius: 4px;
+              }
+          }
+      }
+  }
+
+  .flow-chart-area {
+  }
+
+  .mat-button-toggle {
+      border-right: 1px solid #00000030;
+  }
+}

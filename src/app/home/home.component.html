@@ -1,0 +1,7 @@
+<nb-card>
+    <nb-card-header>Angular {{ version }} ( {{ i18n.HOME.CONTENT }} )</nb-card-header>
+    <nb-card-body>
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <div *ngFor="let item of chatroomList">{{ item.FUserName }}</div>
+    </nb-card-body>
+</nb-card>

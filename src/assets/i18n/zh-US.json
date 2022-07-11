@@ -1,0 +1,22 @@
+{
+    "HEADER": {
+        "TITLE": "TEST-Site",
+        "LANG": {
+            "US": "English",
+            "TW": "Chinese"
+        },
+        "THEME": {
+            "DEFAULT": "Default",
+            "DARK": "Dark",
+            "CORPORATE": "Corporate",
+            "COSMIC": "Cosmic",
+            "CUSTOM": "Custom"
+        }
+    },
+    "FOOTER": {
+        "TITLE": "NGX Crop."
+    },
+    "HOME": {
+        "CONTENT": "You in Home"
+    }
+}

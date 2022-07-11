@@ -1,0 +1,22 @@
+{
+  "HEADER": {
+      "TITLE": "我的測試",
+      "LANG": {
+          "US": "英文",
+          "TW": "中文"
+      },
+      "THEME": {
+          "DEFAULT": "預設",
+          "DARK": "黑色",
+          "CORPORATE": "企業",
+          "COSMIC": "宇宙",
+          "CUSTOM": "客製化"
+      }
+  },
+  "FOOTER": {
+      "TITLE": "NGX 公司"
+  },
+  "HOME": {
+      "CONTENT": "你在首頁"
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "/ecp/openapi/cbp/v1/*/*": "/ecp-$1-$2",
+    "/ecp/openapi/cbe/*/*": "/ecp-$1-$2",
+    "/ecp/openapi/qs/user/*": "/ecp-auth-user-$1",
+    "/ecp/openapi/qs/department/*": "/ecp-enterprise-department-$1",
+    "/ecp/openapi/*/*": "/ecp-$1-$2",
+    "/ecp/openapi/*/*/*": "/ecp-$1-$2-$3",
+    "/ecp/*/*": "/ecp-$1-$2",
+    "/ecp/*/*/*": "/ecp-$1-$2-$3",
+    "/chatbotenterprise/openapi/cbp/v1/*/*": "/chatbotenterprise-$1-$2",
+    "/chatbotenterprise/openapi/cbe/*/*": "/chatbotenterprise-$1-$2",
+    "/chatbotenterprise/openapi/qs/user/*": "/chatbotenterprise-auth-user-$1",
+    "/chatbotenterprise/openapi/qs/department/*": "/chatbotenterprise-enterprise-department-$1",
+    "/chatbotenterprise/openapi/*/*": "/chatbotenterprise-$1-$2",
+    "/chatbotenterprise/*/*": "/chatbotenterprise-$1-$2",
+    "/chatbotenterprise/*/*/*": "/chatbotenterprise-$1-$2-$3"
+}

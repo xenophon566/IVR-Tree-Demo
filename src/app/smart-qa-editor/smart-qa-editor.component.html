@@ -1,0 +1,59 @@
+<nb-layout class="smart-qa-editor">
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-header class="header">
+                <div class="loading-error-mask"></div>
+                <div class="title">
+                    {{ i18n?.SMART_QA_EDITOR?.TITLE }}
+                </div>
+                <div style="display: flex; align-items: center">
+                    <span *ngIf="isMockEnv">
+                        <button nbButton outline size="small" status="warning" (click)="onEmptyLoad()">空答</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button nbButton outline size="small" status="success" (click)="onUniLoad()">單答</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button nbButton outline size="small" status="success" (click)="onLoad()">多答</button>
+                        &nbsp;&nbsp;&nbsp;
+                    </span>
+
+                    <div class="satisfaction-div success-div" *ngIf="!isSatisfactionConflict && isGeneralSatisfaction">
+                        <nb-icon icon="smile-o" pack="font-awesome"></nb-icon>
+                        {{ i18n?.SMART_QA_EDITOR?.LINKED_SMARTQA_SATISFACTION }}：{{ this.satisfactionName }}
+                    </div>
+                    <div class="satisfaction-div error-div" *ngIf="isSatisfactionConflict && isGeneralSatisfaction">
+                        <nb-icon icon="exclamation-triangle" pack="font-awesome"></nb-icon>
+                        {{ i18n?.SMART_QA_EDITOR?.SMARTQA_SATISFACTION_CONFLICT }} <br />{{
+                            i18n?.SMART_QA_EDITOR?.LINKED_SMARTQA_SATISFACTION
+                        }}：{{ satisfactionName }}
+                    </div>
+
+                    <div class="satisfaction-tooltip">
+                        <nb-icon
+                            [nbTooltip]="i18n?.SMART_QA_EDITOR?.SATISFACTION_TOOLTIP"
+                            *ngIf="isGeneralSatisfaction"
+                            icon="info-circle"
+                            pack="font-awesome"
+                        >
+                        </nb-icon>
+                    </div>
+
+                    <button
+                        class="save-btn"
+                        nbButton
+                        outline
+                        id="smart-qa-editor-save"
+                        size="small"
+                        status="info"
+                        (click)="onSave()"
+                    >
+                        {{ i18n?.SMART_QA_EDITOR?.SAVE }}
+                    </button>
+                </div>
+            </nb-card-header>
+            <nb-card-body class="body">
+                <!-- <div class="loading-error-mask">讀取智能問題發生錯誤請重新點擊題目</div> -->
+                <cbe-shared-tabs-frame></cbe-shared-tabs-frame>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>
