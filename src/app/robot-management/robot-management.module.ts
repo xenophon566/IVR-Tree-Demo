@@ -24,7 +24,6 @@ import { GojsIvrComponent } from "./icr-flow/gojs-ivr/gojs-ivr.component";
         ReactiveFormsModule,
         FormsModule,
         NbEvaIconsModule,
-
         SharedModule,
         ...NEBULAR_CHILD,
         ...NEBULAR_ALL,

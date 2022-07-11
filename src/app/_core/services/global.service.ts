@@ -95,6 +95,16 @@ export const GLOBAL_STYLES = {
 };
 
 /**
+ * ### PRECISION
+ *
+ * @export
+ * @enum {number}
+ */
+export const enum PRECISION {
+    FLOAT = 2,
+}
+
+/**
  * ### Enum SET_TIMEOUT
  *
  * - MOMENT = 0,

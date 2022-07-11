@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { HomeComponent } from "./home/home.component";
 import { DemoButtonsComponent } from "./demo-buttons/demo-buttons.component";
 import { DemoFirebaseComponent } from "./demo-firebase/demo-firebase.component";
+import { SmartQaEditorComponent } from "./smart-qa-editor/smart-qa-editor.component";
 import { IcrFlowComponent } from "./robot-management/icr-flow/icr-flow.component";
 
 @NgModule({
@@ -21,6 +22,10 @@ import { IcrFlowComponent } from "./robot-management/icr-flow/icr-flow.component
             },
             { path: "demo-buttons", component: DemoButtonsComponent },
             { path: "demo-firebase", component: DemoFirebaseComponent },
+            {
+                path: "smartQaEditor",
+                component: SmartQaEditorComponent,
+            },
             {
                 path: "icrFlow",
                 component: IcrFlowComponent,

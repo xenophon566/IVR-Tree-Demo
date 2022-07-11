@@ -29,6 +29,7 @@
         "@ngx-translate/http-loader": "^7.0.0",
         "angular-in-memory-web-api": "~0.13.0",
         "crypto-js": "^4.1.1",
+        "echarts": "^5.3.3",
         "eva-icons": "^1.1.3",
         "firebase": "^9.8.4",
         "gojs": "^2.2.12",
