@@ -1,0 +1,95 @@
+<div class="paginationDiv" *ngIf="!!paginationData && PAGINATION">
+    <div>
+        <label style="padding-right: 10px">
+            {{ PAGINATION.PAGINATION.SHOW | translate }}
+            {{ displayStart }}
+            {{ PAGINATION.PAGINATION.TO | translate }}
+            {{ displayEnd }}
+            {{ PAGINATION.PAGINATION.OF | translate }}
+            {{ recordCount }}
+            {{ PAGINATION.PAGINATION.ITEM | translate }}</label
+        >
+
+        <ng-container *ngIf="pageCount != 1 && pageCount != 0">
+            {{ PAGINATION.PAGINATION.JUMP_TO | translate }}
+            <input
+                type="text"
+                #pageInput
+                nbInput
+                fieldSize="Medium"
+                class="changePageInput"
+                (keydown.enter)="doChangePage()"
+            />
+
+            <label
+                >{{ PAGINATION.PAGINATION.PAGE_TOTAL | translate }} {{ pageCount }}
+                {{ PAGINATION.PAGINATION.PAGE | translate }}</label
+            >
+        </ng-container>
+    </div>
+    <div>
+        <ng-container *ngIf="pageCount == 1 || pageCount == 0">
+            <button nbButton outline status="info">{{ currentPageIndex }}</button>
+        </ng-container>
+        <ng-container *ngIf="pageCount != 1 && pageCount != 0">
+            <button nbButton outline status="info" *ngIf="currentPageIndex != 1" (click)="doChangePage(1)">
+                <nb-icon icon="arrowhead-left-outline"></nb-icon>
+            </button>
+            <button
+                nbButton
+                outline
+                status="info"
+                *ngIf="currentPageIndex != 1"
+                (click)="doChangePage(currentPageIndex - 1)"
+            >
+                <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+            </button>
+            <button
+                nbButton
+                outline
+                status="info"
+                *ngIf="currentPageIndex - 2 > 0"
+                (click)="doChangePage(currentPageIndex - 2)"
+            >
+                {{ currentPageIndex - 2 }}
+            </button>
+            <button
+                nbButton
+                outline
+                status="info"
+                *ngIf="currentPageIndex - 1 > 0"
+                (click)="doChangePage(currentPageIndex - 1)"
+            >
+                {{ currentPageIndex - 1 }}
+            </button>
+            <button nbButton status="info">{{ currentPageIndex }}</button>
+            <ng-container *ngIf="hasNextPage">
+                <button
+                    nbButton
+                    outline
+                    status="info"
+                    *ngIf="pageCount >= currentPageIndex + 1"
+                    (click)="doChangePage(currentPageIndex + 1)"
+                >
+                    {{ currentPageIndex + 1 }}
+                </button>
+                <button
+                    nbButton
+                    outline
+                    status="info"
+                    *ngIf="pageCount >= currentPageIndex + 2"
+                    (click)="doChangePage(currentPageIndex + 2)"
+                >
+                    {{ currentPageIndex + 2 }}
+                </button>
+
+                <button nbButton outline status="info" (click)="doChangePage(currentPageIndex + 1)">
+                    <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                </button>
+                <button nbButton outline status="info" (click)="doChangePage(pageCount)">
+                    <nb-icon icon="arrowhead-right-outline"></nb-icon>
+                </button>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

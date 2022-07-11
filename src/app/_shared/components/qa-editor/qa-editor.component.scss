@@ -1,0 +1,77 @@
+@import "../../../../../_styles/components/partial";
+@import "../../../../../_styles/modules/color";
+
+.qa-editor {
+    border: 0;
+
+    .header,
+    .footer {
+        display: flex;
+        align-items: center;
+    }
+
+    .header {
+        display: none;
+        justify-content: space-between;
+    }
+
+    .body {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+
+        .radio-button-group {
+            line-height: 3rem;
+
+            .radio-button {
+                display: inline-block;
+            }
+        }
+
+        &.activityTab {
+            padding-top: 8rem;
+        }
+
+        .qaMenu-btn {
+            margin: 4% 0;
+            text-align: center;
+        }
+    }
+
+    .error {
+        border: solid 0.1rem red !important;
+    }
+
+    .error-wording {
+        color: red;
+    }
+
+    .activity-select {
+        position: absolute;
+        width: 80%;
+        margin: 0 auto 4%;
+        padding: 1.5% 4% 4%;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        label {
+            @extend %font-medium-normal;
+        }
+    }
+
+    .pricetags {
+        position: absolute;
+        top: 1.2%;
+        right: 5%;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .tagIcon {
+        width: 100% !important;
+        height: 3.6vw !important;
+        max-height: 2.8rem;
+        color: #bebebe;
+    }
+}

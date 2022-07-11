@@ -1,0 +1,68 @@
+@import "../../../../../_styles/modules/color";
+@import "../../../../../_styles/components/partial";
+
+.tabs-frame {
+    border-bottom: 1px solid #edf1f7;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+
+    button {
+        width: 4.5rem;
+        width: 4.5vw;
+        height: 4.5rem;
+        height: 4.5vw;
+        min-width: 1.8rem;
+        min-height: 1.8rem;
+        margin: 0 1%;
+        padding: 0.5% !important;
+
+        nb-icon {
+            width: 3rem;
+            width: 3vw;
+            height: 3rem;
+            height: 3vw;
+            min-width: 1.2rem;
+            min-height: 1.2rem;
+        }
+    }
+
+    .item {
+        @extend %tabs-font-style;
+        display: inline-block;
+        margin: 0 2%;
+        padding: 2%;
+        color: rgb(51, 51, 51);
+        list-style-type: none;
+        cursor: pointer;
+
+        &.active {
+            @extend %tabs-font-style;
+            border-bottom: 3px solid $cbe-primary-color;
+            color: rgb(51, 51, 51);
+        }
+
+        &:hover {
+            @extend %tabs-font-style;
+            border-bottom: 3px solid $cbe-primary-hover-color;
+            color: $cbe-primary-hover-color;
+        }
+
+        .tab-close {
+            cursor: pointer;
+
+            nb-icon {
+                width: 1rem;
+            }
+        }
+    }
+
+    .tabs-btn {
+        display: inline-block;
+        width: 20%;
+
+        button:nth-child(1) {
+            margin: 0.6875rem 0.5625rem;
+        }
+    }
+}

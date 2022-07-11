@@ -1,0 +1,46 @@
+<div id="{{ id }}" class="text qa-block">
+    <div class="header">
+        <label *ngIf="!title">{{ QA_EDITOR.TEXT.TEXT | translate }}</label>
+        <label *ngIf="!!title">{{ title }}</label>
+        <div class="random-operator" [ngStyle]="{ display: 'flex' }">
+            <div class="random-btn">
+                <span class="title">
+                    {{ QA_EDITOR.TEXT.RANDOM | translate }}
+                </span>
+                &nbsp;&nbsp;
+                <nb-toggle labelPosition="left" [(checked)]="toggleChecked" (change)="isRandom()"></nb-toggle>
+            </div>
+            <span class="icon-add-btn" [hidden]="!toggleChecked || !canAdd">
+                <nb-icon icon="plus-outline" class="icon-add" (click)="createTextarea()"></nb-icon>
+            </span>
+        </div>
+    </div>
+    <div class="body" #body>
+        <div
+            *ngFor="let item of loadData; let recordIndex = index; trackBy: trackByFn"
+            #textareaBlock
+            class="textarea-block {{ id }}"
+        >
+            <nb-icon
+                class="icon-trash fa"
+                icon="trash"
+                pack="font-awesome"
+                [ngStyle]="{ visibility: canDelete ? 'visible' : 'hidden' }"
+                (click)="deleteTextarea($event, recordIndex)"
+            ></nb-icon>
+            <textarea
+                #textArea
+                nbInput
+                fullWidth
+                class="text-area"
+                rows="5"
+                [name]="'textarea-' + recordIndex"
+                [placeholder]="placeholder"
+                (blur)="textareaOnBlur($event)"
+                [(ngModel)]="loadData[recordIndex]"
+            >
+            </textarea>
+            <div class="error-wording"></div>
+        </div>
+    </div>
+</div>

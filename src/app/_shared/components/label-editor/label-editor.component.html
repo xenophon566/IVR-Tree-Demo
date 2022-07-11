@@ -1,0 +1,114 @@
+<nb-layout class="label-editor">
+    <nb-layout-column>
+        <nb-card [ngStyle]="{ height: environment.env.indexOf('stage') === -1 ? '24.8rem' : '21.5rem' }">
+            <nb-card-header *ngIf="environment.env.indexOf('stage') === -1">
+                {{ COMPONENTS?.LABELEDITOR?.EDIT_VARIABLE }}
+            </nb-card-header>
+            <nb-card-body>
+                <table>
+                    <thead>
+                        <tr>
+                            <th *ngFor="let item of tableData.columnTitle">
+                                {{ item }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rowData of tableData.rowData; let idx = index">
+                            <td *ngFor="let item of tableData.column">
+                                <ng-container *ngIf="item === 'key' || item === 'value'">
+                                    <div style="width: 100%">
+                                        <input
+                                            nbInput
+                                            [(ngModel)]="rowData[item]"
+                                            maxlength="10"
+                                            [ngStyle]="{
+                                                'border-color':
+                                                    !!isSaved && rowData[item].trim().length === 0 ? 'red' : '#e4e9f2'
+                                            }"
+                                            [placeholder]="
+                                                item === 'key'
+                                                    ? COMPONENTS?.LABELEDITOR?.PLACEHOLDER_KEY
+                                                    : COMPONENTS?.LABELEDITOR?.PLACEHOLDER_VALUE
+                                            "
+                                        />
+                                        <div
+                                            class="errorDiv"
+                                            *ngIf="!!isSaved && rowData[item].trim().length === 0"
+                                            style="border-color: red"
+                                        >
+                                            {{ COMPONENTS?.LABELEDITOR?.REQUIRED_FIELD }}
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="item === 'type'">
+                                    <div class="typeDiv">
+                                        <div>
+                                            <nb-select
+                                                placeholder="Select Showcase"
+                                                [(ngModel)]="rowData[item]"
+                                                fullWidth
+                                                status="basic"
+                                                [nbPopover]="variableTypeHintRef"
+                                                nbPopoverTrigger="hover"
+                                            >
+                                                <nb-option value="0">
+                                                    {{ COMPONENTS?.LABELEDITOR?.LABEL_VARIABLE }}
+                                                </nb-option>
+                                                <nb-option value="1">
+                                                    {{ COMPONENTS?.LABELEDITOR?.CUSTOM_VARIABLE }}
+                                                </nb-option>
+                                            </nb-select>
+                                        </div>
+                                        <div>
+                                            <nb-icon
+                                                class="trash-icon"
+                                                icon="trash-2-outline"
+                                                status="basic"
+                                                (click)="deleteRow(idx)"
+                                            >
+                                            </nb-icon>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div
+                    id="addRowDiv"
+                    *ngIf="
+                        ((mode === 'answer' || mode === 'question') &&
+                            !!tableData.rowData &&
+                            20 > tableData.rowData.length) ||
+                        (mode !== 'answer' &&
+                            mode !== 'question' &&
+                            !!tableData.rowData &&
+                            3 > tableData.rowData.length)
+                    "
+                >
+                    <nb-icon icon="plus-circle-outline" status="basic" (click)="addRow()"></nb-icon>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <div id="hint">
+                    {{ COMPONENTS?.LABELEDITOR?.HINT }}
+                </div>
+                <div id="btnDiv">
+                    <button nbButton outline status="danger" (click)="doCancel()">
+                        {{ COMPONENTS?.LABELEDITOR?.CANCEL }}
+                    </button>
+                    <button nbButton outline status="primary" (click)="doSave()">
+                        {{ COMPONENTS?.LABELEDITOR?.CONFIRM }}
+                    </button>
+                </div>
+            </nb-card-footer>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>
+
+<ng-template #variableTypeHintRef>
+    <span>{{ COMPONENTS?.LABELEDITOR?.POPOVER_LABEL }}</span>
+    <br />
+    <span>{{ COMPONENTS?.LABELEDITOR?.POPOVER_CUSTOM_VARIABLE }}</span>
+</ng-template>

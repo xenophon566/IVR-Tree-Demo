@@ -1,0 +1,33 @@
+.video {
+    .error {
+        border: solid 0.1px red;
+    }
+
+    .error-wording {
+        color: red;
+    }
+
+    .verticalCenter {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon {
+        margin: 1rem;
+    }
+
+    .frame {
+        cursor: default;
+    }
+
+    .support-hint {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.3rem 0;
+
+        .hint-wording {
+            margin: 0;
+        }
+    }
+}

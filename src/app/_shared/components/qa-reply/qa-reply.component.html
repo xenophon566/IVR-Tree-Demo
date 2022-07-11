@@ -1,0 +1,12 @@
+<div #replyBlock class="reply qa-block">
+    <label *ngIf="!(!!this.data.module && this.data.module === 'satisfaction-survey-editor')">{{
+        QA_EDITOR?.REPLY?.REPLY | translate
+    }}</label>
+    <label *ngIf="!!this.data.module && this.data.module === 'satisfaction-survey-editor'">
+        {{ QA_EDITOR?.REPLY?.SMARTQA_SATISFACTION_SURVEY | translate }}</label
+    >
+
+    <div class="body" #body>
+        <ng-template cbeSharedReplyContentLoader></ng-template>
+    </div>
+</div>

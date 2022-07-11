@@ -1,0 +1,232 @@
+<div *ngIf="replyBtnAry.length !== 0" cdkDropList (cdkDropListDropped)="cdkDropBtn($event)">
+    <div
+        #replyContentBlock
+        class="reply-content-block"
+        *ngFor="let item of replyBtnAry; let idx = index"
+        [cdkDragDisabled]="item.isShow"
+        cdkDrag
+    >
+        <div
+            class="reply-btn"
+            (click)="openButton(item)"
+            [hidden]="item.isShow"
+            [ngClass]="{ error: item.hasEmptyReplyIpt }"
+        >
+            <span class="title">
+                <span>
+                    {{ !!item.showText.trim() ? item.showText : (QA_EDITOR?.PLACEHOLDER?.REPLY_BUTTON | translate) }}
+                </span>
+            </span>
+            <span class="operator">
+                <nb-icon
+                    class="drag fa-solid"
+                    icon="move-outline"
+                    [hidden]="replyBtnAry.length <= 1"
+                    cdkDragHandle
+                ></nb-icon>
+                <nb-icon
+                    class="remove fa"
+                    icon="trash"
+                    pack="font-awesome"
+                    (click)="removeButton(item.id, true)"
+                ></nb-icon>
+            </span>
+        </div>
+        <div class="reply-content" [hidden]="!item.isShow">
+            <div class="btn-name" [ngStyle]="{ 'margin-top': '1.5%' }">
+                <input
+                    #replyShowText
+                    type="text"
+                    fullWidth
+                    nbInput
+                    [placeholder]="QA_EDITOR?.PLACEHOLDER?.REPLY_BUTTON"
+                    [ngClass]="{
+                        error: !item.verify.showText.state,
+                        googleBtn: false
+                    }"
+                    [value]="item.showText"
+                    (input)="inputChange($event.target.value, item, 'showText')"
+                />
+                <nb-icon icon="minus-outline" (click)="closeButton(item.id, true)"></nb-icon>
+            </div>
+            <div class="error-wording btn-error-div">
+                {{ item.verify.showText.errMsg }}
+            </div>
+            <div class="content-area" [ngStyle]="{ display: 'block' }">
+                <nb-tabset #replyOption (changeTab)="changeOption($event.tabTitle, item)">
+                    <nb-tab
+                        #QATab
+                        class="tab-block"
+                        tabTitle="Q-A"
+                        tabIcon="list-outline"
+                        [active]="item.option == 'QA' ? 'true' : 'false'"
+                        *ngIf="
+                            !(
+                                this.data &&
+                                this.data.loadData &&
+                                this.data.loadData.module === 'satisfaction-survey-editor'
+                            ) &&
+                            data.openEditor !== 'marketContent' &&
+                            data.openEditor !== 'marketContentSub'
+                        "
+                    >
+                        <div *ngIf="isReplyQaDisplayText">
+                            <input
+                                #replyQaDisplayText
+                                type="text"
+                                fullWidth
+                                nbInput
+                                [placeholder]="QA_EDITOR?.PLACEHOLDER?.REPLY_DISPLAY_TEXT"
+                                [ngClass]="{ error: !item.verify.qaDisplayText.state }"
+                                [value]="item.qaDisplayText"
+                                (input)="inputChange($event.target.value, item, 'displayText')"
+                            />
+                            <div class="error-wording btn-error-div">
+                                {{ item.verify.qaDisplayText.errMsg }}
+                            </div>
+                        </div>
+                        <div>
+                            <input
+                                #replyQaCode
+                                type="text"
+                                fullWidth
+                                nbInput
+                                [attr.readonly]="
+                                    data.openEditor === 'marketContent' || data.openEditor === 'marketContentSub'
+                                        ? null
+                                        : ''
+                                "
+                                [placeholder]="QA_EDITOR?.PLACEHOLDER?.REPLY_SELECT_Q"
+                                [ngClass]="{ error: !item.verify.qaCode.state }"
+                                (click)="openSmartQAList(item)"
+                                [value]="item.qaName"
+                            />
+                            <div class="error-wording">
+                                {{ item.verify.qaCode.errMsg }}
+                            </div>
+                        </div>
+                    </nb-tab>
+                    <nb-tab
+                        #OptionTab
+                        class="tab-block"
+                        [tabTitle]="QA_EDITOR?.REPLY?.OPTION"
+                        tabIcon="code-outline"
+                        [active]="item.option == 'Option' ? 'true' : 'false'"
+                    >
+                        <div *ngIf="isReplyQaDisplayText">
+                            <input
+                                #replyOptionDisplayText
+                                type="text"
+                                fullWidth
+                                nbInput
+                                [placeholder]="QA_EDITOR?.PLACEHOLDER?.REPLY_DISPLAY_TEXT"
+                                [ngClass]="{ error: !item.verify.optionDisplayText.state }"
+                                [value]="item.optionDisplayText"
+                                (input)="inputChange($event.target.value, item, 'displayText')"
+                            />
+                            <div class="error-wording btn-error-div">
+                                {{ item.verify.optionDisplayText.errMsg }}
+                            </div>
+                        </div>
+                        <div>
+                            <input
+                                #replyOptionCode
+                                type="text"
+                                fullWidth
+                                nbInput
+                                [placeholder]="QA_EDITOR?.PLACEHOLDER?.REPLY_OPTION_INPUT"
+                                [ngClass]="{ error: !item.verify.optionCode.state }"
+                                [value]="item.optionCode"
+                                (input)="inputChange($event.target.value, item, 'code')"
+                            />
+                            <div class="error-wording btn-error-div">
+                                {{ item.verify.optionCode.errMsg }}
+                            </div>
+                        </div>
+                    </nb-tab>
+                    <nb-tab
+                        #UrlTab
+                        class="tab-block"
+                        tabTitle="URL"
+                        tabIcon="link-2-outline"
+                        *ngIf="
+                            isImageUrl &&
+                            !(
+                                this.data &&
+                                this.data.loadData &&
+                                this.data.loadData.module === 'satisfaction-survey-editor'
+                            )
+                        "
+                        [active]="option == 'Url' ? 'true' : 'false'"
+                    >
+                        <div>
+                            <input
+                                #replyUrl
+                                type="text"
+                                fullWidth
+                                nbInput
+                                [placeholder]="QA_EDITOR?.PLACEHOLDER?.URL"
+                                [ngClass]="{ error: !item.verify.urlFName.state }"
+                                [value]="item.urlFName"
+                                (input)="inputChange($event.target.value, item, 'name')"
+                            />
+                            <div class="error-wording btn-error-div">
+                                {{ item.verify.urlName.errMsg }}
+                            </div>
+                        </div>
+                    </nb-tab>
+                </nb-tabset>
+                <div
+                    class="pricetags"
+                    (click)="onPricetagsClick(idx)"
+                    *ngIf="
+                        this.data.module !== 'satisfaction-survey-editor' &&
+                        item.option !== 'Option' &&
+                        data.openEditor !== 'marketContent' &&
+                        data.openEditor !== 'marketContentSub'
+                    "
+                >
+                    <button nbButton ghost status="basic">
+                        <nb-icon
+                            icon="pricetags"
+                            class="tagIcon"
+                            [nbPopover]="labelHintRef"
+                            nbPopoverTrigger="hover"
+                            [ngStyle]="{
+                                color:
+                                    !!item.valueContent && !!item.valueContent[0] && !!item.valueContent[0].key
+                                        ? '#00a600'
+                                        : '#97A0B3'
+                            }"
+                        >
+                        </nb-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div
+    class="plus-btn"
+    [ngClass]="{
+        error: !this.verifyState.replyCount.state && replyBtnAry.length === 0
+    }"
+    [hidden]="replyBtnAry.length === this.data.countLimit.MAX"
+    (click)="createReplyContent()"
+>
+    <span>
+        <span>
+            <nb-icon icon="plus-outline"></nb-icon>
+        </span>
+        <span>{{ QA_EDITOR?.COMMON?.BUTTON | translate }}</span>
+    </span>
+</div>
+<div class="error-wording" [hidden]="!(this.verifyState.replyCount.errMsg && replyBtnAry.length === 0)">
+    {{ this.verifyState.replyCount.errMsg }}
+</div>
+
+<ng-template #labelHintRef>
+    <span>{{ QA_EDITOR.COMMON.LABEL_GRAY_HINT | translate }}</span>
+    <br />
+    <span>{{ QA_EDITOR.COMMON.LABEL_GREEN_HINT | translate }}</span>
+</ng-template>

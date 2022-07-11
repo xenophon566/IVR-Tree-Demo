@@ -1,0 +1,57 @@
+<div id="{{ componentId }}" type="Cards" class="card qa-block" #cardbody [@slider]="isCardClick ? currentCard : 0">
+    <cbe-shared-operator [data]="data"></cbe-shared-operator>
+    <div class="header card-operate">
+        <label>{{ QA_EDITOR.CARD.CARD | translate }}</label>
+        <div class="card-operate-icon">
+            <nb-icon
+                [hidden]="isResizeHidden"
+                icon="resize"
+                pack="card-operators"
+                (click)="imgAspectRatioChange($event)"
+            ></nb-icon>
+            <nb-icon
+                class="img-trash fa"
+                icon="trash"
+                pack="font-awesome"
+                [ngStyle]="{ visibility: canDelete ? 'visible' : 'hidden' }"
+                (click)="deleteCardContent()"
+            ></nb-icon>
+        </div>
+    </div>
+    <div class="body" #body>
+        <ng-template cbeSharedCardContentLoader></ng-template>
+    </div>
+
+    <div class="card-float left">
+        <nb-icon
+            icon="chevron-left-outline"
+            *ngIf="cardfloatLeft"
+            (click)="selectCardContent('prev'); generateDot()"
+        ></nb-icon>
+        <nb-icon
+            icon="arrow-circle-left-outline"
+            *ngIf="cardfloatLeft"
+            class="checkmark icon"
+            (click)="onMove('left'); generateDot()"
+        ></nb-icon>
+    </div>
+    <div class="card-float right">
+        <nb-icon
+            icon="chevron-right-outline"
+            *ngIf="cardfloatRight"
+            (click)="selectCardContent('next'); generateDot()"
+        ></nb-icon>
+        <nb-icon
+            icon="arrow-circle-right-outline"
+            *ngIf="cardfloatRight"
+            class="checkmark icon"
+            (click)="onMove('right'); generateDot()"
+        ></nb-icon>
+        <nb-icon icon="plus-circle-outline" *ngIf="cardfloatRight === null" (click)="createCardContent()"></nb-icon>
+    </div>
+</div>
+<div class="card-float bottom">
+    <span ngClass="{{ i }} {{ componentId }} {{ data.channel }}" *ngFor="let dot of dots; index as i">
+        <ng-template *ngComponentOutlet="dot"></ng-template>
+    </span>
+</div>

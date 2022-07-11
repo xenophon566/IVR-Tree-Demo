@@ -1,0 +1,26 @@
+.file {
+    .error {
+        border: solid 0.1px red;
+    }
+
+    .error-wording {
+        color: red;
+    }
+
+    .verticalCenter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .typeDiv {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 2rem;
+    }
+
+    .icon {
+        margin: 1rem;
+    }
+}

@@ -1,0 +1,47 @@
+.card-content {
+    .text-area,
+    nb-select {
+        margin-top: 2%;
+    }
+
+    .title-field {
+        display: flex;
+        align-items: center;
+    }
+
+    .error {
+        border: solid 0.1px red !important;
+    }
+
+    .verticalCenter {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon {
+        margin: 1rem;
+    }
+}
+
+.error {
+    border-color: red !important;
+}
+
+.content-area {
+    position: relative;
+}
+
+.pricetags {
+    position: absolute;
+    top: 0;
+    right: 0.5%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.tagIcon {
+    width: 100% !important;
+    height: 3vw !important;
+    max-height: 1.8rem;
+    color: #3c8dbc;
+}

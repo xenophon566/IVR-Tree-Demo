@@ -1,0 +1,23 @@
+.image {
+    .error {
+        border: solid 0.1px red !important;
+    }
+
+    .title-field {
+        display: flex;
+        align-items: center;
+    }
+
+    .error-wording {
+        color: red;
+    }
+
+    .verticalCenter {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon {
+        margin: 1rem;
+    }
+}

@@ -1,0 +1,44 @@
+.mediaCard {
+    margin-bottom: 4%;
+    .icon-alert {
+        margin-left: 1rem;
+    }
+    .card-float {
+        width: 8rem;
+        width: 8vw;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 5rem;
+        height: 10vw;
+        text-align: center;
+
+        &.left {
+            left: -12%;
+            cursor: pointer;
+        }
+        &.right {
+            right: -12%;
+            cursor: pointer;
+        }
+
+        nb-icon {
+            font-size: 360%;
+            font-size: 6vw;
+            color: #acacac;
+        }
+    }
+}
+
+.card-float {
+    &.bottom {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 4%;
+
+        span {
+            margin: 0 0.3%;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+@import "../../../../../_styles/modules/color";
+@import "../../../../../_styles/modules/typography";
+
+.text {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5%;
+
+        .random-operator {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            min-width: 9rem;
+
+            .random-btn {
+                display: flex;
+                font-family: $cbe-font-family;
+                font-size: $font-size-medium;
+
+                .title {
+                    display: inline-block;
+                    width: 3.6rem;
+                    text-align: right;
+                }
+            }
+
+            .icon-add {
+                cursor: pointer;
+                color: $cbe-basic-text-color;
+
+                &:hover {
+                    color: $cbe-basic-text-hover-color;
+                }
+            }
+        }
+    }
+}
+
+.error {
+    border-color: red !important;
+}
+
+.error-wording {
+    color: red;
+}

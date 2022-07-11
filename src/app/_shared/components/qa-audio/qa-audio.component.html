@@ -1,0 +1,160 @@
+<div id="{{ componentId }}" type="Audio" class="audio qa-block">
+    <cbe-shared-operator [data]="data"></cbe-shared-operator>
+    <label>{{ "QA_EDITOR.AUDIO.AUDIO" | translate }}</label>
+
+    <hr style="opacity: 0.3" />
+    <nb-select [(selected)]="selectedMode" (selectedChange)="modeChange()">
+        <nb-option value="url"> {{ "QA_EDITOR.AUDIO.AUDIO_URL" | translate }}</nb-option>
+        <nb-option value="upload" default>{{ "QA_EDITOR.AUDIO.AUDIO_UPLOAD" | translate }}</nb-option>
+    </nb-select>
+
+    <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.AUDIO.LINE_LIMIT"></nb-icon>
+    <br />
+
+    <div *ngIf="selectedMode === 'url'">
+        <div class="support-hint">
+            <label class="hint-wording">{{ "QA_EDITOR.AUDIO.AUDIO_LIMIT" | translate }}</label>
+        </div>
+        <input
+            #audioUrl
+            class="source-url"
+            type="text"
+            nbInput
+            fullWidth
+            [placeholder]="QA_EDITOR.PLACEHOLDER.AUDIO_URL"
+            [ngClass]="{ error: !this.verifyState.audioUrl.state }"
+        />
+        <div class="error-wording">{{ this.verifyState.audioUrl.errMsg }}</div>
+    </div>
+
+    <div *ngIf="selectedMode === 'upload'">
+        <div class="frame">
+            <div [ngClass]="{ error: !this.verifyState.uploadUrl.state }">
+                <div *ngIf="fileName !== ''" class="fileNameArea" (click)="uploadFrame()">
+                    <nb-icon icon="volume-down-outline" class="icon"></nb-icon>
+                    <span>{{ fileName }}</span>
+                </div>
+                <div *ngIf="fileName === ''" class="fileNameArea" style="padding: 1rem" (click)="uploadFrame()">
+                    <div>
+                        <div>
+                            <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                            <span>{{ "QA_EDITOR.AUDIO.AUDIO_LIMIT" | translate }}</span>
+                        </div>
+                        <div>
+                            <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                            <span>{{ "QA_EDITOR.AUDIO.LINE_LIMIT" | translate }}</span>
+                        </div>
+                        <div>
+                            <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                            <span>{{ "QA_EDITOR.AUDIO.MESSENGER_LIMIT" | translate }}</span>
+                        </div>
+                        <div *ngIf="data.openEditor !== 'marketContent' && data.openEditor !== 'marketContentSub'">
+                            <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                            <span>{{ "QA_EDITOR.AUDIO.GOOGLE_LIMIT" | translate }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input
+            #file
+            name="myFile"
+            type="file"
+            style="display: none"
+            (change)="upload(file.files)"
+            [accept]="acceptFileType"
+        />
+        <div class="error-wording">{{ this.verifyState.uploadUrl.errMsg }}</div>
+    </div>
+
+    <div *ngIf="data.channel.indexOf('google') !== -1">
+        <input
+            #imgTitle
+            type="text"
+            fullWidth
+            nbInput
+            [placeholder]="QA_EDITOR.PLACEHOLDER.AUDIO_TITLE"
+            class="imgTitle-block {{ id }}"
+            [ngClass]="{ error: !this.verifyState.imgTitle.state }"
+        />
+        <div class="error-wording">{{ verifyState.imgTitle.errMsg }}</div>
+    </div>
+
+    <div *ngIf="data.channel.indexOf('google') !== -1">
+        <div style="padding-top: 1rem">{{ QA_EDITOR.IMAGE.GOOGLE_IMAGE | translate }}</div>
+        <nb-select
+            class="selected-mode"
+            [(selected)]="selectedImgMode"
+            (selectedChange)="modeImgChange()"
+            style="margin-top: 0.2rem"
+        >
+            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD | translate }}</nb-option>
+        </nb-select>
+
+        <div [hidden]="!(selectedImgMode === 'url')">
+            <div style="padding-top: 1rem">
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_LIMIT | translate }}</span>
+            </div>
+            <input
+                #imageUrl
+                class="source-url"
+                type="text"
+                nbInput
+                fullWidth
+                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_URL"
+            />
+        </div>
+
+        <div [hidden]="!(selectedImgMode === 'upload')">
+            <div class="frame">
+                <div [ngClass]="{ error: !verifyState.imageUpload.state }" (click)="onOpenUpload()">
+                    <div *ngIf="imgFileListObj[0]" class="fileNameArea">
+                        <div
+                            #previewImgUpload
+                            class="upload-frame bg-contain"
+                            [ngStyle]="{
+                                'background-image': 'url(' + imageFrameBg + ')',
+                                'background-size': 'contain',
+                                width: '100%'
+                            }"
+                        >
+                            <nb-icon
+                                class="upload-remove fa"
+                                icon="trash"
+                                pack="font-awesome"
+                                (click)="uploadRemove($event, 'image')"
+                            ></nb-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="!imgFileListObj[0]" class="fileNameArea" style="padding: 1rem">
+                        <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_LIMIT | translate }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <input
+                #imgFile
+                name="myImgFile"
+                type="file"
+                style="display: none"
+                (change)="imageUploadEvent($event, 'image')"
+                [accept]="acceptImgFileType"
+            />
+        </div>
+
+        <div *ngIf="data.channel.indexOf('google') !== -1">
+            <input
+                #imgHint
+                type="text"
+                fullWidth
+                nbInput
+                [placeholder]="QA_EDITOR.PLACEHOLDER.AUDIO_HINT"
+                class="imgHint-block {{ id }}"
+                [ngClass]="{ error: !verifyState.imgHint.state }"
+            />
+            <div class="error-wording">{{ verifyState.imgHint.errMsg }}</div>
+        </div>
+    </div>
+</div>

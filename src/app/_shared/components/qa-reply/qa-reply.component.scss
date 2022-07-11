@@ -1,0 +1,34 @@
+@import "../../../../../_styles/modules/color";
+@import "../../../../../_styles/components/partial";
+
+.reply {
+    margin-bottom: 4%;
+    .plus-btn {
+        @extend %font-medium-normal;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 2% 0;
+        color: $cbe-basic-text-color;
+        margin-top: 2%;
+        border: 1px solid $cbe-basic-reply-button-border-color;
+        border-radius: 8px;
+        background-color: #fff;
+        cursor: pointer;
+        .icon-remove {
+            position: absolute;
+            right: 2%;
+        }
+
+        & > span {
+            display: flex;
+
+            &:hover {
+                color: $cbe-basic-text-hover-color;
+            }
+        }
+    }
+    .reply-hidden {
+        display: none;
+    }
+}

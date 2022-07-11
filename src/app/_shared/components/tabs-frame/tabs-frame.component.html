@@ -1,0 +1,85 @@
+<ul class="tabs-frame">
+    <li
+        class="item"
+        *ngFor="let tab of tabs | activityTabFilter: activityTabFilterArr"
+        (click)="selectTab(tab, false, false, 'master-click')"
+        [class.active]="channelActive[tab.tabTitle] === 'active'"
+        cbeDebounceClick
+    >
+        <span>
+            {{ channelName[tab.tabTitle] }}
+            <span class="tab-close" *ngIf="tab.isCloseable" (click)="closeTab(tab, null, true)">
+                <nb-icon icon="close-outline"></nb-icon>
+            </span>
+        </span>
+    </li>
+    <div class="tabs-btn">
+        <button
+            nbButton
+            status="info"
+            *ngIf="isChannelBtnShow"
+            [nbContextMenu]="channelList"
+            nbContextMenuTag="new"
+            nbContextMenuPlacement="bottom"
+        >
+            <nb-icon icon="plus-outline"></nb-icon>
+        </button>
+        <button
+            nbButton
+            status="info"
+            *ngIf="isChannelBtnShow"
+            [nbContextMenu]="channelList"
+            nbContextMenuTag="clone"
+            nbContextMenuPlacement="bottom"
+        >
+            <nb-icon icon="copy-outline"></nb-icon>
+        </button>
+    </div>
+</ul>
+&nbsp;
+<ul class="tabs-frame">
+    <li
+        class="item"
+        (click)="selectTab(tab, false, false, 'click')"
+        [class.active]="channelActive[tabActivity] !== 'active'"
+        cbeDebounceClick
+    >
+        <span> {{ i18n?.TAB_COMPONENT?.NORMAL }} </span>
+    </li>
+    <li
+        class="item activity"
+        *ngIf="channelActive[tabActivity] !== ''"
+        (click)="selectTab(tab, true, false, 'click')"
+        [class.active]="channelActive[tabActivity] === 'active'"
+        cbeDebounceClick
+    >
+        <span class="activityName">
+            {{ i18n?.TAB_COMPONENT?.ACTIVITY }}
+            <span class="tab-close" (click)="closeTab(tab, true, true)">
+                <nb-icon icon="close-outline"></nb-icon>
+            </span>
+        </span>
+    </li>
+    <div class="tabs-btn">
+        <button
+            nbButton
+            status="info"
+            *ngIf="channelActive[tabActivity] === ''"
+            (click)="openTab(tab.tabTitle, 'new', null, true)"
+        >
+            <nb-icon icon="plus-outline"></nb-icon>
+        </button>
+        <button
+            nbButton
+            status="info"
+            *ngIf="channelActive[tabActivity] === ''"
+            (click)="openTab(tab.tabTitle, 'cloneActivity', null, true)"
+        >
+            <nb-icon icon="copy-outline"></nb-icon>
+        </button>
+    </div>
+</ul>
+
+<ng-template cbeSharedTabsLoader></ng-template>
+
+<ng-template #qaEditorTemplate></ng-template>

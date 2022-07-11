@@ -1,0 +1,12 @@
+.paginationDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .changePageInput {
+        width: 2rem;
+        margin: 0 0.5rem;
+    }
+    button {
+        margin: 0 0.2rem;
+    }
+}

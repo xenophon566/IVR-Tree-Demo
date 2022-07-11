@@ -1,0 +1,20 @@
+<div class="flexDiv">
+    <!-- 搜尋輸入框 -->
+    <input
+        type="text"
+        #searchInput
+        nbInput
+        fieldSize="small"
+        [placeholder]="placeHolder"
+        class="inputSize"
+        (keydown.enter)="this.onSearch()"
+    />
+    <!-- 搜尋按鈕 -->
+    <button nbButton class="btnSize" (click)="this.onSearch()">
+        <nb-icon icon="search" pack="font-awesome"></nb-icon>
+    </button>
+    <!-- 清除按鈕 -->
+    <button nbButton class="btnSize" (click)="this.onClear()">
+        <nb-icon icon="trash" pack="font-awesome"></nb-icon>
+    </button>
+</div>

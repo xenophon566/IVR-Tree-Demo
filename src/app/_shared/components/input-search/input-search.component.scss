@@ -1,0 +1,23 @@
+.flexDiv {
+    display: flex;
+    align-items: center;
+
+    .inputSize {
+        height: 2rem;
+        width: 30%;
+    }
+
+    .btnSize {
+        height: 2rem;
+        width: 2rem;
+        margin: 0 0.1rem;
+        text-align: center;
+        align-items: center;
+    }
+
+    nb-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

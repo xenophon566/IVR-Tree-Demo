@@ -1,0 +1,90 @@
+.label-editor {
+    #hint {
+        color: red;
+        width: 20rem;
+    }
+
+    #btnDiv {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 13rem;
+    }
+
+    #addRowDiv {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .select-large-max-width {
+        width: 5rem;
+    }
+
+    .errorDiv {
+        border-color: red;
+        color: red;
+    }
+
+    .typeDiv {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        min-width: 11rem;
+    }
+
+    nb-card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nb-icon {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    nb-layout-column {
+        height: 100%;
+    }
+
+    input {
+        width: 90%;
+        min-width: 11rem;
+    }
+
+    nb-select ::ng-deep {
+        .select-button {
+            min-width: 8rem;
+            border-color: #e4e9f2;
+        }
+    }
+
+    table {
+        border: 1px solid #e4e9f2;
+        width: 100%;
+
+        th,
+        td {
+            border: 1px solid #e4e9f2;
+            text-align: center;
+            min-width: 170px;
+        }
+        thead {
+            tr {
+                height: 2.5rem;
+                font-size: 1rem;
+                th {
+                    background-color: #3c8dbc;
+                    color: white;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                height: 4rem;
+            }
+        }
+    }
+}

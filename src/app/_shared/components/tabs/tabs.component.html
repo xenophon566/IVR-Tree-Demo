@@ -1,0 +1,7 @@
+<div [hidden]="!active" class="pane">
+    <ng-container *ngIf="template" [ngTemplateOutlet]="template"> </ng-container>
+
+    <ng-template cbeSharedQaEditorLoader></ng-template>
+
+    <ng-content></ng-content>
+</div>

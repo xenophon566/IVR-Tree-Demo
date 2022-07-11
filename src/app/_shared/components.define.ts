@@ -1,8 +1,114 @@
-import { SpinnerComponent } from "./components";
+import { ProfileDialogComponent } from './components/header/dialog';
+import {
+    HeaderComponent,
+    FooterComponent,
+    BreadcrumbComponent,
+    TextareaComponent,
+    CardContentComponent,
+    QaTextComponent,
+    QaImageComponent,
+    QaCardComponent,
+    QaAudioComponent,
+    QaFileComponent,
+    QaVideoComponent,
+    QaLinkComponent,
+    QaJsonComponent,
+    QaWebviewComponent,
+    QaReplyComponent,
+    QaMediaCardComponent,
+    ReplyContentComponent,
+    OperatorComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent,
+    CropperDialogComponent,
+    HtmlDialogComponent,
+    OauthSettingDialogComponent,
+    BasicTableComponent,
+    CheckboxTableComponent,
+    InputSearchComponent,
+    SortTableComponent,
+    PaginationComponent,
+    QaTextIndependentComponent,
+    DataTableComponent,
+    DragTableComponent,
+    LabelEditorComponent,
+    QaPlayComponent,
+    QaQuoteComponent,
+} from './components';
 
 /**
- * ## COMPONENTS
+ * Cbe-Admin components
  *
  * @export {const} COMPONENTS
  */
-export const COMPONENTS = [SpinnerComponent];
+export const COMPONENTS = [
+    ProfileDialogComponent,
+    HeaderComponent,
+    FooterComponent,
+    BreadcrumbComponent,
+    InputSearchComponent,
+    TextareaComponent,
+    CardContentComponent,
+    QaTextComponent,
+    QaImageComponent,
+    QaCardComponent,
+    QaAudioComponent,
+    QaFileComponent,
+    QaVideoComponent,
+    QaLinkComponent,
+    QaJsonComponent,
+    QaWebviewComponent,
+    QaReplyComponent,
+    QaMediaCardComponent,
+    ReplyContentComponent,
+    OperatorComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent,
+    CropperDialogComponent,
+    HtmlDialogComponent,
+    OauthSettingDialogComponent,
+    BasicTableComponent,
+    CheckboxTableComponent,
+    InputSearchComponent,
+    SortTableComponent,
+    QaTextIndependentComponent,
+    PaginationComponent,
+    DataTableComponent,
+    DragTableComponent,
+    LabelEditorComponent,
+    QaPlayComponent,
+    QaQuoteComponent,
+];
+
+/**
+ * QA-components list
+ *
+ * @export {const} COMPONENTS_LIST
+ */
+export const COMPONENTS_LIST = {
+    TextareaComponent,
+    CardContentComponent,
+    QaTextComponent,
+    QaImageComponent,
+    QaCardComponent,
+    QaAudioComponent,
+    QaFileComponent,
+    QaVideoComponent,
+    QaLinkComponent,
+    QaJsonComponent,
+    QaWebviewComponent,
+    QaReplyComponent,
+    QaMediaCardComponent,
+    ReplyContentComponent,
+    OperatorComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent,
+    CropperDialogComponent,
+    HtmlDialogComponent,
+    OauthSettingDialogComponent,
+    BasicTableComponent,
+    CheckboxTableComponent,
+    QaTextIndependentComponent,
+    QaPlayComponent,
+    QaQuoteComponent,
+};

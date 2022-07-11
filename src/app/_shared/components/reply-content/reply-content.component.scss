@@ -1,0 +1,29 @@
+@import "../../../../../_styles/modules/color";
+@import "../../../../../_styles/components/partial";
+
+.error {
+    border-color: red !important;
+}
+
+.error-wording {
+    color: red;
+}
+
+.content-area {
+    position: relative;
+}
+
+.pricetags {
+    position: absolute;
+    top: 0;
+    right: 0.5%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.tagIcon {
+    width: 100% !important;
+    height: 3vw !important;
+    max-height: 1.8rem;
+    color: #3c8dbc;
+}

@@ -1,0 +1,315 @@
+<div id="{{ componentId }}" type="Image" class="image qa-block">
+    <cbe-shared-operator [data]="data"></cbe-shared-operator>
+
+    <div class="title-field">
+        <span>{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</span>
+        <nb-radio-group
+            [(value)]="imageType"
+            [name]="componentId"
+            style="display: inline-flex; margin: 0 3%"
+            (valueChange)="ImgFormatChange()"
+        >
+            <nb-radio value="Image">{{ QA_EDITOR.IMAGE.PURE_IMAGE | translate }}</nb-radio>
+            <nb-radio value="LinkImage" *ngIf="hideLinkImageArr.indexOf(data.channel) === -1">
+                {{ QA_EDITOR.IMAGE.LINK_IMAGE | translate }}
+            </nb-radio>
+            <nb-radio
+                value="TextImage"
+                *ngIf="
+                    (data.openEditor === 'marketContent' || data.openEditor === 'marketContentSub') &&
+                    (data.channel === 'line' || data.channel === 'line_Activity')
+                "
+            >
+                {{ QA_EDITOR.IMAGE.TEXT_IMAGE | translate }}
+            </nb-radio>
+        </nb-radio-group>
+        <nb-icon
+            *ngIf="imageType === 'LinkImage' && hideLinkImageArr.indexOf(data.channel) === -1"
+            icon="info"
+            [nbTooltip]="QA_EDITOR.IMAGE.MESSENGER_LIMIT"
+        ></nb-icon>
+    </div>
+
+    <hr style="opacity: 0.3" />
+    <!-- 純圖片 -->
+    <div [hidden]="!(imageType === 'Image')">
+        <nb-select class="selected-mode" [(selected)]="selectedMode" (selectedChange)="modeChange()" style="margin: 0">
+            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD | translate }}</nb-option>
+        </nb-select>
+
+        <div [hidden]="!(selectedMode === 'url')">
+            <div style="padding-top: 1rem">
+                <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_PRE | translate }}</span>
+                {{ i18nUploadMaxSize }}
+                <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_POST | translate }}</span>
+            </div>
+            <input
+                #imageUrl
+                class="source-url"
+                type="text"
+                nbInput
+                fullWidth
+                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_URL"
+                [ngClass]="{ error: !verifyState.imageUrl.state }"
+            />
+            <div class="error-wording">{{ verifyState.imageUrl.errMsg }}</div>
+        </div>
+
+        <div [hidden]="!(selectedMode === 'upload')">
+            <div class="frame">
+                <div [ngClass]="{ error: !verifyState.imageUpload.state }" (click)="onOpenUpload()">
+                    <div *ngIf="imgFileListObj[0]" class="fileNameArea">
+                        <div
+                            #previewImgUpload
+                            class="upload-frame bg-contain"
+                            [ngStyle]="{
+                                'background-image': 'url(' + imageFrameBg + ')',
+                                'background-size': 'contain',
+                                width: '100%'
+                            }"
+                        >
+                            <nb-icon
+                                class="upload-remove fa"
+                                icon="trash"
+                                pack="font-awesome"
+                                (click)="uploadRemove($event, 'image')"
+                            ></nb-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="!imgFileListObj[0]" class="fileNameArea" style="padding: 1rem">
+                        <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                        <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_PRE | translate }}</span>
+                        {{ i18nUploadMaxSize }}
+                        <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_POST | translate }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-wording">{{ verifyState.imageUpload.errMsg }}</div>
+
+            <input
+                #file
+                name="myFile"
+                type="file"
+                style="display: none"
+                (change)="imageUploadEvent($event, 'image')"
+                [accept]="acceptFileType"
+            />
+        </div>
+    </div>
+    <!-- 圖片帶鏈結 -->
+    <div
+        [hidden]="!(imageType === 'LinkImage') || data.channel === 'messenger' || data.channel === 'messenger_Activity'"
+    >
+        <nb-select class="selected-mode" [(selected)]="selectedMode" (selectedChange)="modeChange()" style="margin: 0">
+            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD | translate }}</nb-option>
+        </nb-select>
+        <div [hidden]="!(selectedMode === 'url')">
+            <div style="padding-top: 1rem">
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+            </div>
+            <input
+                #linkImageUrl
+                class="source-url"
+                type="text"
+                nbInput
+                fullWidth
+                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_URL"
+                [ngClass]="{ error: !verifyState.linkImageUrl.state }"
+            />
+            <div class="error-wording">{{ verifyState.linkImageUrl.errMsg }}</div>
+        </div>
+
+        <div [hidden]="!(selectedMode === 'upload')">
+            <div class="frame">
+                <div [ngClass]="{ error: !verifyState.linkImageUpload.state }" (click)="onOpenUpload('linkImage')">
+                    <div *ngIf="linkImgFileListObj[0]" class="fileNameArea">
+                        <div
+                            #previewImgUpload
+                            class="upload-frame bg-contain"
+                            [ngStyle]="{
+                                'background-image': 'url(' + linkImageFrameBg + ')',
+                                'background-size': 'contain',
+                                width: '100%'
+                            }"
+                        >
+                            <nb-icon
+                                class="upload-remove fa"
+                                icon="trash"
+                                pack="font-awesome"
+                                (click)="uploadRemove($event, 'linkImage')"
+                            ></nb-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="!linkImgFileListObj[0]" class="fileNameArea" style="padding: 1rem">
+                        <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="error-wording">{{ verifyState.linkImageUpload.errMsg }}</div>
+            <input
+                #linkImageFile
+                name="linkImageFile"
+                type="file"
+                style="display: none"
+                (change)="imageUploadEvent($event, 'linkImage')"
+                [accept]="acceptFileType"
+            />
+        </div>
+    </div>
+    <!-- 圖片帶文字 -->
+    <div [hidden]="!(imageType === 'TextImage' && (data.channel === 'line' || data.channel === 'line_Activity'))">
+        <nb-select class="selected-mode" [(selected)]="selectedMode" (selectedChange)="modeChange()" style="margin: 0">
+            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD | translate }}</nb-option>
+        </nb-select>
+        <div [hidden]="!(selectedMode === 'url')">
+            <div style="padding-top: 1rem">
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+            </div>
+            <input
+                #textImageUrl
+                class="source-url"
+                type="text"
+                nbInput
+                fullWidth
+                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_URL"
+                [ngClass]="{ error: !verifyState.textImageUrl.state }"
+            />
+            <div class="error-wording">{{ verifyState.textImageUrl.errMsg }}</div>
+        </div>
+
+        <div [hidden]="!(selectedMode === 'upload')">
+            <div class="frame">
+                <div [ngClass]="{ error: !verifyState.textImageUpload.state }" (click)="onOpenUpload('textImage')">
+                    <div *ngIf="textImgFileListObj[0]" class="fileNameArea">
+                        <div
+                            #previewImgUpload
+                            class="upload-frame bg-contain"
+                            [ngStyle]="{
+                                'background-image': 'url(' + textImageFrameBg + ')',
+                                'background-size': 'contain',
+                                width: '100%'
+                            }"
+                        >
+                            <nb-icon
+                                class="upload-remove fa"
+                                icon="trash"
+                                pack="font-awesome"
+                                (click)="uploadRemove($event, 'textImage')"
+                            ></nb-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="!textImgFileListObj[0]" class="fileNameArea" style="padding: 1rem">
+                        <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="error-wording">{{ verifyState.textImageUpload.errMsg }}</div>
+            <input
+                #textImageFile
+                name="textImageFile"
+                type="file"
+                style="display: none"
+                (change)="imageUploadEvent($event, 'textImage')"
+                [accept]="acceptFileType"
+            />
+        </div>
+        <input
+            #clickText
+            class="source-url"
+            type="text"
+            nbInput
+            fullWidth
+            [placeholder]="QA_EDITOR.PLACEHOLDER.TEXT_IMAGE"
+            [ngClass]="{ error: !verifyState.clickText.state }"
+        />
+        <div class="error-wording">{{ verifyState.clickText.errMsg }}</div>
+    </div>
+    <!-- ---------------預覽圖----------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <div *ngIf="hideLinkImageArr.indexOf(data.channel) === -1" [hidden]="!(imageType === 'Image')">
+        <hr style="opacity: 0.3" />
+        <nb-select
+            class="selected-mode"
+            [(selected)]="previewSelectedMode"
+            (selectedChange)="previewModeChange()"
+            style="margin: 0"
+        >
+            <nb-option *ngFor="let previewImg of previewImgFormat; index as i" [value]="previewImg.value">
+                {{ previewImg.name }}</nb-option
+            >
+        </nb-select>
+
+        <nb-icon icon="info" [nbTooltip]="QA_EDITOR.IMAGE.MESSENGER_NO_PREVIEW"> </nb-icon>
+        <div *ngIf="previewSelectedMode === 'url'">
+            <div style="padding-top: 1rem">
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+            </div>
+            <input
+                #previewImageUrl
+                class="source-url"
+                type="text"
+                nbInput
+                fullWidth
+                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_THUMBNAIL_URL"
+                [ngClass]="{ error: !verifyState.previewImageUrl.state }"
+            />
+            <div class="error-wording">{{ verifyState.previewImageUrl.errMsg }}</div>
+        </div>
+
+        <div *ngIf="previewSelectedMode === 'upload'">
+            <div class="frame">
+                <div [ngClass]="{ error: !verifyState.previewImageUpload.state }" (click)="onOpenUpload('preview')">
+                    <div *ngIf="previewFileListObj[0]" class="fileNameArea">
+                        <div
+                            #previewImgUpload
+                            class="upload-frame bg-contain"
+                            [ngStyle]="{
+                                'background-image': 'url(' + previewUploadFrameBg + ')',
+                                'background-size': 'contain',
+                                width: '100%'
+                            }"
+                        >
+                            <nb-icon
+                                class="upload-remove fa"
+                                icon="trash"
+                                pack="font-awesome"
+                                (click)="uploadRemove($event, 'preview')"
+                            ></nb-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="!previewFileListObj[0]" class="fileNameArea" style="padding: 1rem">
+                        <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="error-wording">{{ verifyState.previewImageUpload.errMsg }}</div>
+            <input
+                #previewFile
+                name="myPreviewFile"
+                type="file"
+                style="display: none"
+                (change)="imageUploadEvent($event, 'preview')"
+                [accept]="acceptFileType"
+            />
+        </div>
+    </div>
+    <!-- ---------------預覽圖----------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <div [hidden]="!(imageType === 'LinkImage')">
+        <input
+            #linkUrl
+            class="source-url"
+            type="text"
+            nbInput
+            fullWidth
+            [placeholder]="QA_EDITOR.PLACEHOLDER.LINK_URL"
+            [ngClass]="{ error: !verifyState.linkUrl.state }"
+        />
+        <div class="error-wording">{{ verifyState.linkUrl.errMsg }}</div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div #textareaBlock class="textarea-block {{ id }}">
+    <nb-icon
+        class="icon-trash fa"
+        icon="trash"
+        pack="font-awesome"
+        [ngStyle]="{ visibility: canDelete ? 'visible' : 'hidden' }"
+        (click)="deleteTextarea($event)"
+    ></nb-icon>
+    <textarea
+        #textarea
+        nbInput
+        fullWidth
+        class="text-area"
+        rows="5"
+        [placeholder]="QA_EDITOR?.PLACEHOLDER?.TEXT_INPUT"
+        [ngClass]="{ error: !this.verifyState.textarea.state }"
+        [disabled]="inputDisabled"
+        [maxLength]="textareaMaxLength"
+    ></textarea>
+    <div class="error-wording">{{ this.verifyState.textarea.errMsg }}</div>
+</div>

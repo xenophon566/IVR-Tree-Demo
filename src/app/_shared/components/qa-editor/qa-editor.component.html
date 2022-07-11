@@ -1,0 +1,145 @@
+<nb-card class="qa-editor" [nbSpinner]="loadingSpiner">
+    <nb-card-header class="header"></nb-card-header>
+    <nb-card-body class="body">
+        <div
+            class="pricetags"
+            (click)="onPricetagsClick()"
+            *ngIf="
+                this.openEditor !== 'greeting' &&
+                this.openEditor !== 'marketContent' &&
+                this.openEditor !== 'marketContentSub'
+            "
+        >
+            <button nbButton ghost status="basic">
+                <nb-icon
+                    icon="pricetags"
+                    class="tagIcon"
+                    [nbPopover]="labelHintRef"
+                    nbPopoverTrigger="hover"
+                    [ngStyle]="{
+                        color:
+                            this.valueContentObj[this.currentTab] !== '' &&
+                            this.valueContentObj[this.currentTab] !== undefined
+                                ? '#00a600'
+                                : '#97A0B3'
+                    }"
+                >
+                </nb-icon>
+            </button>
+        </div>
+        <div *ngIf="isOauthSettingShow && !!oauthOptions?.length">
+            <span>需登入驗證：</span>
+            <nb-radio-group
+                class="radio-button-group"
+                name="oauth-{{ data.channel }}"
+                [(value)]="oauthOption"
+                (valueChange)="getOauthOption()"
+            >
+                <nb-radio class="radio-button" *ngFor="let option of oauthOptions" [value]="option.value">
+                    {{ option.label }}
+                </nb-radio>
+            </nb-radio-group>
+        </div>
+        <div class="body editorBody" [class]="data.channel" [ngClass]="{ activityTab: isActivityTab }">
+            <ng-template cbeSharedComponentLoader></ng-template>
+            <div class="qaMenu-btn">
+                <button
+                    nbButton
+                    size="small"
+                    status="info"
+                    [nbContextMenu]="qaMenu"
+                    nbContextMenuTag="{{ qaEditorChannelTab }}"
+                    nbContextMenuPlacement="right"
+                    [disabled]="isSingleAnsChannel || qaMenuStatus || isQaMenuDisabled[qaEditorChannelTab]"
+                >
+                    {{ QA_EDITOR.COMMON.ADD_ANSWER | translate }}
+                </button>
+            </div>
+            <cbe-shared-qa-reply
+                [class]="'reply-' + data.channel"
+                [data]="replyData"
+                [hidden]="qaMenuStatus || isReplyHide"
+            ></cbe-shared-qa-reply>
+            <cbe-shared-qa-webview
+                [data]="webviewData"
+                [hidden]="qaMenuStatus || isWebviewHide || openEditor === 'greeting'"
+            >
+            </cbe-shared-qa-webview>
+            <div class="activity-select" [hidden]="!isActivityTab" cbeDebounceClick>
+                <label>關聯活動項目</label>
+                <ng-select
+                    [(ngModel)]="activityDropdown"
+                    [placeholder]="QA_EDITOR.PLACEHOLDER.SELECT"
+                    (change)="onActivitySelectChange()"
+                    [ngClass]="{ error: !verifyState.activitySelect.state }"
+                    ngDefaultControl
+                >
+                    <ng-option *ngFor="let i of activitiesList" [value]="i.FId">{{ i.FName }}</ng-option>
+                </ng-select>
+                <div class="error-wording">{{ verifyState.activitySelect.errMsg }}</div>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<nb-card
+    class="qa-editor"
+    *ngIf="
+        curBotType === 'qbipro' &&
+        !isRobotSettingHide &&
+        this.openEditor !== 'marketContent' &&
+        this.openEditor !== 'marketContentSub'
+    "
+>
+    <nb-card-header class="toggle-header">
+        <span>
+            <nb-icon class="fa" icon="android" pack="font-awesome"></nb-icon>
+            <span class="title">{{ QA_EDITOR.ROBOT_SETTING.ROBOT_SETTING | translate }}</span>
+        </span>
+        <nb-icon icon="{{ !toggleRobotBody ? 'minus-outline' : 'plus-outline' }}" (click)="toggleRobot()"></nb-icon>
+    </nb-card-header>
+    <nb-card-body [hidden]="toggleRobotBody">
+        <div class="robot qa-block">
+            <label>{{ QA_EDITOR.ROBOT_SETTING.ROBOT_SETTING | translate }}</label>
+            <nb-radio-group
+                name="radio-{{ qaEditorChannelTab }}"
+                [(value)]="robotRadio"
+                (valueChange)="getRobotRadio()"
+            >
+                <nb-radio value="qbi">{{ QA_EDITOR.ROBOT_SETTING.QBI_ROBOT | translate }}</nb-radio>
+                <nb-radio value="zenbo">{{ QA_EDITOR.ROBOT_SETTING.ZENBO_ROBOT | translate }}</nb-radio>
+            </nb-radio-group>
+            <label>{{
+                robotRadio === "qbi" ? QA_EDITOR.ROBOT_SETTING.ACTION : QA_EDITOR.ROBOT_SETTING.EXPRESSION
+            }}</label>
+            <ng-select
+                [(ngModel)]="robotSelect"
+                [placeholder]="QA_EDITOR.PLACEHOLDER.SELECT"
+                (change)="onRobotSelectChange()"
+                ngDefaultControl
+            >
+                <ng-option *ngFor="let i of robotSelectList" [value]="i.FRobotId">{{ i.FName }}</ng-option>
+            </ng-select>
+        </div>
+        <div class="robot qa-block">
+            <label>{{ QA_EDITOR.ROBOT_SETTING.VOICE | translate }}</label>
+            <textarea
+                class="text-area"
+                nbInput
+                fullWidth
+                [(ngModel)]="robotTextarea[qaEditorChannelTab]"
+                [ngClass]="{ error: !verifyState.voice.state }"
+                [placeholder]="QA_EDITOR.PLACEHOLDER.VOICE_TEXTAREA"
+                (keyup)="onRobotVoiceInput()"
+                ngDefaultControl
+            ></textarea>
+            <div class="error-wording">{{ verifyState.voice.errMsg }}</div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<ng-template #labelHintRef>
+    <span>{{ QA_EDITOR.COMMON.LABEL_GRAY_HINT | translate }}</span>
+    <br />
+    <span>{{ QA_EDITOR.COMMON.LABEL_GREEN_HINT | translate }}</span>
+</ng-template>

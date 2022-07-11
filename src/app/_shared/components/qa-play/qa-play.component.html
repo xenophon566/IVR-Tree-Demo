@@ -1,0 +1,541 @@
+<div class="qa-block">
+    <div class="header">
+        <label>{{ QA_EDITOR?.PLAY?.PLAY | translate }}</label>
+        <div>
+            <nb-icon
+                class="info-tooltip"
+                icon="info-outline"
+                nbTooltip="{{ QA_EDITOR?.PLAY?.RHETORICAL_QUESTION_TOOLTIP | translate }}"
+                nbTooltipPlacement="top"
+                nbTooltipStatus="info"
+            >
+            </nb-icon>
+            <span>{{ QA_EDITOR?.PLAY?.RHETORICAL_QUESTION | translate }}</span>
+            <nb-toggle [(ngModel)]="faq" labelPosition="start"> </nb-toggle>
+        </div>
+    </div>
+    <div class="body container" #body>
+        <div class="row">
+            <!-- 播音及辨識處理 -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <span>{{ QA_EDITOR?.PLAY?.COLLECT_STATUS | translate }}</span>
+                <nb-select
+                    id="getdigit"
+                    placeholder="{{ QA_EDITOR?.PLAY?.COLLECT_STATUS | translate }}"
+                    [selected]="getdigit"
+                    (selectedChange)="handleSelectValue('getdigit', $event)"
+                >
+                    <nb-option value="false">{{ QA_EDITOR?.PLAY?.ONLY_PLAY | translate }}</nb-option>
+                    <nb-option value="true">{{ QA_EDITOR?.PLAY?.DTMF_OR_ASR | translate }}</nb-option>
+                </nb-select>
+            </div>
+            <!-- 播音時可收碼或語音辨識 -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <span>{{ QA_EDITOR?.PLAY?.DTMF_OR_ASR | translate }}</span>
+                <nb-select
+                    id="collecttype"
+                    placeholder="{{ QA_EDITOR?.PLAY?.COLLECT_TYPE | translate }} "
+                    [selected]="collecttype"
+                    (selectedChange)="handleSelectValue('collecttype', $event)"
+                    [disabled]="getdigit === 'false'"
+                >
+                    <nb-option value="0">{{ QA_EDITOR?.PLAY?.DTMF | translate }}</nb-option>
+                    <nb-option value="1">{{ QA_EDITOR?.PLAY?.ASR | translate }}</nb-option>
+                    <nb-option value="2">{{ QA_EDITOR?.PLAY?.DTMF_AND_ASR | translate }}</nb-option>
+                </nb-select>
+            </div>
+            <!-- 播放類型 -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <span>{{ QA_EDITOR?.PLAY?.PLAY_TYPE | translate }}</span>
+                <nb-icon
+                    class="info-tooltip"
+                    icon="info-outline"
+                    nbTooltip="{{ QA_EDITOR?.PLAY?.FIXED_AUDIO_TOOLTIP | translate }}"
+                    nbTooltipPlacement="top"
+                    nbTooltipStatus="info"
+                >
+                </nb-icon>
+                <nb-select
+                    id="playtype"
+                    placeholder="{{ QA_EDITOR?.PLAY?.PLAY_TYPE | translate }}"
+                    [(selected)]="playtype"
+                    [disabled]="enableIntervalList"
+                >
+                    <nb-option value="0">{{ QA_EDITOR?.PLAY?.FIXED_AUDIO | translate }}</nb-option>
+                    <nb-option value="7">{{ QA_EDITOR?.PLAY?.SYNTHESIZED_SPEECH | translate }}</nb-option>
+                </nb-select>
+            </div>
+            <!-- 收碼 - 終止鍵 -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <span>{{ QA_EDITOR?.PLAY?.END_KEY | translate }}</span>
+                <nb-select
+                    id="end"
+                    placeholder="{{ QA_EDITOR?.PLAY?.END_KEY | translate }}"
+                    [(selected)]="end"
+                    [disabled]="getdigit === 'false' || (getdigit === 'true' && collecttype === '1')"
+                >
+                    <nb-option value="">{{ QA_EDITOR?.PLAY?.NOT_SET | translate }}</nb-option>
+                    <nb-option *ngFor="let item of dtmfKey" value="{{ item }}">{{ item }}</nb-option>
+                </nb-select>
+            </div>
+            <!-- 語音辨識設定 -->
+            <div class="col-12 col-md-12 col-lg-6">
+                <span>{{ QA_EDITOR?.PLAY?.ASR_SETTING | translate }}</span>
+                <nb-select
+                    id="asrini"
+                    placeholder="{{ QA_EDITOR?.PLAY?.ASR_SETTING | translate }}"
+                    [(selected)]="asrini"
+                    [disabled]="!(getdigit === 'true' && collecttype !== '0')"
+                >
+                    <nb-option value="0">{{ QA_EDITOR?.PLAY?.ASR_AFTER_PLAY_FINISH | translate }}</nb-option>
+                    <nb-option value="1"
+                        >{{ QA_EDITOR?.PLAY?.PLAY_INTERRUPT_AFTER_RECOGNITION_RESULT | translate }}
+                    </nb-option>
+                    <nb-option value="2"
+                        >{{ QA_EDITOR?.PLAY?.PLAY_INTERRUPT_WHEN_START_RECOGNITION | translate }}
+                    </nb-option>
+                </nb-select>
+            </div>
+            <!-- 播音時 - 按鍵中斷 -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <span>{{ QA_EDITOR?.PLAY?.KEY_INTERRUPT | translate }}</span>
+                <nb-select
+                    id="ini"
+                    placeholder="{{ QA_EDITOR?.PLAY?.KEY_INTERRUPT | translate }}"
+                    [selected]="ini"
+                    (selectedChange)="handleSelectValue('ini', $event)"
+                >
+                    <nb-option value="0">{{ QA_EDITOR?.PLAY?.NO_INTERRUPT | translate }}</nb-option>
+                    <nb-option value="1">{{ QA_EDITOR?.PLAY?.INTERRUPT | translate }}</nb-option>
+                    <!-- <nb-option value="2">{{ QA_EDITOR?.PLAY?.INTERRUPT_NO_CLEAR_BUFFER | translate }}</nb-option> -->
+                </nb-select>
+            </div>
+            <!-- 指定中斷按鍵任意鍵 -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <span>{{ QA_EDITOR?.PLAY?.DESIGNATED_INTERRUPT_KEY | translate }}</span>
+                <nb-select id="bargekey" placeholder="bargekey" [(selected)]="bargekey" [disabled]="ini === '0'">
+                    <nb-option value="">{{ QA_EDITOR?.PLAY?.ANY_KEY | translate }}</nb-option>
+                    <nb-option *ngFor="let item of dtmfKey" value="{{ item }}">{{ item }}</nb-option>
+                </nb-select>
+            </div>
+            <!-- 取消鍵 -->
+            <!-- <div class="col-12 col-md-6 col-lg-3"
+            *ngIf="!(getdigit === 'false') || ( getdigit === 'true' && (collecttype === '0' || collecttype === '2'))">
+            <span>{{ QA_EDITOR?.PLAY?.CANCEL_KEY | translate }}</span>
+            <nb-select id="cel" placeholder="{{ QA_EDITOR?.PLAY?.CANCEL_KEY | translate }}" [(selected)]="cel">
+                <nb-option value="">{{ QA_EDITOR?.PLAY?.NOT_SET | translate }}</nb-option>
+                <nb-option *ngFor="let item of dtmfKey" value="{{ item }}">{{ item }}</nb-option>
+            </nb-select>
+        </div> -->
+            <!-- 收碼最小值 -->
+            <ng-container>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <span>{{ QA_EDITOR?.PLAY?.DTMF_MIN | translate }}</span>
+                    <input
+                        id="min"
+                        type="text"
+                        nbInput
+                        fullWidth
+                        [value]="min"
+                        (change)="handleInputValue('min', $event)"
+                        [ngClass]="{ error: !this.verifyState.min.state }"
+                        [disabled]="!((getdigit === 'true' && collecttype === '0') || collecttype === '2')"
+                        [placeholder]="QA_EDITOR?.PLAY?.PH_DTMF_LENGTH"
+                    />
+                    <div class="error-msg">{{ this.verifyState.min.errMsg }}</div>
+                </div>
+            </ng-container>
+            <!-- 收碼最大值 -->
+            <ng-container>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <span>{{ QA_EDITOR?.PLAY?.DTMF_MAX | translate }}</span>
+                    <input
+                        id="max"
+                        type="text"
+                        nbInput
+                        fullWidth
+                        [value]="max"
+                        (change)="handleInputValue('max', $event)"
+                        [ngClass]="{ error: !this.verifyState.max.state }"
+                        [disabled]="!((getdigit === 'true' && collecttype === '0') || collecttype === '2')"
+                        [placeholder]="QA_EDITOR?.PLAY?.PH_DTMF_LENGTH"
+                    />
+                    <div class="error-msg">{{ this.verifyState.max.errMsg }}</div>
+                </div>
+            </ng-container>
+            <!-- 辨識模型 -->
+            <ng-container>
+                <div class="col-12 col-md-12 col-lg-12">
+                    <span>{{ QA_EDITOR?.PLAY?.DOMAIN | translate }}</span>
+                    <input
+                        id="domainID"
+                        type="text"
+                        nbInput
+                        fullWidth
+                        [value]="domainID"
+                        (change)="handleInputValue('domainID', $event)"
+                        [ngClass]="{ error: !this.verifyState.domainID.state }"
+                        [placeholder]="QA_EDITOR?.PLAY?.PH_DOMAINID"
+                    />
+                    <div class="error-msg">{{ this.verifyState.domainID.errMsg }}</div>
+                </div>
+            </ng-container>
+
+            <div class="col-lg-6"></div>
+            <!-- 啟用背景音 -->
+            <div
+                class="col-12 col-md-12 col-lg-6"
+                *ngIf="getdigit === 'false'"
+                style="justify-content: start; align-items: center; display: flex; height: 59px"
+            >
+                <nb-checkbox (checkedChange)="toggleEnableIntervalList($event)" [checked]="enableIntervalList">
+                    {{ QA_EDITOR?.PLAY?.ENABLE_BACKGROUND_SOUND | translate }}
+                </nb-checkbox>
+                <nb-icon
+                    class="info-tooltip"
+                    icon="info-outline"
+                    nbTooltip="{{ QA_EDITOR?.PLAY?.ENABLE_BACKGROUND_SOUND_TOOLTIP | translate }}"
+                    nbTooltipPlacement="top"
+                    nbTooltipStatus="info"
+                >
+                </nb-icon>
+            </div>
+            <!-- 背景音樂觸發智能問題 -->
+            <div class="col-12 col-md-6 col-lg-3" *ngIf="!!enableIntervalList">
+                <span>{{ QA_EDITOR?.PLAY?.COMMAND_Q | translate }}</span>
+                <nb-icon
+                    class="info-tooltip"
+                    icon="info-outline"
+                    nbTooltip="{{ QA_EDITOR?.PLAY?.COMMAND_Q_TOOLTIP | translate }}"
+                    nbTooltipPlacement="top"
+                    nbTooltipStatus="info"
+                >
+                </nb-icon>
+                <input
+                    id="commandq"
+                    type="text"
+                    nbInput
+                    fullWidth
+                    [value]="commandqName"
+                    class="pointer"
+                    (click)="openSmartQAList('commandq')"
+                    [ngClass]="{ error: !this.verifyState.commandq.state }"
+                    [placeholder]="QA_EDITOR?.PLAY?.PH_SMART_Q"
+                    readonly="true"
+                />
+                <div class="error-msg">{{ this.verifyState.commandq.errMsg }}</div>
+            </div>
+            <!-- 總背景音樂逾時後觸發智能問題 -->
+            <div class="col-12 col-md-6 col-lg-3" *ngIf="!!enableIntervalList">
+                <span>{{ QA_EDITOR?.PLAY?.TIMEOUT_Q | translate }}</span>
+                <nb-icon
+                    class="info-tooltip"
+                    icon="info-outline"
+                    nbTooltip="{{ QA_EDITOR?.PLAY?.TIMEOUT_Q_TOOLTIP | translate }}"
+                    nbTooltipPlacement="top"
+                    nbTooltipStatus="info"
+                >
+                </nb-icon>
+                <input
+                    id="timeoutq"
+                    type="text"
+                    nbInput
+                    fullWidth
+                    [value]="timeoutqName"
+                    (click)="openSmartQAList('timeoutq')"
+                    class="pointer"
+                    [ngClass]="{ error: !this.verifyState.timeoutq.state }"
+                    [placeholder]="QA_EDITOR?.PLAY?.PH_SMART_Q"
+                    readonly="true"
+                />
+                <div class="error-msg">{{ this.verifyState.timeoutq.errMsg }}</div>
+            </div>
+        </div>
+        <!-- 按鍵對應智能問題 -->
+        <div
+            class="row"
+            *ngIf="getdigit === 'true' && (collecttype === '2' || collecttype === '0')"
+            style="
+            background-color: #f8f8f8;
+            border-radius: 1rem;
+            border: 0.1px solid lightgray;
+            padding-bottom: 1rem;
+            margin: 0.5rem;
+        "
+        >
+            <div class="col-12">
+                <span>{{ QA_EDITOR?.PLAY?.DTMF_STRING | translate }}</span>
+                <nb-icon
+                    class="info-tooltip"
+                    icon="info-outline"
+                    nbTooltip="{{ QA_EDITOR?.PLAY?.DTMF_STRING_TOOLTIP | translate }}"
+                    nbTooltipPlacement="top"
+                    nbTooltipStatus="info"
+                >
+                </nb-icon>
+            </div>
+            <div class="col-12" *ngIf="dtmfstring.length > 0">
+                <ng-container *ngFor="let item of dtmfstring; let idx = index">
+                    <ng-container *ngIf="!!item.isOpen">
+                        <div
+                            style="
+                            background-color: white;
+                            border-radius: 1rem;
+                            padding: 0 1rem 1rem 1rem;
+                            border: 0.1px solid lightgray;
+                            margin-bottom: 1rem;
+                        "
+                        >
+                            <!-- 按鍵號碼 -->
+                            <div class="spaceBetween">
+                                <div>
+                                    {{ QA_EDITOR?.PLAY?.KEY_NUMBER | translate }}
+                                </div>
+                                <div>
+                                    <nb-icon icon="minus-outline" (click)="collapseBtn('dtmfstring', idx)"> </nb-icon>
+                                </div>
+                            </div>
+                            <input
+                                class="interval"
+                                type="text"
+                                nbInput
+                                fullWidth
+                                [value]="item.key"
+                                maxlength="20"
+                                (change)="handleArryInputValue('dtmfstring', 'key', idx, $event)"
+                                [ngClass]="{ error: !item.keyErr.state }"
+                                [placeholder]="QA_EDITOR?.PLAY?.PH_DTMF"
+                            />
+                            <div class="error-msg">{{ item.keyErr.errMsg }}</div>
+                            <!-- 智能問題 -->
+                            {{ QA_EDITOR?.PLAY?.SMART_Q | translate }}
+                            <input
+                                class="music pointer"
+                                type="text"
+                                nbInput
+                                fullWidth
+                                [value]="item.name"
+                                readonly="true"
+                                [ngClass]="{ error: !item.valueErr.state }"
+                                (click)="openSmartQAList(item)"
+                                [placeholder]="QA_EDITOR?.PLAY?.PH_SMART_Q"
+                            />
+                            <div class="error-msg">{{ item.valueErr.errMsg }}</div>
+                        </div>
+                    </ng-container>
+                    <!-- 新增按鍵對應智能問題按鈕 -->
+                    <ng-container *ngIf="!item.isOpen">
+                        <div
+                            class="plus-btn"
+                            [ngClass]="{ error: !(item.keyErr.state && item.valueErr.state) }"
+                            (click)="collapseBtn('dtmfstring', idx)"
+                        >
+                            <span>
+                                <span *ngIf="item.key.trim().length > 0">{{ item.key }}</span>
+                                <span *ngIf="item.key.trim().length === 0">{{
+                                    QA_EDITOR?.PLAY?.PH_SMART_Q | translate
+                                }}</span>
+                            </span>
+                            <nb-icon icon="trash-2-outline" class="icon-remove" (click)="removeBtn('dtmfstring', idx)">
+                            </nb-icon>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="col-12" *ngIf="maxDtmfString > dtmfstring.length">
+                <div class="plus-btn" (click)="createBtn('dtmfstring')">
+                    <span>
+                        <span>
+                            <nb-icon icon="plus-outline"></nb-icon>
+                        </span>
+                        <span>{{ QA_EDITOR?.PLAY?.ADD_DTMF_STRING | translate }}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- 背景音樂 -->
+        <div class="row btnArea" *ngIf="!!enableIntervalList">
+            <div class="col-12">
+                <span>{{ QA_EDITOR?.PLAY?.BACKGROUND_SOUND | translate }}</span>
+                <nb-icon
+                    class="info-tooltip"
+                    icon="info-outline"
+                    nbTooltip="{{ QA_EDITOR?.PLAY?.BACKGROUND_SOUND_TOOLTIP | translate }}"
+                    nbTooltipPlacement="top"
+                    nbTooltipStatus="info"
+                >
+                </nb-icon>
+            </div>
+            <div class="col-12" *ngIf="intervallist.length > 0">
+                <ng-container *ngFor="let item of intervallist; let idx = index">
+                    <ng-container *ngIf="!!item.isOpen">
+                        <div class="inputArea">
+                            <!-- 播音秒數 -->
+                            <div class="spaceBetween">
+                                <div>{{ QA_EDITOR?.PLAY?.PLAY_SECONDS | translate }} ({{ idx + 1 }})</div>
+                                <div>
+                                    <nb-icon icon="minus-outline" (click)="collapseBtn('intervallist', idx)"> </nb-icon>
+                                </div>
+                            </div>
+                            <input
+                                class="interval"
+                                type="text"
+                                nbInput
+                                fullWidth
+                                [value]="item.interval"
+                                (change)="handleArryInputValue('intervallist', 'interval', idx, $event)"
+                                [ngClass]="{ error: !item.intervalErr.state }"
+                                [placeholder]="QA_EDITOR?.PLAY?.PH_PLAY_SECONDS"
+                            />
+                            <div class="error-msg">{{ item.intervalErr.errMsg }}</div>
+                            <!-- 音檔位置 -->
+                            {{ QA_EDITOR?.PLAY?.AUDIO_LINK | translate }} ({{ idx + 1 }})
+                            <input
+                                class="music"
+                                type="text"
+                                nbInput
+                                fullWidth
+                                [value]="item.music"
+                                (change)="handleArryInputValue('intervallist', 'music', idx, $event)"
+                                [ngClass]="{ error: !item.musicErr.state }"
+                                [placeholder]="QA_EDITOR?.PLAY?.PH_MUSIC"
+                            />
+                            <div class="error-msg">{{ item.musicErr.errMsg }}</div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!item.isOpen">
+                        <div
+                            class="plus-btn"
+                            (click)="collapseBtn('intervallist', idx)"
+                            [ngClass]="{ error: !(item.intervalErr.state && item.musicErr.state) }"
+                        >
+                            <span>
+                                <span>{{ idx + 1 }}</span>
+                            </span>
+                            <nb-icon
+                                icon="trash-2-outline"
+                                class="icon-remove"
+                                (click)="removeBtn('intervallist', idx)"
+                            >
+                            </nb-icon>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <!-- 新增背景音樂按鈕 -->
+            <div class="col-12" *ngIf="maxIntervallist > intervallist.length">
+                <div
+                    class="plus-btn"
+                    (click)="createBtn('intervallist')"
+                    [ngClass]="{ error: !this.verifyState.intervallist.state }"
+                >
+                    <span>
+                        <span>
+                            <nb-icon icon="plus-outline"></nb-icon>
+                        </span>
+                        <span>{{ QA_EDITOR?.PLAY?.ADD_BACKGROUND_SOUND | translate }}</span>
+                    </span>
+                </div>
+                <div class="error-msg">{{ this.verifyState.intervallist.errMsg }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 指令 -->
+<div class="qa-block" *ngIf="data.openEditor !== 'greeting'">
+    <div class="header">
+        <label>{{ QA_EDITOR?.PLAY?.COMMAND | translate }}</label>
+        <nb-icon
+            [hidden]="!isCommandCreated"
+            class="icon-remove fa"
+            icon="trash"
+            pack="font-awesome"
+            (click)="removeCommandBtn()"
+        >
+        </nb-icon>
+    </div>
+    <div class="body container" #body [hidden]="!isCommandCreated">
+        <div>
+            <nb-select [(selected)]="commandType" fullWidth>
+                <nb-option value="transfer">{{ QA_EDITOR?.PLAY?.TRANSFER | translate }}</nb-option>
+                <!-- 錄音功能，尚未開放 -->
+                <!-- <nb-option value="record">{{ QA_EDITOR?.PLAY?.RECORD | translate }}</nb-option> -->
+                <nb-option value="releasecall">{{ QA_EDITOR?.PLAY?.RELEASE_CALL | translate }}</nb-option>
+            </nb-select>
+        </div>
+        <!-- 轉接服務 -->
+        <div class="row" *ngIf="commandType === 'transfer'">
+            <!-- 轉接號碼 -->
+            <div class="col-12 col-md-12 col-lg-12">
+                <span>{{ QA_EDITOR?.PLAY?.TRASFER_NUMBER | translate }}</span>
+                <input
+                    id="dest"
+                    type="text"
+                    nbInput
+                    fullWidth
+                    [value]="dest"
+                    (change)="handleInputValue('dest', $event)"
+                    [ngClass]="{ error: !this.verifyState.dest.state }"
+                />
+                <div class="error-msg">{{ this.verifyState.dest.errMsg }}</div>
+            </div>
+            <!-- CTI 資料 功能尚未齊全暫不開放 -->
+            <!-- <div class="col-12 col-md-12 col-lg-6">
+            <span>{{ QA_EDITOR?.PLAY?.CTI_DATA | translate }}</span>
+            <input id="aai" type="text" nbInput fullWidth [value]="aai" (change)="handleInputValue('aai', $event)"
+                [ngClass]="{ error: !this.verifyState.aai.state }" />
+            <div class="error-msg">{{ this.verifyState.aai.errMsg }}</div>
+        </div> -->
+        </div>
+        <div class="row" *ngIf="commandType === 'record'">
+            <div class="col-12 col-md-12 col-lg-6">
+                <span>{{ QA_EDITOR?.PLAY?.RECORD_FILE_NAME | translate }}</span>
+                <input
+                    id="filename"
+                    type="text"
+                    nbInput
+                    fullWidth
+                    [value]="filename"
+                    (change)="handleInputValue('filename', $event)"
+                    [ngClass]="{ error: !this.verifyState.filename.state }"
+                />
+                <div class="error-msg">{{ this.verifyState.filename.errMsg }}</div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6">
+                <span>{{ QA_EDITOR?.PLAY?.RECORD_END_KEY | translate }}</span>
+                <nb-select
+                    id="termkey"
+                    placeholder="{{ QA_EDITOR?.PLAY?.RECORD_END_KEY | translate }}"
+                    [(selected)]="termkey"
+                >
+                    <nb-option value="ANY">{{ QA_EDITOR?.PLAY?.ANY_KEY | translate }}</nb-option>
+                    <nb-option value="0">0</nb-option>
+                    <nb-option value="1">1</nb-option>
+                    <nb-option value="2">2</nb-option>
+                    <nb-option value="3">3</nb-option>
+                    <nb-option value="4">4</nb-option>
+                    <nb-option value="5">5</nb-option>
+                    <nb-option value="6">6</nb-option>
+                    <nb-option value="7">7</nb-option>
+                    <nb-option value="8">8</nb-option>
+                    <nb-option value="9">9</nb-option>
+                    <nb-option value="*">*</nb-option>
+                    <nb-option value="#">#</nb-option>
+                </nb-select>
+            </div>
+        </div>
+    </div>
+    <div
+        class="plus-btn"
+        *ngIf="data.openEditor !== 'greeting'"
+        [hidden]="isCommandCreated"
+        (click)="createBtn('command')"
+    >
+        <span>
+            <span>
+                <nb-icon icon="plus-outline"></nb-icon>
+            </span>
+            <span>{{ QA_EDITOR?.PLAY?.ADD_COMMAND | translate }}</span>
+        </span>
+    </div>
+</div>

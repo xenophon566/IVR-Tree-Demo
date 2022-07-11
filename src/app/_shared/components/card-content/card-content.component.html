@@ -1,0 +1,430 @@
+<div id="{{ id }}" class="card-content">
+    <!-- MediaCard Feature Start -->
+    <div *ngIf="this.data.type === 'MediaCard'">
+        <div class="title-field">
+            <span>{{ QA_EDITOR.MEDIA_CARD.MEDIA_CARD | translate }}</span>
+            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.MEDIA_CARD.LINE_LIMIT"></nb-icon>
+            <nb-radio-group
+                name="{{ id }}"
+                [value]="mediaType"
+                (valueChange)="handleMediaTypeChange($event)"
+                style="display: inline-flex; margin: 0 3%"
+            >
+                <nb-radio [value]="'image'">{{ QA_EDITOR.IMAGE.IMAGE | translate }}</nb-radio>
+                <nb-radio [value]="'video'">{{ QA_EDITOR.VIDEO.VIDEO | translate }}</nb-radio>
+            </nb-radio-group>
+        </div>
+        <hr style="opacity: 0.3" />
+        <nb-select
+            class="selected-mode"
+            [selected]="mediaMode"
+            (selectedChange)="handleModeChange($event)"
+            *ngIf="mediaType === 'video'"
+        >
+            <nb-option *ngFor="let item of videoSelectList" [value]="item.value">{{ item.name }}</nb-option>
+        </nb-select>
+
+        <nb-select
+            class="selected-mode"
+            [selected]="mediaMode"
+            (selectedChange)="handleModeChange($event)"
+            *ngIf="mediaType === 'image'"
+        >
+            <nb-option *ngFor="let item of imageSelectList" [value]="item.value">{{ item.name }}</nb-option>
+        </nb-select>
+
+        <div *ngIf="mediaMode === 'url'">
+            <div *ngIf="mediaType === 'image'" style="padding-top: 1rem">
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+            </div>
+            <div *ngIf="mediaType === 'video'" style="padding-top: 1rem">
+                <span>{{ QA_EDITOR.VIDEO.VIDEO_LIMIT | translate }}</span>
+            </div>
+            <input
+                class="source-url"
+                type="text"
+                nbInput
+                fullWidth
+                [placeholder]="QA_EDITOR.PLACEHOLDER.MEDIACARD_FB_URL"
+                [value]="url"
+                (input)="handleMediaCardUrl($event.target.value)"
+                [ngClass]="{ error: !this.verifyState.mediaCardUrl.state }"
+            />
+            <div class="error-wording">{{ this.verifyState.mediaCardUrl.errMsg }}</div>
+        </div>
+
+        <div *ngIf="mediaMode === 'upload'">
+            <div class="frame" (click)="onOpenUpload()" [ngClass]="{ error: !this.verifyState.mediaCardUpload.state }">
+                <div
+                    class="upload-frame bg-contain"
+                    *ngIf="imgFileListObj[0] && mediaType === 'image'"
+                    [ngStyle]="{ 'background-image': 'url(' + uploadFrameBg + ')' }"
+                >
+                    <nb-icon class="upload-remove fa" icon="trash" pack="font-awesome" (click)="uploadRemove($event)">
+                    </nb-icon>
+                </div>
+
+                <div *ngIf="videoFileListObj[0] && mediaType === 'video'" style="padding: 1rem">
+                    <div *ngIf="fileName !== ''" class="fileNameArea">
+                        <nb-icon icon="film-outline" class="icon"></nb-icon>
+                        <span>{{ videoName }}</span>
+                    </div>
+                </div>
+                <div *ngIf="!imgFileListObj[0] && mediaType === 'image'" class="fileNameArea" style="padding: 1rem">
+                    <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                    <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                </div>
+
+                <div *ngIf="!videoFileListObj[0] && mediaType === 'video'" class="fileNameArea" style="padding: 1rem">
+                    <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                    <span>{{ QA_EDITOR.VIDEO.VIDEO_LIMIT | translate }}</span>
+                </div>
+            </div>
+
+            <input
+                #file
+                name="myFile"
+                type="file"
+                style="display: none"
+                (change)="imageUploadEvent($event, 'mediaCard')"
+                [accept]="acceptFileType"
+            />
+            <div class="error-wording">{{ this.verifyState.mediaCardUpload.errMsg }}</div>
+        </div>
+    </div>
+    <!-- MediaCard Feature End -->
+
+    <!-- Card Feature Start -->
+    <div *ngIf="this.data.type === 'Cards'">
+        <div class="error-wording" *ngIf="!verifyState.cardNumber.state">
+            {{ verifyState.cardNumber.errMsg }}
+        </div>
+        <div>
+            <div class="frame" [ngClass]="{ error: !this.verifyState.cardUpload.state }" (click)="onOpenUpload()">
+                <div
+                    *ngIf="uploadFrameBg !== ''"
+                    class="upload-frame bg-contain"
+                    [ngStyle]="{
+                        'background-image': 'url(' + uploadFrameBg + ')',
+                        width: imgRatio === 'square' ? '50%' : '100%'
+                    }"
+                >
+                    <nb-icon class="upload-remove fa" icon="trash" pack="font-awesome" (click)="uploadRemove($event)">
+                    </nb-icon>
+                </div>
+
+                <div *ngIf="uploadFrameBg === ''" style="padding: 1rem" class="fileNameArea">
+                    <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                    <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                </div>
+            </div>
+            <input
+                #file
+                name="myFile"
+                type="file"
+                style="display: none"
+                (change)="imageUploadEvent($event, 'card')"
+                [accept]="acceptFileType"
+            />
+            <div class="error-wording">{{ this.verifyState.cardUpload.errMsg }}</div>
+        </div>
+
+        <!-- imageClickUrl -->
+        <div *ngIf="data.channel.indexOf('google') === -1">
+            <input
+                #imageClickUrl
+                type="text"
+                class="source-url"
+                nbInput
+                fullWidth
+                [ngClass]="{ error: !this.verifyState.imageClickUrl.state }"
+                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_CLICK_URL"
+            />
+            <div class="error-wording">{{ this.verifyState.imageClickUrl.errMsg }}</div>
+        </div>
+
+        <!-- text -->
+        <div *ngIf="data.channel.indexOf('google') !== -1">
+            <input
+                #text
+                type="text"
+                class="source-url"
+                nbInput
+                fullWidth
+                [ngClass]="{ error: !verifyState.text.state }"
+                [placeholder]="QA_EDITOR.PLACEHOLDER.CARD_TEXT_TO_SPEECH"
+            />
+            <div class="error-wording">{{ verifyState.text.errMsg }}</div>
+        </div>
+
+        <!-- textHint -->
+        <div *ngIf="data.channel.indexOf('google') !== -1">
+            <input
+                #textHint
+                type="text"
+                class="source-url"
+                nbInput
+                fullWidth
+                [ngClass]="{ error: !verifyState.textHint.state }"
+                [placeholder]="QA_EDITOR.PLACEHOLDER.TEXT_HINT"
+            />
+            <div class="error-wording">{{ verifyState.textHint.errMsg }}</div>
+        </div>
+        <!-- Title -->
+        <div *ngIf="data.channel.indexOf('google') === -1">
+            <textarea
+                #title
+                nbInput
+                fullWidth
+                class="text-area"
+                rows="1"
+                [placeholder]="QA_EDITOR.PLACEHOLDER.CARD_TITLE"
+                [ngClass]="{ error: !this.verifyState.title.state }"
+            ></textarea>
+            <div class="error-wording">{{ this.verifyState.title.errMsg }}</div>
+        </div>
+        <!-- SubTitle (FMsgAnswer) -->
+        <div>
+            <textarea
+                #FMsgAnswer
+                nbInput
+                fullWidth
+                class="text-area"
+                rows="2"
+                [placeholder]="cardSubtitle"
+                [ngClass]="{ error: !this.verifyState.FMsgAnswer.state }"
+            ></textarea>
+            <div class="error-wording">{{ this.verifyState.FMsgAnswer.errMsg }}</div>
+        </div>
+    </div>
+    <!-- Card Feature End -->
+
+    <!-- Reply-Btn ------------------------------------------------------->
+    <div class="card-btn">
+        <div *ngIf="replyBtnAry.length !== 0" cdkDropList (cdkDropListDropped)="cdkDropBtn($event)">
+            <div
+                #replyContentBlock
+                class="reply-content-block"
+                *ngFor="let item of replyBtnAry; let idx = index"
+                [cdkDragDisabled]="item.isShow"
+                cdkDrag
+            >
+                <div
+                    class="reply-btn"
+                    (click)="openButton(item)"
+                    [hidden]="item.isShow"
+                    [ngClass]="{ error: item.hasEmptyReplyIpt }"
+                >
+                    <span class="title">
+                        <span>
+                            {{
+                                !!item.FShowText.trim()
+                                    ? item.FShowText
+                                    : (QA_EDITOR.PLACEHOLDER.REPLY_BUTTON | translate)
+                            }}
+                        </span>
+                    </span>
+                    <span class="operator">
+                        <nb-icon
+                            class="drag fa-solid"
+                            icon="move-outline"
+                            [hidden]="replyBtnAry.length <= 1"
+                            cdkDragHandle
+                        ></nb-icon>
+                        <nb-icon
+                            class="remove fa"
+                            icon="trash"
+                            pack="font-awesome"
+                            (click)="removeButton(item.id, true)"
+                        >
+                        </nb-icon>
+                    </span>
+                </div>
+                <div class="reply-content" [hidden]="!item.isShow">
+                    <div class="btn-name" [ngStyle]="{ 'margin-top': '1.5%' }">
+                        <input
+                            type="text"
+                            fullWidth
+                            nbInput
+                            [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_BUTTON"
+                            [ngClass]="{
+                                error: !item.verify.FShowText.state,
+                                googleBtn: false
+                            }"
+                            [value]="item.FShowText"
+                            (input)="inputChange($event.target.value, item, 'showText')"
+                            [disabled]="data.channel.indexOf('google') !== -1"
+                        />
+                        <nb-icon icon="minus-outline" (click)="closeButton(item.id, true)"></nb-icon>
+                    </div>
+                    <div class="error-wording btn-error-div">
+                        {{ item.verify.FShowText.errMsg }}
+                    </div>
+                    <div class="content-area" [ngStyle]="{ display: 'block' }">
+                        <nb-tabset #replyOption (changeTab)="changeOption($event.tabTitle, item)">
+                            <nb-tab
+                                #QATab
+                                class="tab-block"
+                                tabTitle="Q-A"
+                                tabIcon="list-outline"
+                                [active]="item.Option == 'QA' ? 'true' : 'false'"
+                                *ngIf="data.openEditor !== 'marketContent' && data.openEditor !== 'marketContentSub'"
+                            >
+                                <div *ngIf="isReplyQaDisplayText">
+                                    <input
+                                        #replyQaDisplayText
+                                        type="text"
+                                        fullWidth
+                                        nbInput
+                                        [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_DISPLAY_TEXT"
+                                        [ngClass]="{ error: !item.verify.qaFDisplayText.state }"
+                                        [value]="item.qaFDisplayText"
+                                        (input)="inputChange($event.target.value, item, 'displayText')"
+                                    />
+                                    <div class="error-wording btn-error-div">
+                                        {{ item.verify.qaFDisplayText.errMsg }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <input
+                                        #replyQaCode
+                                        type="text"
+                                        fullWidth
+                                        nbInput
+                                        [attr.readonly]="
+                                            data.openEditor === 'marketContent' ||
+                                            data.openEditor === 'marketContentSub'
+                                                ? null
+                                                : ''
+                                        "
+                                        [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_SELECT_Q"
+                                        [ngClass]="{ error: !item.verify.qaFCode.state }"
+                                        (click)="openSmartQAList(item)"
+                                        [value]="item.qaFName"
+                                    />
+                                    <div class="error-wording">
+                                        {{ item.verify.qaFCode.errMsg }}
+                                    </div>
+                                </div>
+                            </nb-tab>
+                            <nb-tab
+                                #OptionTab
+                                class="tab-block"
+                                [tabTitle]="QA_EDITOR.REPLY.OPTION"
+                                tabIcon="code-outline"
+                                [active]="item.Option == 'Option' ? 'true' : 'false'"
+                                *ngIf="data.channel.indexOf('google') === -1"
+                            >
+                                <div *ngIf="isReplyQaDisplayText">
+                                    <input
+                                        #replyOptionDisplayText
+                                        type="text"
+                                        fullWidth
+                                        nbInput
+                                        [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_DISPLAY_TEXT"
+                                        [ngClass]="{ error: !item.verify.optionFDisplayText.state }"
+                                        [value]="item.optionFDisplayText"
+                                        (input)="inputChange($event.target.value, item, 'displayText')"
+                                    />
+                                    <div class="error-wording btn-error-div">
+                                        {{ item.verify.optionFDisplayText.errMsg }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <input
+                                        #replyOptionCode
+                                        type="text"
+                                        fullWidth
+                                        nbInput
+                                        [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_OPTION_INPUT"
+                                        [ngClass]="{ error: !item.verify.optionFCode.state }"
+                                        [value]="item.optionFCode"
+                                        (input)="inputChange($event.target.value, item, 'code')"
+                                    />
+                                    <div class="error-wording btn-error-div">
+                                        {{ item.verify.optionFCode.errMsg }}
+                                    </div>
+                                </div>
+                            </nb-tab>
+                            <nb-tab
+                                #UrlTab
+                                class="tab-block"
+                                tabTitle="URL"
+                                tabIcon="link-2-outline"
+                                [active]="item.Option == 'Url' ? 'true' : 'false'"
+                                *ngIf="data.channel.indexOf('google') === -1"
+                            >
+                                <div>
+                                    <input
+                                        #replyUrl
+                                        type="text"
+                                        fullWidth
+                                        nbInput
+                                        [placeholder]="QA_EDITOR.PLACEHOLDER.URL"
+                                        [ngClass]="{ error: !item.verify.urlFName.state }"
+                                        [value]="item.urlFName"
+                                        (input)="inputChange($event.target.value, item, 'name')"
+                                    />
+                                    <div class="error-wording btn-error-div">
+                                        {{ item.verify.urlFName.errMsg }}
+                                    </div>
+                                </div>
+                            </nb-tab>
+                        </nb-tabset>
+                        <div
+                            class="pricetags"
+                            (click)="onPricetagsClick(idx)"
+                            *ngIf="
+                                item.Option !== 'Url' &&
+                                item.Option !== 'Option' &&
+                                data.openEditor !== 'marketContent' &&
+                                data.openEditor !== 'marketContentSub'
+                            "
+                        >
+                            <button nbButton ghost status="basic">
+                                <nb-icon
+                                    icon="pricetags"
+                                    class="tagIcon"
+                                    [nbPopover]="labelHintRef"
+                                    nbPopoverTrigger="hover"
+                                    [ngStyle]="{
+                                        color:
+                                            !!item.valueContent && !!item.valueContent[0] && !!item.valueContent[0].key
+                                                ? '#00a600'
+                                                : '#97A0B3'
+                                    }"
+                                >
+                                </nb-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="plus-btn"
+        [ngClass]="{
+            error: !this.verifyState.replyCount.state && replyBtnAry.length < REPLY_QTY_MIN
+        }"
+        [hidden]="replyBtnAry.length === REPLY_QTY_MAX"
+        (click)="createReplyContent()"
+    >
+        <span>
+            <span>
+                <nb-icon icon="plus-outline"></nb-icon>
+            </span>
+            <span>{{ QA_EDITOR.COMMON.BUTTON | translate }}</span>
+        </span>
+    </div>
+    <div class="error-wording" [hidden]="!(!this.verifyState.replyCount.state && replyBtnAry.length < REPLY_QTY_MIN)">
+        {{ this.verifyState.replyCount.errMsg }}
+    </div>
+</div>
+
+<ng-template #labelHintRef>
+    <span>{{ QA_EDITOR.COMMON.LABEL_GRAY_HINT | translate }}</span>
+    <br />
+    <span>{{ QA_EDITOR.COMMON.LABEL_GREEN_HINT | translate }}</span>
+</ng-template>

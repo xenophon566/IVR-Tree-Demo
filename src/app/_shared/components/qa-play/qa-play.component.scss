@@ -1,0 +1,130 @@
+@import "../../../../../_styles/modules/color";
+@import "../../../../../_styles/modules/typography";
+
+.qa-block {
+    position: relative;
+    width: 80%;
+    margin: 0 auto 4%;
+    padding: 1.5% 4% 4%;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    border: 1px solid #dfe0e2;
+    box-shadow: #cecece 2px 2px 10px;
+    color: #444444;
+
+    textarea {
+        word-break: break-all;
+    }
+    .pointer {
+        cursor: pointer;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+            display: flex;
+            align-items: flex-start;
+
+            span {
+                padding-right: 0.5rem;
+            }
+        }
+    }
+    .body {
+        background-color: white;
+        padding: 1rem;
+        width: 100%;
+        max-width: unset;
+        div {
+            margin-top: 0.5rem;
+        }
+
+        nb-select {
+            max-width: unset;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        textarea,
+        input {
+            border-radius: 10px;
+            margin-top: 0.5rem;
+        }
+
+        .info-tooltip {
+            font-size: 1rem;
+            margin-left: 0.3rem;
+        }
+
+        span {
+            font-size: 0.875rem;
+        }
+        nb-select ::ng-deep {
+            .select-button {
+                min-width: 0;
+            }
+        }
+
+        .spaceBetween {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .icon-remove {
+        cursor: pointer;
+    }
+
+    .error-msg {
+        color: red;
+    }
+
+    .error {
+        border-color: red !important;
+    }
+
+    .btnArea {
+        background-color: #f8f8f8;
+        border-radius: 1rem;
+        border: 0.1px solid lightgray;
+        padding-bottom: 1rem;
+        margin: 1rem 0.5rem 0 0.5rem !important;
+
+        .inputArea {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 0 1rem 1rem 1rem;
+            border: 0.1px solid lightgray;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .plus-btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 2% 0;
+        color: $cbe-basic-text-color;
+        margin-top: 2%;
+        border: 1px solid $cbe-basic-reply-button-border-color;
+        border-radius: 8px;
+        background-color: #fff;
+        cursor: pointer;
+        .icon-remove {
+            position: absolute;
+            right: 8%;
+        }
+
+        & > span {
+            display: flex;
+
+            &:hover {
+                color: $cbe-basic-text-hover-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+<div id="{{ componentId }}" type="File" class="file qa-block">
+    <cbe-shared-operator [data]="data"></cbe-shared-operator>
+
+    <div class="verticalCenter">
+        <div class="typeDiv">
+            {{ QA_EDITOR.FILE.FILE | translate }}
+            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.FILE.LINE_LIMIT"> </nb-icon>
+        </div>
+        <nb-icon
+            *ngIf="this.downloadVisible"
+            icon="arrow-circle-down-outline"
+            class="downloadIcon"
+            (click)="download(this.data.loadData.url)"
+        >
+        </nb-icon>
+    </div>
+    <div class="frame">
+        <div #uploadFile [ngClass]="{ error: !this.verifyState.file.state }" (click)="uploadFrame()">
+            <div *ngIf="fileName !== ''" class="fileNameArea">
+                <nb-icon icon="file-text-outline" class="icon"></nb-icon>
+                <span>{{ fileName }}</span>
+            </div>
+            <div *ngIf="fileName === ''" class="fileNameArea" style="padding: 1rem">
+                <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                <span>{{ "QA_EDITOR.FILE.FILE_LIMIT" | translate }}</span>
+            </div>
+        </div>
+    </div>
+    <input
+        #file
+        name="myFile"
+        type="file"
+        style="display: none"
+        (change)="upload(file.files)"
+        [accept]="acceptFileType"
+    />
+    <div class="error-wording">{{ this.verifyState.file.errMsg }}</div>
+</div>

@@ -1,0 +1,20 @@
+<div id="{{ componentId }}" type="Quote" class="quote qa-block">
+    <cbe-shared-operator [data]="data"></cbe-shared-operator>
+    <div class="header">
+        <div>
+            <label>{{ QA_EDITOR.QUOTE.QUOTE_SMARTQA | translate }}</label>
+            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.QUOTE.QUOTE_REMIND"></nb-icon>
+        </div>
+    </div>
+    <input
+        #quote
+        type="text"
+        nbInput
+        fullWidth
+        [placeholder]="QA_EDITOR.PLACEHOLDER.QUOTE_SMARTQA"
+        [ngClass]="{ error: !this.verifyState.quote.state }"
+        readonly
+        (click)="openSmartQAList()"
+    />
+    <div class="error-wording">{{ this.verifyState.quote.errMsg }}</div>
+</div>

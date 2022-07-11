@@ -1,0 +1,130 @@
+<div id="{{ componentId }}" type="Video" class="video qa-block">
+    <cbe-shared-operator [data]="data"></cbe-shared-operator>
+    <label>{{ QA_EDITOR.VIDEO.VIDEO | translate }}</label>
+
+    <hr style="opacity: 0.3" />
+    <div class="verticalCenter">
+        <nb-select [(selected)]="selectedMode" (selectedChange)="modeChange()">
+            <nb-option value="url">{{ QA_EDITOR.VIDEO.VIDEO_URL | translate }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.VIDEO.VIDEO_UPLOAD | translate }}</nb-option>
+        </nb-select>
+    </div>
+
+    <div *ngIf="selectedMode === 'url'">
+        <div class="support-hint">
+            <label class="hint-wording">{{ QA_EDITOR.VIDEO.VIDEO_HINT | translate }}</label>
+        </div>
+        <input
+            #videoUrl
+            class="source-url"
+            type="text"
+            nbInput
+            fullWidth
+            [placeholder]="QA_EDITOR.PLACEHOLDER.VIDEO_URL"
+            [ngClass]="{ error: !this.verifyState.videoUrl.state }"
+        />
+        <div class="error-wording">{{ this.verifyState.videoUrl.errMsg }}</div>
+    </div>
+
+    <div *ngIf="selectedMode === 'upload'">
+        <div class="frame">
+            <div [ngClass]="{ error: !this.verifyState.videoUpload.state }">
+                <div *ngIf="fileName !== ''" class="fileNameArea" (click)="uploadFrame()">
+                    <nb-icon icon="film-outline" class="icon"></nb-icon>
+                    <span>{{ fileName }}</span>
+                </div>
+                <div *ngIf="fileName === ''" style="text-align: center; padding: 1rem" (click)="uploadFrame()">
+                    <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                    <span>{{ QA_EDITOR.VIDEO.VIDEO_HINT | translate }}</span>
+                </div>
+            </div>
+        </div>
+        <input
+            #file
+            name="myFile"
+            type="file"
+            style="display: none"
+            (change)="upload(file.files)"
+            [accept]="acceptFileType"
+        />
+        <div class="error-wording">{{ this.verifyState.videoUpload.errMsg }}</div>
+    </div>
+    <div [hidden]="this.data.channel === 'messenger' || this.data.channel === 'messenger_Activity'">
+        <hr style="opacity: 0.3" />
+        <div class="verticalCenter">
+            <nb-select [(selected)]="thumbnailSelectedMode" (selectedChange)="thumbnailModeChange()">
+                <nb-option value="url">{{ QA_EDITOR.IMAGE.THUMBNAIL_URL | translate }}</nb-option>
+                <nb-option value="upload">{{ QA_EDITOR.IMAGE.THUMBNAIL_UPLOAD | translate }}</nb-option>
+                <nb-option *ngIf="selectedMode === 'upload'" value="system">{{
+                    QA_EDITOR.IMAGE.THUMBNAIL_SYSTEM | translate
+                }}</nb-option>
+            </nb-select>
+            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.VIDEO.MESSENGER_LIMIT"></nb-icon>
+        </div>
+
+        <div *ngIf="thumbnailSelectedMode === 'url'">
+            <div class="support-hint">
+                <label class="hint-wording">{{ QA_EDITOR.VIDEO.PREVIEW_IMAGE_LIMIT }}</label>
+            </div>
+            <input
+                #thumbnailUrl
+                class="source-url"
+                type="text"
+                nbInput
+                fullWidth
+                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_THUMBNAIL_URL"
+                [ngClass]="{ error: !this.verifyState.thumbnailUrl.state }"
+            />
+            <div class="error-wording">{{ this.verifyState.thumbnailUrl.errMsg }}</div>
+        </div>
+
+        <div *ngIf="thumbnailSelectedMode === 'upload'">
+            <div class="frame">
+                <div [ngClass]="{ error: !this.verifyState.thumbnailUpload.state }">
+                    <div *ngIf="thumbnailFileListObj[0]" class="fileNameArea" (click)="uploadPreviewFrame()">
+                        <div
+                            #previewImgUpload
+                            class="upload-frame bg-contain"
+                            [ngStyle]="{
+                                'background-image': 'url(' + previewUploadFrameBg + ')',
+                                'background-size': 'contain',
+                                width: '100%'
+                            }"
+                            [ngClass]="{ error: !this.verifyState.thumbnailUpload.state }"
+                        ></div>
+                    </div>
+                    <div
+                        *ngIf="!thumbnailFileListObj[0]"
+                        class="fileNameArea"
+                        style="padding: 1rem"
+                        (click)="uploadPreviewFrame()"
+                    >
+                        <nb-icon icon="upload-outline" class="icon"></nb-icon>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                    </div>
+                </div>
+            </div>
+            <input
+                #previewFile
+                name="myPreviewFile"
+                type="file"
+                style="display: none"
+                (change)="uploadPreviewImg($event)"
+                [accept]="thumbnailAcceptFileType"
+            />
+            <div class="error-wording">{{ this.verifyState.thumbnailUpload.errMsg }}</div>
+        </div>
+
+        <div *ngIf="thumbnailSelectedMode === 'system' && !!sysThumbnailUrl">
+            <div class="frame">
+                <div
+                    class="upload-frame bg-contain"
+                    [ngStyle]="{
+                        'background-image': 'url(' + sysThumbnailUrl + ')',
+                        'background-size': 'contain'
+                    }"
+                ></div>
+            </div>
+        </div>
+    </div>
+</div>

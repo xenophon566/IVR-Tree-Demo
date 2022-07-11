@@ -1,0 +1,50 @@
+<div id="{{ componentId }}" type="Text" class="text qa-block">
+    <cbe-shared-operator [data]="data" [hidden]="this.data.module === 'satisfaction-survey-editor' || isOperatorHide">
+    </cbe-shared-operator>
+    <div class="header">
+        <label
+            *ngIf="
+                !(
+                    !!this.data.module &&
+                    (this.data.module === 'replySetting' || this.data.module === 'satisfaction-survey-editor')
+                )
+            "
+            >{{ QA_EDITOR?.TEXT?.TEXT | translate }}</label
+        >
+        <label *ngIf="!!this.data.module && this.data.module === 'replySetting'">{{
+            QA_EDITOR?.TEXT?.MESSAGE_AFTER_CLICK | translate
+        }}</label>
+        <label *ngIf="!!this.data.module && this.data.module === 'satisfaction-survey-editor'">{{
+            QA_EDITOR?.TEXT?.INQUIRY_INFORMATION | translate
+        }}</label>
+
+        <div class="random-operator" [ngStyle]="{ display: isShowRandom }">
+            <div class="random-btn">
+                <span class="title">
+                    {{ QA_EDITOR?.TEXT?.RANDOM | translate }}
+                </span>
+                &nbsp;&nbsp;
+                <nb-toggle labelPosition="left" [(checked)]="toggleChecked" (change)="isRandom()"></nb-toggle>
+            </div>
+            <span class="icon-add-btn" [hidden]="!toggleChecked">
+                <nb-icon icon="plus-outline" class="icon-add" (click)="createTextarea()"></nb-icon>
+            </span>
+        </div>
+    </div>
+    <div class="body" #body>
+        <ng-template cbeSharedTextareaLoader></ng-template>
+        <div class="text-to-speech" *ngIf="data.channel.indexOf('google') !== -1">
+            <input
+                #text
+                type="text"
+                fullWidth
+                nbInput
+                [placeholder]="QA_EDITOR.PLACEHOLDER.TEXT_TO_SPEECH"
+                class="text-block {{ id }}"
+                [ngClass]="{ error: !this.verifyState.text.state }"
+                [disabled]="googleDefField"
+            />
+            <div class="error-wording">{{ this.verifyState.text.errMsg }}</div>
+        </div>
+    </div>
+</div>

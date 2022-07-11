@@ -1,0 +1,13 @@
+.json {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .error {
+        border-color: red !important;
+    }
+    .error-wording {
+        color: red;
+    }
+}

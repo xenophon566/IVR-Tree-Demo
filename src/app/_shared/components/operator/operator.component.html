@@ -1,0 +1,27 @@
+<div class="operator">
+    <nb-icon
+        icon="menu-outline"
+        class="menu icon"
+        [nbContextMenu]="qaSideMenu"
+        nbContextMenuPlacement="right"
+    ></nb-icon>
+    <nb-icon
+        class="trash icon fa"
+        icon="trash"
+        pack="font-awesome"
+        [ngStyle]="{ visibility: isAlone ? 'hidden' : 'visible' }"
+        (click)="onRemove()"
+    ></nb-icon>
+    <nb-icon
+        icon="arrow-circle-up-outline"
+        class="checkmark icon"
+        [ngStyle]="{ visibility: isAlone ? 'hidden' : 'visible', position: isAlone ? 'absolute' : 'static' }"
+        (click)="onUp()"
+    ></nb-icon>
+    <nb-icon
+        icon="arrow-circle-down-outline"
+        class="checkmark icon"
+        [ngStyle]="{ visibility: isAlone ? 'hidden' : 'visible', position: isAlone ? 'absolute' : 'static' }"
+        (click)="onDown()"
+    ></nb-icon>
+</div>

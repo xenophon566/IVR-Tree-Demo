@@ -1,0 +1,12 @@
+<div #webviewBlock class="webview qa-block">
+    <label>WebView</label>
+    <input
+        #webview
+        type="text"
+        nbInput
+        fullWidth
+        placeholder="https://"
+        [ngClass]="{ error: !this.verifyState.url.state }"
+    />
+    <div class="error-wording">{{ this.verifyState.url.errMsg }}</div>
+</div>
