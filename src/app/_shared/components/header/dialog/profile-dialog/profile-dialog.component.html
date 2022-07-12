@@ -1,0 +1,13 @@
+<nb-card>
+    <nb-card-header>請輸入使用者名稱</nb-card-header>
+    <nb-card-body>
+        <div>
+            <input #name nbInput placeholder="使用者名稱" value="{{ userName }}" />
+        </div>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton status="basic" (click)="cancel()">取消</button>
+        &nbsp;
+        <button nbButton status="info" (click)="submit(name.value)">送出</button>
+    </nb-card-footer>
+</nb-card>

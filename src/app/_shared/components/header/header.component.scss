@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .menu {
+        display: flex;
+        justify-content: center;
+
+        .logo {
+            padding: 2rem 4rem;
+            cursor: pointer;
+        }
+    }
+
+    .settings {
+        min-width: 12.5rem;
+        max-width: 24.5rem;
+        display: flex;
+        justify-content: space-around;
+
+        .user-menu {
+            cursor: pointer;
+        }
+    }
+}

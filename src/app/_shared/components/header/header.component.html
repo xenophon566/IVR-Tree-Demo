@@ -1,0 +1,26 @@
+<div class="header">
+    <div class="menu">
+        <button *ngIf="isToggleBtn" hero nbButton ghost (click)="toggleSiderBar()" style="margin-left: -0.9rem">
+            <nb-icon icon="menu-outline"></nb-icon>
+        </button>
+        <div
+            class="logo bg-contain"
+            [ngStyle]="{ 'background-image': 'url(' + trademark + ')' }"
+            (click)="goHome()"
+        ></div>
+    </div>
+
+    <div class="settings">
+        <nb-actions>
+            <nb-action *ngIf="isLangBtn" icon="globe-outline" [nbContextMenu]="languageMenu"></nb-action>
+        </nb-actions>
+
+        <nb-user
+            *ngIf="isUserBtn"
+            class="user-menu"
+            [nbContextMenu]="openUserMenu"
+            picture="{{ portraitUrl }}"
+            name="{{ userName }}"
+        ></nb-user>
+    </div>
+</div>

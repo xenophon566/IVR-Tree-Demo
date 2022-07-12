@@ -1,4 +1,7 @@
+import { ProfileDialogComponent } from "./components/header/dialog";
 import {
+    HeaderComponent,
+    FooterComponent,
     BreadcrumbComponent,
     TextareaComponent,
     CardContentComponent,
@@ -15,17 +18,22 @@ import {
     QaMediaCardComponent,
     ReplyContentComponent,
     OperatorComponent,
-    InputSearchComponent,
-    PaginationComponent,
-    QaTextIndependentComponent,
-    LabelEditorComponent,
-    QaPlayComponent,
-    QaQuoteComponent,
     AlertDialogComponent,
     ConfirmDialogComponent,
     CropperDialogComponent,
     HtmlDialogComponent,
     OauthSettingDialogComponent,
+    BasicTableComponent,
+    CheckboxTableComponent,
+    InputSearchComponent,
+    SortTableComponent,
+    PaginationComponent,
+    QaTextIndependentComponent,
+    DataTableComponent,
+    DragTableComponent,
+    LabelEditorComponent,
+    QaPlayComponent,
+    QaQuoteComponent,
 } from "./components";
 
 /**
@@ -34,6 +42,9 @@ import {
  * @export {const} COMPONENTS
  */
 export const COMPONENTS = [
+    ProfileDialogComponent,
+    HeaderComponent,
+    FooterComponent,
     BreadcrumbComponent,
     InputSearchComponent,
     TextareaComponent,
@@ -51,17 +62,22 @@ export const COMPONENTS = [
     QaMediaCardComponent,
     ReplyContentComponent,
     OperatorComponent,
-    InputSearchComponent,
-    QaTextIndependentComponent,
-    PaginationComponent,
-    LabelEditorComponent,
-    QaPlayComponent,
-    QaQuoteComponent,
     AlertDialogComponent,
     ConfirmDialogComponent,
     CropperDialogComponent,
     HtmlDialogComponent,
     OauthSettingDialogComponent,
+    BasicTableComponent,
+    CheckboxTableComponent,
+    InputSearchComponent,
+    SortTableComponent,
+    QaTextIndependentComponent,
+    PaginationComponent,
+    DataTableComponent,
+    DragTableComponent,
+    LabelEditorComponent,
+    QaPlayComponent,
+    QaQuoteComponent,
 ];
 
 /**
@@ -85,8 +101,14 @@ export const COMPONENTS_LIST = {
     QaMediaCardComponent,
     ReplyContentComponent,
     OperatorComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent,
+    CropperDialogComponent,
+    HtmlDialogComponent,
+    OauthSettingDialogComponent,
+    BasicTableComponent,
+    CheckboxTableComponent,
     QaTextIndependentComponent,
     QaPlayComponent,
     QaQuoteComponent,
-    
 };
