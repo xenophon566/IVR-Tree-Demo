@@ -1,0 +1,41 @@
+<table class="sort-table" [nbTreeGrid]="dataSource" nbSort (sort)="changeSort($event)" equalColumnsWidth>
+    <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="tableData.columnTitle"></tr>
+    <tr
+        nbTreeGridRow
+        *nbTreeGridRowDef="let row; columns: tableData.column"
+        [ngStyle]="{ 'background-color': row.data.bgColor }"
+        class="data-row"
+    ></tr>
+
+    <ng-container *ngFor="let item of tableData.column; let i = index" [nbTreeGridColumnDef]="item">
+        <ng-container *ngIf="i === 0">
+            <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef style="width: 5%">
+                {{ tableData.columnTitle[i] }}
+            </th>
+        </ng-container>
+        <ng-container *ngIf="i !== 0">
+            <th nbTreeGridHeaderCell [nbSortHeader]="getDirection(item)" *nbTreeGridHeaderCellDef>
+                {{ tableData.columnTitle[i] }}
+            </th>
+        </ng-container>
+
+        <ng-container *ngIf="!!tableData.rowData.length">
+            <td nbTreeGridCell *nbTreeGridCellDef="let row; let idx = index">
+                <ng-container *ngIf="item === 'isCheckbox'; else notIsCheckbox">
+                    <nb-checkbox
+                        [name]="row.data.FId"
+                        status="primary"
+                        [checked]="row.data[item]"
+                        (checkedChange)="selectCheckbox($event, row)"
+                    >
+                    </nb-checkbox>
+                </ng-container>
+                <ng-template #notIsCheckbox>
+                    <div (click)="clickTd($event, row)" style="width: 100%; height: 100%">
+                        {{ row.data[item] }}
+                    </div>
+                </ng-template>
+            </td>
+        </ng-container>
+    </ng-container>
+</table>

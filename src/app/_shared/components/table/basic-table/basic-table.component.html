@@ -1,0 +1,44 @@
+<table [nbTreeGrid]="dataSource">
+    <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allTitleColumns"></tr>
+    <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+    <ng-container [nbTreeGridColumnDef]="customColumn">
+        <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+            {{ customTitleColumn }}
+        </th>
+        <td nbTreeGridCell *nbTreeGridCellDef="let row">
+            {{ row.data[customColumn] }}
+        </td>
+    </ng-container>
+
+    <ng-container *ngFor="let column of defaultColumns; let index = index" [nbTreeGridColumnDef]="column">
+        <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+            {{ defaultTitleColumns[index] }}
+        </th>
+        <td nbTreeGridCell *nbTreeGridCellDef="let row">
+            <ng-container *ngIf="column === 'title'">
+                <a href="javascript:void(0)" (click)="onEdit(row.data)" tabindex="-1">
+                    {{ row.data[column] }}
+                </a>
+            </ng-container>
+            <ng-container *ngIf="column === 'isEnable'">
+                <nb-icon *ngIf="row.data[column] === true" icon="checkmark-outline"></nb-icon>
+            </ng-container>
+            <ng-container *ngIf="column === 'operator'">
+                <div *ngIf="row.data[column] === 'operator'">
+                    <nb-icon class="edit fa" icon="edit" pack="font-awesome" (click)="operatorEdit(row.data)"></nb-icon>
+                    &nbsp;
+                    <nb-icon
+                        class="trash fa"
+                        icon="trash"
+                        pack="font-awesome"
+                        (click)="operatorDelete(row.data)"
+                    ></nb-icon>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="column !== 'title' && column !== 'isEnable' && column !== 'operator'">
+                {{ row.data[column] }}
+            </ng-container>
+        </td>
+    </ng-container>
+</table>

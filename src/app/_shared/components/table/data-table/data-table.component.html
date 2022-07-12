@@ -1,0 +1,17 @@
+<nb-card-body class="body">
+    <cbe-input-search
+        *ngIf="!!this?.tableOption?.searchText"
+        style="width: 100%"
+        (searchText)="onUpdate($event)"
+        [placeHolder]="this.tableOption.searchText.placeHolder"
+    >
+    </cbe-input-search>
+    <div class="tableDiv">
+        <cbe-sort-table [data]="tableData" [option]="tableOption"></cbe-sort-table>
+    </div>
+</nb-card-body>
+<nb-card-footer *ngIf="!!tableData.rowData && tableData.rowData.length > 0">
+    <div class="paginationDiv">
+        <cbe-pagination [data]="paginationData" (changePageIndex)="onChagePage($event)"></cbe-pagination>
+    </div>
+</nb-card-footer>

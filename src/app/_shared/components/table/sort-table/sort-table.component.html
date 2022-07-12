@@ -1,0 +1,69 @@
+<table
+    class="sort-table"
+    [nbTreeGrid]="dataSource"
+    nbSort
+    (sort)="changeSort($event)"
+    equalColumnsWidth
+    doubleClickDelay="1000"
+>
+    <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="tableData.columnTitle"></tr>
+    <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: tableData.column"></tr>
+
+    <ng-container *ngFor="let item of tableData.column; let i = index" [nbTreeGridColumnDef]="item">
+        <th nbTreeGridHeaderCell [nbSortHeader]="getDirection(item)" *nbTreeGridHeaderCellDef>
+            {{ tableData.columnTitle[i] }}
+        </th>
+
+        <ng-container *ngIf="!!tableData.rowData && !!tableData.rowData.length">
+            <td
+                nbTreeGridCell
+                *nbTreeGridCellDef="let row; let idx = index"
+                [ngStyle]="{ 'background-color': idx % 2 === 1 ? '#F9F9F9' : 'white' }"
+            >
+                <!-- link 設定-->
+                <ng-container *ngIf="!!option && optionLinkKey.indexOf(item) !== -1">
+                    <a href="javascript:void(0)" (click)="option.link[item](option.scope, row.data)" tabindex="-1">
+                        {{ row.data[item] }}
+                    </a>
+                </ng-container>
+
+                <!-- applicationStatus 設定：N/A trye false -->
+                <ng-container *ngIf="!!option && applicationStatusKey.indexOf(item) !== -1">
+                    <div *ngIf="row.data[item] === 'N/A'">
+                        {{ row.data[item] }}
+                    </div>
+                    <div class="statusDiv offline" *ngIf="row.data[item] === 'false'">offline</div>
+                    <div class="statusDiv online" *ngIf="row.data[item] === 'true'">online</div>
+                </ng-container>
+
+                <!-- 使用者列表 - 使用者名稱 -->
+                <ng-container *ngIf="item === 'userName'">
+                    <div style="display: flex; align-items: center">
+                        <nb-user size="medium" [picture]="row.data.pictrueUrl" onlyPicture> </nb-user>
+                        <div>
+                            <div>
+                                <a href="javascript:void(0)" (click)="goToUserDetail(row.data)" tabindex="-1">
+                                    {{ row.data.FName }}
+                                </a>
+                            </div>
+                            <div>
+                                {{ row.data.FEmail }}
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-container
+                    *ngIf="
+                        !option ||
+                        (!!option && optionLinkKey.indexOf(item) === -1 && applicationStatusKey.indexOf(item) === -1)
+                    "
+                >
+                    {{ row.data[item] }}
+                </ng-container>
+            </td>
+        </ng-container>
+    </ng-container>
+</table>
+
+<div class="no-data" *ngIf="!tableData.rowData || tableData.rowData.length === 0">查無任何資料!</div>

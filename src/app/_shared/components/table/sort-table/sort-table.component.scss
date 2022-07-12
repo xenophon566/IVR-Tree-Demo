@@ -1,0 +1,35 @@
+.sort-table {
+    height: 100%;
+
+    .statusDiv.online {
+        background: #00a65a;
+        color: white;
+        width: 4rem;
+        height: 1.5rem;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .statusDiv.offline {
+        background: #dd4b39;
+        color: white;
+        width: 4rem;
+        height: 1.5rem;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.no-data {
+    width: 100%;
+    font-weight: bold;
+    background: #f9f9f9;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
