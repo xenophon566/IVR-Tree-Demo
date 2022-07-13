@@ -1,5 +1,6 @@
-@import "../../../../../../_styles/modules/color";
-@import "../../../../../../_styles/modules/typography";
+$cbe-font-family: cwTeXYen, sourcehansans-tc, 微軟正黑體, "Noto Sans TC", "Source Sans Pro", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+$cbe-primary-warning-color: #f39c12;
 
 .cropper-dialog {
     width: 72vw;
