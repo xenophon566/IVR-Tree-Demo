@@ -9,19 +9,19 @@
                     (this.data.module === 'replySetting' || this.data.module === 'satisfaction-survey-editor')
                 )
             "
-            >{{ QA_EDITOR?.TEXT?.TEXT | translate }}</label
+            >{{ QA_EDITOR?.TEXT?.TEXT  }}</label
         >
         <label *ngIf="!!this.data.module && this.data.module === 'replySetting'">{{
-            QA_EDITOR?.TEXT?.MESSAGE_AFTER_CLICK | translate
+            QA_EDITOR?.TEXT?.MESSAGE_AFTER_CLICK 
         }}</label>
         <label *ngIf="!!this.data.module && this.data.module === 'satisfaction-survey-editor'">{{
-            QA_EDITOR?.TEXT?.INQUIRY_INFORMATION | translate
+            QA_EDITOR?.TEXT?.INQUIRY_INFORMATION 
         }}</label>
 
         <div class="random-operator" [ngStyle]="{ display: isShowRandom }">
             <div class="random-btn">
                 <span class="title">
-                    {{ QA_EDITOR?.TEXT?.RANDOM | translate }}
+                    {{ QA_EDITOR?.TEXT?.RANDOM  }}
                 </span>
                 &nbsp;&nbsp;
                 <nb-toggle labelPosition="left" [(checked)]="toggleChecked" (change)="isRandom()"></nb-toggle>

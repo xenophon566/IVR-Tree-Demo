@@ -1,17 +1,17 @@
 <div class="paginationDiv" *ngIf="!!paginationData && PAGINATION">
     <div>
         <label style="padding-right: 10px">
-            {{ PAGINATION.PAGINATION.SHOW | translate }}
+            {{ PAGINATION.PAGINATION.SHOW }}
             {{ displayStart }}
-            {{ PAGINATION.PAGINATION.TO | translate }}
+            {{ PAGINATION.PAGINATION.TO }}
             {{ displayEnd }}
-            {{ PAGINATION.PAGINATION.OF | translate }}
+            {{ PAGINATION.PAGINATION.OF }}
             {{ recordCount }}
-            {{ PAGINATION.PAGINATION.ITEM | translate }}</label
+            {{ PAGINATION.PAGINATION.ITEM }}</label
         >
 
         <ng-container *ngIf="pageCount != 1 && pageCount != 0">
-            {{ PAGINATION.PAGINATION.JUMP_TO | translate }}
+            {{ PAGINATION.PAGINATION.JUMP_TO }}
             <input
                 type="text"
                 #pageInput
@@ -21,10 +21,7 @@
                 (keydown.enter)="doChangePage()"
             />
 
-            <label
-                >{{ PAGINATION.PAGINATION.PAGE_TOTAL | translate }} {{ pageCount }}
-                {{ PAGINATION.PAGINATION.PAGE | translate }}</label
-            >
+            <label>{{ PAGINATION.PAGINATION.PAGE_TOTAL }} {{ pageCount }} {{ PAGINATION.PAGINATION.PAGE }}</label>
         </ng-container>
     </div>
     <div>

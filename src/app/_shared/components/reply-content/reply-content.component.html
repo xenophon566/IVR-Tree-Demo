@@ -14,7 +14,7 @@
         >
             <span class="title">
                 <span>
-                    {{ !!item.showText.trim() ? item.showText : (QA_EDITOR?.PLACEHOLDER?.REPLY_BUTTON | translate) }}
+                    {{ !!item.showText.trim() ? item.showText : (QA_EDITOR?.PLACEHOLDER?.REPLY_BUTTON ) }}
                 </span>
             </span>
             <span class="operator">
@@ -218,7 +218,7 @@
         <span>
             <nb-icon icon="plus-outline"></nb-icon>
         </span>
-        <span>{{ QA_EDITOR?.COMMON?.BUTTON | translate }}</span>
+        <span>{{ QA_EDITOR?.COMMON?.BUTTON  }}</span>
     </span>
 </div>
 <div class="error-wording" [hidden]="!(this.verifyState.replyCount.errMsg && replyBtnAry.length === 0)">
@@ -226,7 +226,7 @@
 </div>
 
 <ng-template #labelHintRef>
-    <span>{{ QA_EDITOR.COMMON.LABEL_GRAY_HINT | translate }}</span>
+    <span>{{ QA_EDITOR.COMMON.LABEL_GRAY_HINT  }}</span>
     <br />
-    <span>{{ QA_EDITOR.COMMON.LABEL_GREEN_HINT | translate }}</span>
+    <span>{{ QA_EDITOR.COMMON.LABEL_GREEN_HINT  }}</span>
 </ng-template>

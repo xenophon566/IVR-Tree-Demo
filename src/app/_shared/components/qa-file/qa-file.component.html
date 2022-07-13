@@ -3,7 +3,7 @@
 
     <div class="verticalCenter">
         <div class="typeDiv">
-            {{ QA_EDITOR.FILE.FILE | translate }}
+            {{ QA_EDITOR.FILE.FILE  }}
             <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.FILE.LINE_LIMIT"> </nb-icon>
         </div>
         <nb-icon
@@ -22,7 +22,7 @@
             </div>
             <div *ngIf="fileName === ''" class="fileNameArea" style="padding: 1rem">
                 <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                <span>{{ "QA_EDITOR.FILE.FILE_LIMIT" | translate }}</span>
+                <span>{{ "QA_EDITOR.FILE.FILE_LIMIT"  }}</span>
             </div>
         </div>
     </div>

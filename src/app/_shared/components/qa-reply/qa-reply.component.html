@@ -1,9 +1,9 @@
 <div #replyBlock class="reply qa-block">
     <label *ngIf="!(!!this.data.module && this.data.module === 'satisfaction-survey-editor')">{{
-        QA_EDITOR?.REPLY?.REPLY | translate
+        QA_EDITOR?.REPLY?.REPLY
     }}</label>
     <label *ngIf="!!this.data.module && this.data.module === 'satisfaction-survey-editor'">
-        {{ QA_EDITOR?.REPLY?.SMARTQA_SATISFACTION_SURVEY | translate }}</label
+        {{ QA_EDITOR?.REPLY?.SMARTQA_SATISFACTION_SURVEY }}</label
     >
 
     <div class="body" #body>

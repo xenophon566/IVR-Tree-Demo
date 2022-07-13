@@ -1,18 +1,18 @@
 <div id="{{ componentId }}" type="Video" class="video qa-block">
     <cbe-shared-operator [data]="data"></cbe-shared-operator>
-    <label>{{ QA_EDITOR.VIDEO.VIDEO | translate }}</label>
+    <label>{{ QA_EDITOR.VIDEO.VIDEO }}</label>
 
     <hr style="opacity: 0.3" />
     <div class="verticalCenter">
         <nb-select [(selected)]="selectedMode" (selectedChange)="modeChange()">
-            <nb-option value="url">{{ QA_EDITOR.VIDEO.VIDEO_URL | translate }}</nb-option>
-            <nb-option value="upload">{{ QA_EDITOR.VIDEO.VIDEO_UPLOAD | translate }}</nb-option>
+            <nb-option value="url">{{ QA_EDITOR.VIDEO.VIDEO_URL }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.VIDEO.VIDEO_UPLOAD }}</nb-option>
         </nb-select>
     </div>
 
     <div *ngIf="selectedMode === 'url'">
         <div class="support-hint">
-            <label class="hint-wording">{{ QA_EDITOR.VIDEO.VIDEO_HINT | translate }}</label>
+            <label class="hint-wording">{{ QA_EDITOR.VIDEO.VIDEO_HINT }}</label>
         </div>
         <input
             #videoUrl
@@ -35,7 +35,7 @@
                 </div>
                 <div *ngIf="fileName === ''" style="text-align: center; padding: 1rem" (click)="uploadFrame()">
                     <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                    <span>{{ QA_EDITOR.VIDEO.VIDEO_HINT | translate }}</span>
+                    <span>{{ QA_EDITOR.VIDEO.VIDEO_HINT }}</span>
                 </div>
             </div>
         </div>
@@ -53,10 +53,10 @@
         <hr style="opacity: 0.3" />
         <div class="verticalCenter">
             <nb-select [(selected)]="thumbnailSelectedMode" (selectedChange)="thumbnailModeChange()">
-                <nb-option value="url">{{ QA_EDITOR.IMAGE.THUMBNAIL_URL | translate }}</nb-option>
-                <nb-option value="upload">{{ QA_EDITOR.IMAGE.THUMBNAIL_UPLOAD | translate }}</nb-option>
+                <nb-option value="url">{{ QA_EDITOR.IMAGE.THUMBNAIL_URL }}</nb-option>
+                <nb-option value="upload">{{ QA_EDITOR.IMAGE.THUMBNAIL_UPLOAD }}</nb-option>
                 <nb-option *ngIf="selectedMode === 'upload'" value="system">{{
-                    QA_EDITOR.IMAGE.THUMBNAIL_SYSTEM | translate
+                    QA_EDITOR.IMAGE.THUMBNAIL_SYSTEM
                 }}</nb-option>
             </nb-select>
             <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.VIDEO.MESSENGER_LIMIT"></nb-icon>
@@ -100,7 +100,7 @@
                         (click)="uploadPreviewFrame()"
                     >
                         <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
                     </div>
                 </div>
             </div>

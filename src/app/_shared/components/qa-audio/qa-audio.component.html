@@ -1,11 +1,11 @@
 <div id="{{ componentId }}" type="Audio" class="audio qa-block">
     <cbe-shared-operator [data]="data"></cbe-shared-operator>
-    <label>{{ "QA_EDITOR.AUDIO.AUDIO" | translate }}</label>
+    <label>{{ "QA_EDITOR.AUDIO.AUDIO" }}</label>
 
     <hr style="opacity: 0.3" />
     <nb-select [(selected)]="selectedMode" (selectedChange)="modeChange()">
-        <nb-option value="url"> {{ "QA_EDITOR.AUDIO.AUDIO_URL" | translate }}</nb-option>
-        <nb-option value="upload" default>{{ "QA_EDITOR.AUDIO.AUDIO_UPLOAD" | translate }}</nb-option>
+        <nb-option value="url"> {{ "QA_EDITOR.AUDIO.AUDIO_URL" }}</nb-option>
+        <nb-option value="upload" default>{{ "QA_EDITOR.AUDIO.AUDIO_UPLOAD" }}</nb-option>
     </nb-select>
 
     <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.AUDIO.LINE_LIMIT"></nb-icon>
@@ -13,7 +13,7 @@
 
     <div *ngIf="selectedMode === 'url'">
         <div class="support-hint">
-            <label class="hint-wording">{{ "QA_EDITOR.AUDIO.AUDIO_LIMIT" | translate }}</label>
+            <label class="hint-wording">{{ "QA_EDITOR.AUDIO.AUDIO_LIMIT" }}</label>
         </div>
         <input
             #audioUrl
@@ -38,19 +38,19 @@
                     <div>
                         <div>
                             <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                            <span>{{ "QA_EDITOR.AUDIO.AUDIO_LIMIT" | translate }}</span>
+                            <span>{{ "QA_EDITOR.AUDIO.AUDIO_LIMIT" }}</span>
                         </div>
                         <div>
                             <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                            <span>{{ "QA_EDITOR.AUDIO.LINE_LIMIT" | translate }}</span>
+                            <span>{{ "QA_EDITOR.AUDIO.LINE_LIMIT" }}</span>
                         </div>
                         <div>
                             <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                            <span>{{ "QA_EDITOR.AUDIO.MESSENGER_LIMIT" | translate }}</span>
+                            <span>{{ "QA_EDITOR.AUDIO.MESSENGER_LIMIT" }}</span>
                         </div>
                         <div *ngIf="data.openEditor !== 'marketContent' && data.openEditor !== 'marketContentSub'">
                             <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                            <span>{{ "QA_EDITOR.AUDIO.GOOGLE_LIMIT" | translate }}</span>
+                            <span>{{ "QA_EDITOR.AUDIO.GOOGLE_LIMIT" }}</span>
                         </div>
                     </div>
                 </div>
@@ -81,20 +81,20 @@
     </div>
 
     <div *ngIf="data.channel.indexOf('google') !== -1">
-        <div style="padding-top: 1rem">{{ QA_EDITOR.IMAGE.GOOGLE_IMAGE | translate }}</div>
+        <div style="padding-top: 1rem">{{ QA_EDITOR.IMAGE.GOOGLE_IMAGE }}</div>
         <nb-select
             class="selected-mode"
             [(selected)]="selectedImgMode"
             (selectedChange)="modeImgChange()"
             style="margin-top: 0.2rem"
         >
-            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</nb-option>
-            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD | translate }}</nb-option>
+            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD }}</nb-option>
         </nb-select>
 
         <div [hidden]="!(selectedImgMode === 'url')">
             <div style="padding-top: 1rem">
-                <span>{{ QA_EDITOR.VIDEO.IMAGE_LIMIT | translate }}</span>
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_LIMIT }}</span>
             </div>
             <input
                 #imageUrl
@@ -129,7 +129,7 @@
                     </div>
                     <div *ngIf="!imgFileListObj[0]" class="fileNameArea" style="padding: 1rem">
                         <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                        <span>{{ QA_EDITOR.VIDEO.IMAGE_LIMIT | translate }}</span>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_LIMIT }}</span>
                     </div>
                 </div>
             </div>

@@ -2,16 +2,16 @@
     <cbe-shared-operator [data]="data"></cbe-shared-operator>
 
     <div class="title-field">
-        <span>{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</span>
+        <span>{{ QA_EDITOR.IMAGE.IMAGE_URL }}</span>
         <nb-radio-group
             [(value)]="imageType"
             [name]="componentId"
             style="display: inline-flex; margin: 0 3%"
             (valueChange)="ImgFormatChange()"
         >
-            <nb-radio value="Image">{{ QA_EDITOR.IMAGE.PURE_IMAGE | translate }}</nb-radio>
+            <nb-radio value="Image">{{ QA_EDITOR.IMAGE.PURE_IMAGE }}</nb-radio>
             <nb-radio value="LinkImage" *ngIf="hideLinkImageArr.indexOf(data.channel) === -1">
-                {{ QA_EDITOR.IMAGE.LINK_IMAGE | translate }}
+                {{ QA_EDITOR.IMAGE.LINK_IMAGE }}
             </nb-radio>
             <nb-radio
                 value="TextImage"
@@ -20,7 +20,7 @@
                     (data.channel === 'line' || data.channel === 'line_Activity')
                 "
             >
-                {{ QA_EDITOR.IMAGE.TEXT_IMAGE | translate }}
+                {{ QA_EDITOR.IMAGE.TEXT_IMAGE }}
             </nb-radio>
         </nb-radio-group>
         <nb-icon
@@ -34,15 +34,15 @@
     <!-- 純圖片 -->
     <div [hidden]="!(imageType === 'Image')">
         <nb-select class="selected-mode" [(selected)]="selectedMode" (selectedChange)="modeChange()" style="margin: 0">
-            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</nb-option>
-            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD | translate }}</nb-option>
+            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD }}</nb-option>
         </nb-select>
 
         <div [hidden]="!(selectedMode === 'url')">
             <div style="padding-top: 1rem">
-                <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_PRE | translate }}</span>
+                <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_PRE }}</span>
                 {{ i18nUploadMaxSize }}
-                <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_POST | translate }}</span>
+                <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_POST }}</span>
             </div>
             <input
                 #imageUrl
@@ -79,9 +79,9 @@
                     </div>
                     <div *ngIf="!imgFileListObj[0]" class="fileNameArea" style="padding: 1rem">
                         <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                        <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_PRE | translate }}</span>
+                        <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_PRE }}</span>
                         {{ i18nUploadMaxSize }}
-                        <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_POST | translate }}</span>
+                        <span>{{ QA_EDITOR.IMAGE.IMAGE_LIMIT_POST }}</span>
                     </div>
                 </div>
             </div>
@@ -103,12 +103,12 @@
         [hidden]="!(imageType === 'LinkImage') || data.channel === 'messenger' || data.channel === 'messenger_Activity'"
     >
         <nb-select class="selected-mode" [(selected)]="selectedMode" (selectedChange)="modeChange()" style="margin: 0">
-            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</nb-option>
-            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD | translate }}</nb-option>
+            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD }}</nb-option>
         </nb-select>
         <div [hidden]="!(selectedMode === 'url')">
             <div style="padding-top: 1rem">
-                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
             </div>
             <input
                 #linkImageUrl
@@ -145,7 +145,7 @@
                     </div>
                     <div *ngIf="!linkImgFileListObj[0]" class="fileNameArea" style="padding: 1rem">
                         <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
                     </div>
                 </div>
             </div>
@@ -163,12 +163,12 @@
     <!-- 圖片帶文字 -->
     <div [hidden]="!(imageType === 'TextImage' && (data.channel === 'line' || data.channel === 'line_Activity'))">
         <nb-select class="selected-mode" [(selected)]="selectedMode" (selectedChange)="modeChange()" style="margin: 0">
-            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL | translate }}</nb-option>
-            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD | translate }}</nb-option>
+            <nb-option value="url">{{ QA_EDITOR.IMAGE.IMAGE_URL }}</nb-option>
+            <nb-option value="upload">{{ QA_EDITOR.IMAGE.IMAGE_UPLOAD }}</nb-option>
         </nb-select>
         <div [hidden]="!(selectedMode === 'url')">
             <div style="padding-top: 1rem">
-                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
             </div>
             <input
                 #textImageUrl
@@ -205,7 +205,7 @@
                     </div>
                     <div *ngIf="!textImgFileListObj[0]" class="fileNameArea" style="padding: 1rem">
                         <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
                     </div>
                 </div>
             </div>
@@ -247,7 +247,7 @@
         <nb-icon icon="info" [nbTooltip]="QA_EDITOR.IMAGE.MESSENGER_NO_PREVIEW"> </nb-icon>
         <div *ngIf="previewSelectedMode === 'url'">
             <div style="padding-top: 1rem">
-                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
             </div>
             <input
                 #previewImageUrl
@@ -284,7 +284,7 @@
                     </div>
                     <div *ngIf="!previewFileListObj[0]" class="fileNameArea" style="padding: 1rem">
                         <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT | translate }}</span>
+                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
                     </div>
                 </div>
             </div>

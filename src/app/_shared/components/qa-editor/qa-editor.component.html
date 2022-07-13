@@ -52,7 +52,7 @@
                     nbContextMenuPlacement="right"
                     [disabled]="isSingleAnsChannel || qaMenuStatus || isQaMenuDisabled[qaEditorChannelTab]"
                 >
-                    {{ QA_EDITOR.COMMON.ADD_ANSWER | translate }}
+                    {{ QA_EDITOR.COMMON.ADD_ANSWER }}
                 </button>
             </div>
             <cbe-shared-qa-reply
@@ -94,20 +94,20 @@
     <nb-card-header class="toggle-header">
         <span>
             <nb-icon class="fa" icon="android" pack="font-awesome"></nb-icon>
-            <span class="title">{{ QA_EDITOR.ROBOT_SETTING.ROBOT_SETTING | translate }}</span>
+            <span class="title">{{ QA_EDITOR.ROBOT_SETTING.ROBOT_SETTING }}</span>
         </span>
         <nb-icon icon="{{ !toggleRobotBody ? 'minus-outline' : 'plus-outline' }}" (click)="toggleRobot()"></nb-icon>
     </nb-card-header>
     <nb-card-body [hidden]="toggleRobotBody">
         <div class="robot qa-block">
-            <label>{{ QA_EDITOR.ROBOT_SETTING.ROBOT_SETTING | translate }}</label>
+            <label>{{ QA_EDITOR.ROBOT_SETTING.ROBOT_SETTING }}</label>
             <nb-radio-group
                 name="radio-{{ qaEditorChannelTab }}"
                 [(value)]="robotRadio"
                 (valueChange)="getRobotRadio()"
             >
-                <nb-radio value="qbi">{{ QA_EDITOR.ROBOT_SETTING.QBI_ROBOT | translate }}</nb-radio>
-                <nb-radio value="zenbo">{{ QA_EDITOR.ROBOT_SETTING.ZENBO_ROBOT | translate }}</nb-radio>
+                <nb-radio value="qbi">{{ QA_EDITOR.ROBOT_SETTING.QBI_ROBOT }}</nb-radio>
+                <nb-radio value="zenbo">{{ QA_EDITOR.ROBOT_SETTING.ZENBO_ROBOT }}</nb-radio>
             </nb-radio-group>
             <label>{{
                 robotRadio === "qbi" ? QA_EDITOR.ROBOT_SETTING.ACTION : QA_EDITOR.ROBOT_SETTING.EXPRESSION
@@ -122,7 +122,7 @@
             </ng-select>
         </div>
         <div class="robot qa-block">
-            <label>{{ QA_EDITOR.ROBOT_SETTING.VOICE | translate }}</label>
+            <label>{{ QA_EDITOR.ROBOT_SETTING.VOICE }}</label>
             <textarea
                 class="text-area"
                 nbInput
@@ -139,7 +139,7 @@
 </nb-card>
 
 <ng-template #labelHintRef>
-    <span>{{ QA_EDITOR.COMMON.LABEL_GRAY_HINT | translate }}</span>
+    <span>{{ QA_EDITOR.COMMON.LABEL_GRAY_HINT }}</span>
     <br />
-    <span>{{ QA_EDITOR.COMMON.LABEL_GREEN_HINT | translate }}</span>
+    <span>{{ QA_EDITOR.COMMON.LABEL_GREEN_HINT }}</span>
 </ng-template>
