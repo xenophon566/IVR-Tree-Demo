@@ -1,4 +1,4 @@
-import { ProfileDialogComponent } from "./components/header/dialog";
+import { ProfileDialogComponent } from "./components/header/dialog/profile-dialog/profile-dialog.component";
 import {
     HeaderComponent,
     FooterComponent,
