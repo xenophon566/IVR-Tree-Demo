@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { LanguageService } from "@core/utils/language.service";
-import { number } from "echarts";
 
 /**
  * Verify Service
