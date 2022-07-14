@@ -37,7 +37,6 @@
         "firebase": "^9.8.4",
         "gojs": "^2.2.12",
         "html2canvas": "^1.4.1",
-        "lodash": "^4.17.21",
         "ngx-image-cropper": "^6.2.1",
         "rxjs": "~7.5.0",
         "tslib": "^2.3.0",
