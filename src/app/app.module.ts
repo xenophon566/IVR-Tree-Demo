@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID } from "@angular/core";
+import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app.routing.module";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
@@ -35,6 +35,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [AppComponent, HomeComponent, DemoButtonsComponent, DemoFirebaseComponent, SmartQaEditorComponent],
     imports: [
         AppRoutingModule,
