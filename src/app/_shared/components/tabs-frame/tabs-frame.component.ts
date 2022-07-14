@@ -55,7 +55,7 @@ export class TabsFrameComponent implements OnInit {
      * @type {TabsLoaderDirective}
      * @memberof TabsFrameComponent
      */
-    @ViewChild(TabsLoaderDirective, { static: true }) cbeSharedTabsLoader: TabsLoaderDirective;
+    @ViewChild(TabsLoaderDirective) cbeSharedTabsLoader: TabsLoaderDirective;
 
     /**
      * qaEditor Template
