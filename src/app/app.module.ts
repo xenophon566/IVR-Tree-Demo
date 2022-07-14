@@ -19,6 +19,7 @@ import { HomeComponent } from "./home/home.component";
 import { DemoButtonsComponent } from "./demo-buttons/demo-buttons.component";
 import { DemoFirebaseComponent } from "./demo-firebase/demo-firebase.component";
 import { SmartQaEditorComponent } from "./smart-qa-editor/smart-qa-editor.component";
+import { TabsFrameComponent, ActivityTabFilterPipe } from "@shared/components/tabs-frame/tabs-frame.component";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB5UegVWFft7JgMm-_x1OcCWSqyae86RBk",
@@ -36,7 +37,15 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    declarations: [AppComponent, HomeComponent, DemoButtonsComponent, DemoFirebaseComponent, SmartQaEditorComponent],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        DemoButtonsComponent,
+        DemoFirebaseComponent,
+        SmartQaEditorComponent,
+        TabsFrameComponent,
+        ActivityTabFilterPipe,
+    ],
     imports: [
         AppRoutingModule,
         BrowserModule,
