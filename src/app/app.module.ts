@@ -20,6 +20,7 @@ import { DemoButtonsComponent } from "./demo-buttons/demo-buttons.component";
 import { DemoFirebaseComponent } from "./demo-firebase/demo-firebase.component";
 import { SmartQaEditorComponent } from "./smart-qa-editor/smart-qa-editor.component";
 import { TabsFrameComponent, ActivityTabFilterPipe } from "@shared/components/tabs-frame/tabs-frame.component";
+import { TabsLoaderDirective } from "@shared/directives/tabs-loader.directive";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB5UegVWFft7JgMm-_x1OcCWSqyae86RBk",
@@ -45,6 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
         SmartQaEditorComponent,
         TabsFrameComponent,
         ActivityTabFilterPipe,
+        TabsLoaderDirective,
     ],
     imports: [
         AppRoutingModule,
