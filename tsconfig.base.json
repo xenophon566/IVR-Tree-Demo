@@ -1,0 +1,27 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@ngCommon/*": ["src/app/ng-common/*"],
+            "@core/*": ["src/app/_core/*"],
+            "@shared/*": ["src/app/_shared/*"],
+            "@auth/*": ["src/app/auth/*"],
+            "@assets/*": ["src/assets/*"],
+            "@define/*": ["src/app/_define/*"],
+            "@env/*": ["src/environments/*"],
+            "cbe-shared": ["dist/cbe-shared/cbe-shared", "dist/cbe-shared"]
+        },
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "es2020",
+        "lib": ["es2018", "dom"]
+    }
+}
