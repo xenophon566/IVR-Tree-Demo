@@ -9,7 +9,8 @@ import {
 } from "@angular/core";
 import { CardContentLoaderDirective } from "@shared/directives/card-content-loader.directive";
 import { CardContentComponent } from "@shared/components/card-content/card-content.component";
-import { QaCardService, QaEditorService, CardContentService } from "@core/state";
+import { QaCardService, QaEditorService } from "@core/state";
+import { CardContentService } from "@core/state/qa-editor/card-content.service";
 import { SET_TIMEOUT } from "@core/services/global.service";
 import { trigger, style, animate, transition } from "@angular/animations";
 import { IAnsCardsJson } from "@core/state/qa-editor/answer-json.interface";
