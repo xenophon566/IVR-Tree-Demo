@@ -81,7 +81,6 @@ export class HttpService {
      * @memberof HttpService
      */
     async httpGET(...args): Promise<object> {
-        debugger;
         const hostUrl = this.utilitiesService.getMockSession() || (await this.getEnvConfig(args[2]));
         const apiUrl = !!~args[0].indexOf("http") ? args[0] : hostUrl + args[0];
         const body = args[1] || {};
