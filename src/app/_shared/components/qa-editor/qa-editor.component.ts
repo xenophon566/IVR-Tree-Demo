@@ -96,26 +96,34 @@ export class QaEditorComponent implements OnInit {
 
         if (!!this.utilitiesService.getMockSession()) {
             // qbi action dropdown
-            this.httpService.httpGET("/smart-qa-editor/qbiSelectList").then((resp) => {
-                for (const i in resp) {
-                    const name = resp[i].FName.split(".");
-                    this.qbiSelectList.push({
-                        FRobotId: resp[i].FRobotId,
-                        FName: this.QA_EDITOR[name[0]][name[1]],
-                    });
-                }
-            });
+            this.httpService
+                .httpGET(
+                    "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/smart-qa-editor/qbiSelectList"
+                )
+                .then((resp) => {
+                    for (const i in resp) {
+                        const name = resp[i].FName.split(".");
+                        this.qbiSelectList.push({
+                            FRobotId: resp[i].FRobotId,
+                            FName: this.QA_EDITOR[name[0]][name[1]],
+                        });
+                    }
+                });
 
             // zenbo action dropdown
-            this.httpService.httpGET("/smart-qa-editor/zenboSelectList").then((resp) => {
-                for (const i in resp) {
-                    const name = resp[i].FName.split(".");
-                    this.zenboSelectList.push({
-                        FRobotId: resp[i].FRobotId,
-                        FName: this.QA_EDITOR[name[0]][name[1]],
-                    });
-                }
-            });
+            this.httpService
+                .httpGET(
+                    "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/smart-qa-editor/zenboSelectList"
+                )
+                .then((resp) => {
+                    for (const i in resp) {
+                        const name = resp[i].FName.split(".");
+                        this.zenboSelectList.push({
+                            FRobotId: resp[i].FRobotId,
+                            FName: this.QA_EDITOR[name[0]][name[1]],
+                        });
+                    }
+                });
         } else {
             try {
                 const stringifyRobotAE = localStorage.getItem("robotAE");
@@ -685,7 +693,9 @@ export class QaEditorComponent implements OnInit {
             const oauthSettingRadio = JSON.parse(localStorage.getItem("oauthSettingRadio"));
             this.oauthSettingList = oauthSettingRadio?.result?.oauthSettingList || [];
         } else {
-            const oauthSetting = await this.httpService.httpGET("/oauth-setting/oauth-setting");
+            const oauthSetting = await this.httpService.httpGET(
+                "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/oauth-setting/oauth-setting"
+            );
             this.oauthSettingList = oauthSetting["items"] || [];
         }
     }

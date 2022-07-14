@@ -581,9 +581,11 @@ export class SmartQaEditorComponent implements OnInit {
         this.clearAllStates();
 
         // localStorage.setItem('isAnsExisted', 'true');
-
         const qaEditorAnswers: any =
-            qaEditorAnswer || (await this.httpService.httpGET("/smart-qa-editor/qaEditorAnswer"));
+            qaEditorAnswer ||
+            (await this.httpService.httpGET(
+                "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/smart-qa-editor/qaEditorAnswer"
+            ));
 
         // 沒有保存過的答案
         if (!qaEditorAnswers[0]) this.onEmptyLoad();
@@ -674,7 +676,10 @@ export class SmartQaEditorComponent implements OnInit {
 
         const qaEditorAnswer = data?.qaEditorAnswer;
         const qaEditorAnswers: any =
-            qaEditorAnswer || (await this.httpService.httpGET("/smart-qa-editor/qaEditorAnswers"));
+            qaEditorAnswer ||
+            (await this.httpService.httpGET(
+                "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/smart-qa-editor/qaEditorAnswers"
+            ));
 
         // 沒有保存過的答案
         if (!qaEditorAnswers[0]) this.onEmptyLoad();
@@ -1171,7 +1176,9 @@ export class SmartQaEditorComponent implements OnInit {
 
         if (!this.isMockEnv && environment.env === "stage") this.onMessage();
         else {
-            const activityData = await this.httpService.httpGET("/smart-qa-editor/activitiesList");
+            const activityData = await this.httpService.httpGET(
+                "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/smart-qa-editor/activitiesList"
+            );
             this.smartQaEditorService.smartQaEditorObject["activityList"] = activityData;
             localStorage.setItem("activityList", JSON.stringify(activityData));
 

@@ -815,13 +815,19 @@ export class QaPlayComponent implements OnInit {
             let res;
             switch (item.toString()) {
                 case "commandq":
-                    res = await this.httpService.httpGET("/smart-qa-editor/getCommandQData");
+                    res = await this.httpService.httpGET(
+                        "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/smart-qa-editor/getCommandQData"
+                    );
                     break;
                 case "timeoutq":
-                    res = await this.httpService.httpGET("/smart-qa-editor/getTimeoutQData");
+                    res = await this.httpService.httpGET(
+                        "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/smart-qa-editor/getTimeoutQData"
+                    );
                     break;
                 default:
-                    res = await this.httpService.httpGET("/smart-qa-editor/getReplyQAData");
+                    res = await this.httpService.httpGET(
+                        "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/smart-qa-editor/getReplyQAData"
+                    );
                     break;
             }
             this.setQACode(res[0], res[1], true);

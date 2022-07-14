@@ -93,7 +93,10 @@ export class DepartmentApiService {
         let httpResult: any = null;
         if (!this.utilitiesService.getMockSession())
             httpResult = await this.httpService.httpPOST("/openapi/qs/department/list", body);
-        else httpResult = await this.httpService.httpGET("/department/list");
+        else
+            httpResult = await this.httpService.httpGET(
+                "https://tgt3dv-angular-rz1jnf--3000.local.webcontainer.io/chatbotenterprise/department/list"
+            );
 
         return this.checkError(httpResult, "dipartmentList");
     }
