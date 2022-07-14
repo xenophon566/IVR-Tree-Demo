@@ -1,5 +1,8 @@
 import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { LocationStrategy, HashLocationStrategy, registerLocaleData } from "@angular/common";
 import { AppRoutingModule } from "./app.routing.module";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -12,15 +15,27 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireDatabaseModule } from "@angular/fire/compat/database";
 import { CoreModule } from "@core/core.module";
 import { SharedModule } from "@shared/shared.module";
+import { TabsComponent } from "@shared/components/tabs/tabs.component";
+import { TabsFrameComponent, ActivityTabFilterPipe } from "@shared/components/tabs-frame/tabs-frame.component";
+import { TabsLoaderDirective } from "@shared/directives/tabs-loader.directive";
+
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { DebounceClickDirective } from "@shared/directives/debounce-click.directive";
+
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { DemoButtonsComponent } from "./demo-buttons/demo-buttons.component";
 import { DemoFirebaseComponent } from "./demo-firebase/demo-firebase.component";
 import { SmartQaEditorComponent } from "./smart-qa-editor/smart-qa-editor.component";
-import { TabsFrameComponent, ActivityTabFilterPipe } from "@shared/components/tabs-frame/tabs-frame.component";
-import { TabsLoaderDirective } from "@shared/directives/tabs-loader.directive";
+
+// i18n LOCALE_ID
+import { LanguageService } from "@core/utils";
+import localeEN from "@angular/common/locales/en";
+import localeZhHant from "@angular/common/locales/zh-Hant";
+import { ChatRoomComponent } from "./chat-room/chat-room.component";
+registerLocaleData(localeEN, "en");
+registerLocaleData(localeZhHant, "zh-Hant");
 
 const firebaseConfig = {
     apiKey: "AIzaSyB5UegVWFft7JgMm-_x1OcCWSqyae86RBk",
@@ -47,10 +62,14 @@ export function createTranslateLoader(http: HttpClient) {
         TabsFrameComponent,
         ActivityTabFilterPipe,
         TabsLoaderDirective,
+        TabsComponent,
+        DebounceClickDirective,
     ],
     imports: [
         AppRoutingModule,
         BrowserModule,
+        BrowserAnimationsModule,
+        NgSelectModule,
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
@@ -71,6 +90,14 @@ export function createTranslateLoader(http: HttpClient) {
                 deps: [HttpClient],
             },
         }),
+    ],
+    providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        {
+            provide: LOCALE_ID,
+            deps: [LanguageService],
+            useFactory: (languageService) => languageService.getLocale(),
+        },
     ],
     bootstrap: [AppComponent],
 })
