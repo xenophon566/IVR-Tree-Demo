@@ -558,6 +558,9 @@ export class SmartQaEditorComponent implements OnInit {
     }
 
     private filterEnableAnswers(qaEditorAnswers = []) {
+        this.curBot["FChannel"] =
+            "web,web_Activity,ios,ios_Activity,android,android_Activity,line,line_Activity,messenger,messenger_Activity,phone,phone_Activity,google,google_Activity,instagram,instagram_Activity";
+
         const channels = this.utilitiesService.getEnableChannels(this.curBot["FChannel"]) || [];
         const enableAnswers = qaEditorAnswers.map((item) => {
             const isEnable = channels.some((channel) => {
