@@ -1,0 +1,7 @@
+{
+    "PROTOCOL": "location.protocol",
+    "HOSTNAME": "location.hostname",
+    "PORT": "location.port",
+    "API_PATH": "/chatbotenterprise",
+    "MARKET_API_PATH": "/ecp"
+}
