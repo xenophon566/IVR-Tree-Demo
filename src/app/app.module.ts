@@ -33,7 +33,6 @@ import { SmartQaEditorComponent } from "./smart-qa-editor/smart-qa-editor.compon
 import { LanguageService } from "@core/utils";
 import localeEN from "@angular/common/locales/en";
 import localeZhHant from "@angular/common/locales/zh-Hant";
-import { ChatRoomComponent } from "./chat-room/chat-room.component";
 registerLocaleData(localeEN, "en");
 registerLocaleData(localeZhHant, "zh-Hant");
 
@@ -92,7 +91,6 @@ export function createTranslateLoader(http: HttpClient) {
         }),
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
         {
             provide: LOCALE_ID,
             deps: [LanguageService],
