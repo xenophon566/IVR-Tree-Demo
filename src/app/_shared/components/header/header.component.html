@@ -9,18 +9,4 @@
             (click)="goHome()"
         ></div>
     </div>
-
-    <div class="settings">
-        <nb-actions>
-            <nb-action *ngIf="isLangBtn" icon="globe-outline" [nbContextMenu]="languageMenu"></nb-action>
-        </nb-actions>
-
-        <nb-user
-            *ngIf="isUserBtn"
-            class="user-menu"
-            [nbContextMenu]="openUserMenu"
-            picture="{{ portraitUrl }}"
-            name="{{ userName }}"
-        ></nb-user>
-    </div>
 </div>
