@@ -152,6 +152,8 @@ export class QaEditorComponent implements OnInit {
 
     @Input() data: any;
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     QA_EDITOR: any;
 
     smartQaEditorObj = {};
