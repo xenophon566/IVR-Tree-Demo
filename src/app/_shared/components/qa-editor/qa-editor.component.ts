@@ -61,7 +61,6 @@ export class QaEditorComponent implements OnInit {
      * @ignore
      */
     constructor(
-        private viewContainerRef: ViewContainerRef,
         private elementRef: ElementRef,
         private httpService: HttpService,
         private utilitiesService: UtilitiesService,
@@ -210,7 +209,7 @@ export class QaEditorComponent implements OnInit {
 
     qaEditorResultJson: any;
 
-    // viewContainerRef: any;
+    viewContainerRef: any;
 
     qaEditorChannelTab = "";
 
@@ -362,10 +361,7 @@ export class QaEditorComponent implements OnInit {
             this.qaEditorService.qaEditorOrderList = this.orderList;
 
             // Component Mount to HTML
-            const componentRef = this.viewContainerRef.createComponent(
-                componentFactory,
-                isAloneComponent ? 0 : !!menuItemData ? menuItemData.index : null
-            );
+            const componentRef = this.viewContainerRef.createComponent(componentFactory, 0);
 
             // const componentRef = this.viewContainerRef.createComponent(component);
 
