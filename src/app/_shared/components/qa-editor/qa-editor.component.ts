@@ -210,7 +210,7 @@ export class QaEditorComponent implements OnInit {
 
     qaEditorResultJson: any;
 
-    viewContainerRef: any;
+    // viewContainerRef: any;
 
     qaEditorChannelTab = "";
 
@@ -362,12 +362,12 @@ export class QaEditorComponent implements OnInit {
             this.qaEditorService.qaEditorOrderList = this.orderList;
 
             // Component Mount to HTML
-            // const componentRef = this.viewContainerRef.createComponent(
-            //     componentFactory,
-            //     isAloneComponent ? 0 : !!menuItemData ? menuItemData.index : null
-            // );
+            const componentRef = this.viewContainerRef.createComponent(
+                componentFactory,
+                isAloneComponent ? 0 : !!menuItemData ? menuItemData.index : null
+            );
 
-            const componentRef = this.viewContainerRef.createComponent(component);
+            // const componentRef = this.viewContainerRef.createComponent(component);
 
             if (!!~this.webViewHideChannel.indexOf(channel.split("_Activity")[0])) this.isWebviewHide = true;
             if (!!~this.robotSettingChannel.indexOf(channel.split("_Activity")[0])) this.isRobotSettingHide = true;
