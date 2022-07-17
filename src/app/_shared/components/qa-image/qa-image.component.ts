@@ -37,11 +37,7 @@ export class QaImageComponent implements OnInit {
     ) {
         this.QA_EDITOR = this.languageService.getLanguages("QA_EDITOR");
 
-        this.previewImgFormat = [
-            { value: "url", name: this.QA_EDITOR.IMAGE.THUMBNAIL_URL },
-            { value: "upload", name: this.QA_EDITOR.IMAGE.THUMBNAIL_UPLOAD },
-            { value: "system", name: this.QA_EDITOR.IMAGE.THUMBNAIL_SYSTEM },
-        ];
+        this.previewImgFormat = [];
     }
 
     @ViewChild("uploadFile") uploadFile: ElementRef<HTMLElement>;

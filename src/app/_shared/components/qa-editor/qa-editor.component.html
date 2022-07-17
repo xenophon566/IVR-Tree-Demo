@@ -52,7 +52,7 @@
                     nbContextMenuPlacement="right"
                     [disabled]="isSingleAnsChannel || qaMenuStatus || isQaMenuDisabled[qaEditorChannelTab]"
                 >
-                    {{ i18n.QA_EDITOR.COMMON.ADD_ANSWER }}
+                    新增答案
                 </button>
             </div>
             <cbe-shared-qa-reply
@@ -139,7 +139,7 @@
 </nb-card>
 
 <ng-template #labelHintRef>
-    <span>{{ i18n.QA_EDITOR.COMMON.LABEL_GRAY_HINT }}</span>
+    <span>灰色代表貼標無資料。</span>
     <br />
-    <span>{{ i18n.QA_EDITOR.COMMON.LABEL_GREEN_HINT }}</span>
+    <span>綠色代表貼標有資料。</span>
 </ng-template>
