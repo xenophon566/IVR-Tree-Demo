@@ -36,6 +36,8 @@ export class QaFileComponent implements OnInit {
         this.QA_EDITOR = this.languageService.getLanguages("QA_EDITOR");
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @ViewChild("uploadFile") uploadFile: ElementRef<HTMLElement>;
     @ViewChild("file") file: ElementRef<HTMLElement>;
     @Input() data: any;

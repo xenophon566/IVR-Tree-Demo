@@ -28,6 +28,8 @@ export class LabelEditorComponent implements OnInit, OnChanges {
         });
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     /**
      * tableData 資料來源
      *

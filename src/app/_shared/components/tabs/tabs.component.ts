@@ -20,6 +20,8 @@ export class TabsComponent implements OnInit {
         this.smartQaEditorObj = this.smartQaEditorService.smartQaEditorObject;
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     /**
      * QaEditorLoader Directive
      *

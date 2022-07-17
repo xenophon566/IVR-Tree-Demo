@@ -41,6 +41,8 @@ export class TextareaComponent implements OnInit, OnDestroy {
         });
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @Input() data: any;
 
     /**

@@ -61,6 +61,8 @@ export class QaReplyComponent implements OnInit {
         });
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     /**
      * body ElementRef
      *

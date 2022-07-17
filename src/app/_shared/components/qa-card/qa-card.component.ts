@@ -73,6 +73,8 @@ export class QaCardComponent implements OnInit {
     @ViewChild(CardContentLoaderDirective, { static: true })
     cbeSharedCardContentLoader: CardContentLoaderDirective;
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @Input() data: any;
 
     QA_EDITOR: any;

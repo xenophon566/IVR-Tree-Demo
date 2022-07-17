@@ -20,6 +20,8 @@ export class QaQuoteComponent implements OnInit {
         this.QA_EDITOR = this.languageService.getLanguages("QA_EDITOR");
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @ViewChild("quote") quote: ElementRef<HTMLElement>;
 
     @Input() data: any;

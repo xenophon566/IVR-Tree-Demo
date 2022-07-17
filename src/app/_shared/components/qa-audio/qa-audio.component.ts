@@ -40,6 +40,8 @@ export class QaAudioComponent implements OnInit {
         this.QA_EDITOR = this.languageService.getLanguages("QA_EDITOR");
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @ViewChild("imgFile") imgFile: ElementRef<HTMLElement>;
 
     @ViewChild("file") file: ElementRef<HTMLElement>;

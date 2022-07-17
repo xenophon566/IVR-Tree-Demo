@@ -2,16 +2,16 @@
     <!-- MediaCard Feature Start -->
     <div *ngIf="this.data.type === 'MediaCard'">
         <div class="title-field">
-            <span>{{ QA_EDITOR.MEDIA_CARD.MEDIA_CARD }}</span>
-            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.MEDIA_CARD.LINE_LIMIT"></nb-icon>
+            <span>{{ i18n.QA_EDITOR.MEDIA_CARD.MEDIA_CARD }}</span>
+            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="i18n.QA_EDITOR.MEDIA_CARD.LINE_LIMIT"></nb-icon>
             <nb-radio-group
                 name="{{ id }}"
                 [value]="mediaType"
                 (valueChange)="handleMediaTypeChange($event)"
                 style="display: inline-flex; margin: 0 3%"
             >
-                <nb-radio [value]="'image'">{{ QA_EDITOR.IMAGE.IMAGE }}</nb-radio>
-                <nb-radio [value]="'video'">{{ QA_EDITOR.VIDEO.VIDEO }}</nb-radio>
+                <nb-radio [value]="'image'">{{ i18n.QA_EDITOR.IMAGE.IMAGE }}</nb-radio>
+                <nb-radio [value]="'video'">{{ i18n.QA_EDITOR.VIDEO.VIDEO }}</nb-radio>
             </nb-radio-group>
         </div>
         <hr style="opacity: 0.3" />
@@ -35,17 +35,17 @@
 
         <div *ngIf="mediaMode === 'url'">
             <div *ngIf="mediaType === 'image'" style="padding-top: 1rem">
-                <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
+                <span>{{ i18n.QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
             </div>
             <div *ngIf="mediaType === 'video'" style="padding-top: 1rem">
-                <span>{{ QA_EDITOR.VIDEO.VIDEO_LIMIT }}</span>
+                <span>{{ i18n.QA_EDITOR.VIDEO.VIDEO_LIMIT }}</span>
             </div>
             <input
                 class="source-url"
                 type="text"
                 nbInput
                 fullWidth
-                [placeholder]="QA_EDITOR.PLACEHOLDER.MEDIACARD_FB_URL"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.MEDIACARD_FB_URL"
                 [value]="url"
                 (input)="handleMediaCardUrl($event.target.value)"
                 [ngClass]="{ error: !this.verifyState.mediaCardUrl.state }"
@@ -72,12 +72,12 @@
                 </div>
                 <div *ngIf="!imgFileListObj[0] && mediaType === 'image'" class="fileNameArea" style="padding: 1rem">
                     <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                    <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
+                    <span>{{ i18n.QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
                 </div>
 
                 <div *ngIf="!videoFileListObj[0] && mediaType === 'video'" class="fileNameArea" style="padding: 1rem">
                     <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                    <span>{{ QA_EDITOR.VIDEO.VIDEO_LIMIT }}</span>
+                    <span>{{ i18n.QA_EDITOR.VIDEO.VIDEO_LIMIT }}</span>
                 </div>
             </div>
 
@@ -115,7 +115,7 @@
 
                 <div *ngIf="uploadFrameBg === ''" style="padding: 1rem" class="fileNameArea">
                     <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                    <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
+                    <span>{{ i18n.QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
                 </div>
             </div>
             <input
@@ -138,7 +138,7 @@
                 nbInput
                 fullWidth
                 [ngClass]="{ error: !this.verifyState.imageClickUrl.state }"
-                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_CLICK_URL"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.IMAGE_CLICK_URL"
             />
             <div class="error-wording">{{ this.verifyState.imageClickUrl.errMsg }}</div>
         </div>
@@ -152,7 +152,7 @@
                 nbInput
                 fullWidth
                 [ngClass]="{ error: !verifyState.text.state }"
-                [placeholder]="QA_EDITOR.PLACEHOLDER.CARD_TEXT_TO_SPEECH"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.CARD_TEXT_TO_SPEECH"
             />
             <div class="error-wording">{{ verifyState.text.errMsg }}</div>
         </div>
@@ -166,7 +166,7 @@
                 nbInput
                 fullWidth
                 [ngClass]="{ error: !verifyState.textHint.state }"
-                [placeholder]="QA_EDITOR.PLACEHOLDER.TEXT_HINT"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.TEXT_HINT"
             />
             <div class="error-wording">{{ verifyState.textHint.errMsg }}</div>
         </div>
@@ -178,7 +178,7 @@
                 fullWidth
                 class="text-area"
                 rows="1"
-                [placeholder]="QA_EDITOR.PLACEHOLDER.CARD_TITLE"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.CARD_TITLE"
                 [ngClass]="{ error: !this.verifyState.title.state }"
             ></textarea>
             <div class="error-wording">{{ this.verifyState.title.errMsg }}</div>
@@ -217,7 +217,7 @@
                 >
                     <span class="title">
                         <span>
-                            {{ !!item.FShowText.trim() ? item.FShowText : QA_EDITOR.PLACEHOLDER.REPLY_BUTTON }}
+                            {{ !!item.FShowText.trim() ? item.FShowText : i18n.QA_EDITOR.PLACEHOLDER.REPLY_BUTTON }}
                         </span>
                     </span>
                     <span class="operator">
@@ -242,7 +242,7 @@
                             type="text"
                             fullWidth
                             nbInput
-                            [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_BUTTON"
+                            [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.REPLY_BUTTON"
                             [ngClass]="{
                                 error: !item.verify.FShowText.state,
                                 googleBtn: false
@@ -272,7 +272,7 @@
                                         type="text"
                                         fullWidth
                                         nbInput
-                                        [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_DISPLAY_TEXT"
+                                        [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.REPLY_DISPLAY_TEXT"
                                         [ngClass]="{ error: !item.verify.qaFDisplayText.state }"
                                         [value]="item.qaFDisplayText"
                                         (input)="inputChange($event.target.value, item, 'displayText')"
@@ -293,7 +293,7 @@
                                                 ? null
                                                 : ''
                                         "
-                                        [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_SELECT_Q"
+                                        [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.REPLY_SELECT_Q"
                                         [ngClass]="{ error: !item.verify.qaFCode.state }"
                                         (click)="openSmartQAList(item)"
                                         [value]="item.qaFName"
@@ -306,7 +306,7 @@
                             <nb-tab
                                 #OptionTab
                                 class="tab-block"
-                                [tabTitle]="QA_EDITOR.REPLY.OPTION"
+                                [tabTitle]="i18n.QA_EDITOR.REPLY.OPTION"
                                 tabIcon="code-outline"
                                 [active]="item.Option == 'Option' ? 'true' : 'false'"
                                 *ngIf="data.channel.indexOf('google') === -1"
@@ -317,7 +317,7 @@
                                         type="text"
                                         fullWidth
                                         nbInput
-                                        [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_DISPLAY_TEXT"
+                                        [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.REPLY_DISPLAY_TEXT"
                                         [ngClass]="{ error: !item.verify.optionFDisplayText.state }"
                                         [value]="item.optionFDisplayText"
                                         (input)="inputChange($event.target.value, item, 'displayText')"
@@ -332,7 +332,7 @@
                                         type="text"
                                         fullWidth
                                         nbInput
-                                        [placeholder]="QA_EDITOR.PLACEHOLDER.REPLY_OPTION_INPUT"
+                                        [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.REPLY_OPTION_INPUT"
                                         [ngClass]="{ error: !item.verify.optionFCode.state }"
                                         [value]="item.optionFCode"
                                         (input)="inputChange($event.target.value, item, 'code')"
@@ -356,7 +356,7 @@
                                         type="text"
                                         fullWidth
                                         nbInput
-                                        [placeholder]="QA_EDITOR.PLACEHOLDER.URL"
+                                        [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.URL"
                                         [ngClass]="{ error: !item.verify.urlFName.state }"
                                         [value]="item.urlFName"
                                         (input)="inputChange($event.target.value, item, 'name')"
@@ -411,7 +411,7 @@
             <span>
                 <nb-icon icon="plus-outline"></nb-icon>
             </span>
-            <span>{{ QA_EDITOR.COMMON.BUTTON }}</span>
+            <span>{{ i18n.QA_EDITOR.COMMON.BUTTON }}</span>
         </span>
     </div>
     <div class="error-wording" [hidden]="!(!this.verifyState.replyCount.state && replyBtnAry.length < REPLY_QTY_MIN)">
@@ -420,7 +420,7 @@
 </div>
 
 <ng-template #labelHintRef>
-    <span>{{ QA_EDITOR.COMMON.LABEL_GRAY_HINT }}</span>
+    <span>{{ i18n.QA_EDITOR.COMMON.LABEL_GRAY_HINT }}</span>
     <br />
-    <span>{{ QA_EDITOR.COMMON.LABEL_GREEN_HINT }}</span>
+    <span>{{ i18n.QA_EDITOR.COMMON.LABEL_GREEN_HINT }}</span>
 </ng-template>

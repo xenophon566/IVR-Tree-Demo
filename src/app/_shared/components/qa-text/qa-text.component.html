@@ -9,19 +9,19 @@
                     (this.data.module === 'replySetting' || this.data.module === 'satisfaction-survey-editor')
                 )
             "
-            >{{ QA_EDITOR?.TEXT?.TEXT  }}</label
+            >{{ i18n.QA_EDITOR?.TEXT?.TEXT  }}</label
         >
         <label *ngIf="!!this.data.module && this.data.module === 'replySetting'">{{
-            QA_EDITOR?.TEXT?.MESSAGE_AFTER_CLICK 
+            i18n.QA_EDITOR?.TEXT?.MESSAGE_AFTER_CLICK 
         }}</label>
         <label *ngIf="!!this.data.module && this.data.module === 'satisfaction-survey-editor'">{{
-            QA_EDITOR?.TEXT?.INQUIRY_INFORMATION 
+            i18n.QA_EDITOR?.TEXT?.INQUIRY_INFORMATION 
         }}</label>
 
         <div class="random-operator" [ngStyle]="{ display: isShowRandom }">
             <div class="random-btn">
                 <span class="title">
-                    {{ QA_EDITOR?.TEXT?.RANDOM  }}
+                    {{ i18n.QA_EDITOR?.TEXT?.RANDOM  }}
                 </span>
                 &nbsp;&nbsp;
                 <nb-toggle labelPosition="left" [(checked)]="toggleChecked" (change)="isRandom()"></nb-toggle>
@@ -39,7 +39,7 @@
                 type="text"
                 fullWidth
                 nbInput
-                [placeholder]="QA_EDITOR.PLACEHOLDER.TEXT_TO_SPEECH"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.TEXT_TO_SPEECH"
                 class="text-block {{ id }}"
                 [ngClass]="{ error: !this.verifyState.text.state }"
                 [disabled]="googleDefField"

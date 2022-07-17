@@ -1,18 +1,18 @@
 <div id="{{ componentId }}" type="Video" class="video qa-block">
     <cbe-shared-operator [data]="data"></cbe-shared-operator>
-    <label>{{ QA_EDITOR.VIDEO.VIDEO }}</label>
+    <label>{{ i18n.QA_EDITOR.VIDEO.VIDEO }}</label>
 
     <hr style="opacity: 0.3" />
     <div class="verticalCenter">
         <nb-select [(selected)]="selectedMode" (selectedChange)="modeChange()">
-            <nb-option value="url">{{ QA_EDITOR.VIDEO.VIDEO_URL }}</nb-option>
-            <nb-option value="upload">{{ QA_EDITOR.VIDEO.VIDEO_UPLOAD }}</nb-option>
+            <nb-option value="url">{{ i18n.QA_EDITOR.VIDEO.VIDEO_URL }}</nb-option>
+            <nb-option value="upload">{{ i18n.QA_EDITOR.VIDEO.VIDEO_UPLOAD }}</nb-option>
         </nb-select>
     </div>
 
     <div *ngIf="selectedMode === 'url'">
         <div class="support-hint">
-            <label class="hint-wording">{{ QA_EDITOR.VIDEO.VIDEO_HINT }}</label>
+            <label class="hint-wording">{{ i18n.QA_EDITOR.VIDEO.VIDEO_HINT }}</label>
         </div>
         <input
             #videoUrl
@@ -20,7 +20,7 @@
             type="text"
             nbInput
             fullWidth
-            [placeholder]="QA_EDITOR.PLACEHOLDER.VIDEO_URL"
+            [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.VIDEO_URL"
             [ngClass]="{ error: !this.verifyState.videoUrl.state }"
         />
         <div class="error-wording">{{ this.verifyState.videoUrl.errMsg }}</div>
@@ -35,7 +35,7 @@
                 </div>
                 <div *ngIf="fileName === ''" style="text-align: center; padding: 1rem" (click)="uploadFrame()">
                     <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                    <span>{{ QA_EDITOR.VIDEO.VIDEO_HINT }}</span>
+                    <span>{{ i18n.QA_EDITOR.VIDEO.VIDEO_HINT }}</span>
                 </div>
             </div>
         </div>
@@ -53,18 +53,18 @@
         <hr style="opacity: 0.3" />
         <div class="verticalCenter">
             <nb-select [(selected)]="thumbnailSelectedMode" (selectedChange)="thumbnailModeChange()">
-                <nb-option value="url">{{ QA_EDITOR.IMAGE.THUMBNAIL_URL }}</nb-option>
-                <nb-option value="upload">{{ QA_EDITOR.IMAGE.THUMBNAIL_UPLOAD }}</nb-option>
+                <nb-option value="url">{{ i18n.QA_EDITOR.IMAGE.THUMBNAIL_URL }}</nb-option>
+                <nb-option value="upload">{{ i18n.QA_EDITOR.IMAGE.THUMBNAIL_UPLOAD }}</nb-option>
                 <nb-option *ngIf="selectedMode === 'upload'" value="system">{{
-                    QA_EDITOR.IMAGE.THUMBNAIL_SYSTEM
+                    i18n.QA_EDITOR.IMAGE.THUMBNAIL_SYSTEM
                 }}</nb-option>
             </nb-select>
-            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.VIDEO.MESSENGER_LIMIT"></nb-icon>
+            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="i18n.QA_EDITOR.VIDEO.MESSENGER_LIMIT"></nb-icon>
         </div>
 
         <div *ngIf="thumbnailSelectedMode === 'url'">
             <div class="support-hint">
-                <label class="hint-wording">{{ QA_EDITOR.VIDEO.PREVIEW_IMAGE_LIMIT }}</label>
+                <label class="hint-wording">{{ i18n.QA_EDITOR.VIDEO.PREVIEW_IMAGE_LIMIT }}</label>
             </div>
             <input
                 #thumbnailUrl
@@ -72,7 +72,7 @@
                 type="text"
                 nbInput
                 fullWidth
-                [placeholder]="QA_EDITOR.PLACEHOLDER.IMAGE_THUMBNAIL_URL"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.IMAGE_THUMBNAIL_URL"
                 [ngClass]="{ error: !this.verifyState.thumbnailUrl.state }"
             />
             <div class="error-wording">{{ this.verifyState.thumbnailUrl.errMsg }}</div>
@@ -100,7 +100,7 @@
                         (click)="uploadPreviewFrame()"
                     >
                         <nb-icon icon="upload-outline" class="icon"></nb-icon>
-                        <span>{{ QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
+                        <span>{{ i18n.QA_EDITOR.VIDEO.IMAGE_HINT }}</span>
                     </div>
                 </div>
             </div>

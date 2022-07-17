@@ -30,6 +30,8 @@ export class QaLinkComponent implements OnInit {
         this.QA_EDITOR = this.languageService.getLanguages("QA_EDITOR");
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @ViewChild("link") link: ElementRef<HTMLElement>;
 
     @Input() data: any;

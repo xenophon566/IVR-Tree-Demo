@@ -59,6 +59,8 @@ export class ReplyContentComponent implements OnInit, AfterViewChecked {
         });
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @ViewChild("replyShowText") replyShowText: ElementRef;
     @ViewChild("replyQaDisplayText") replyQaDisplayText: ElementRef;
     @ViewChild("replyQaCode") replyQaCode: ElementRef;

@@ -69,7 +69,7 @@
                 <label>關聯活動項目</label>
                 <ng-select
                     [(ngModel)]="activityDropdown"
-                    [placeholder]="QA_EDITOR.PLACEHOLDER.SELECT"
+                    [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.SELECT"
                     (change)="onActivitySelectChange()"
                     [ngClass]="{ error: !verifyState.activitySelect.state }"
                     ngDefaultControl
@@ -110,11 +110,11 @@
                 <nb-radio value="zenbo">{{ i18n.QA_EDITOR.ROBOT_SETTING.ZENBO_ROBOT }}</nb-radio>
             </nb-radio-group>
             <label>{{
-                robotRadio === "qbi" ? QA_EDITOR.ROBOT_SETTING.ACTION : QA_EDITOR.ROBOT_SETTING.EXPRESSION
+                robotRadio === "qbi" ? i18n.QA_EDITOR.ROBOT_SETTING.ACTION : i18n.QA_EDITOR.ROBOT_SETTING.EXPRESSION
             }}</label>
             <ng-select
                 [(ngModel)]="robotSelect"
-                [placeholder]="QA_EDITOR.PLACEHOLDER.SELECT"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.SELECT"
                 (change)="onRobotSelectChange()"
                 ngDefaultControl
             >
@@ -129,7 +129,7 @@
                 fullWidth
                 [(ngModel)]="robotTextarea[qaEditorChannelTab]"
                 [ngClass]="{ error: !verifyState.voice.state }"
-                [placeholder]="QA_EDITOR.PLACEHOLDER.VOICE_TEXTAREA"
+                [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.VOICE_TEXTAREA"
                 (keyup)="onRobotVoiceInput()"
                 ngDefaultControl
             ></textarea>

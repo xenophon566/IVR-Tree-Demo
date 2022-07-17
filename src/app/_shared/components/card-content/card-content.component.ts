@@ -56,26 +56,26 @@ export class CardContentComponent implements OnInit {
         private languageService: LanguageService,
         private greetingEditorService: GreetingEditorService
     ) {
-        this.QA_EDITOR = this.languageService.getLanguages("QA_EDITOR");
+        this.i18n.QA_EDITOR = this.languageService.getLanguages("QA_EDITOR");
         this.imageSelectList = [
             {
                 value: "url",
-                name: this.QA_EDITOR.IMAGE.IMAGE_URL,
+                name: this.i18n.QA_EDITOR.IMAGE.IMAGE_URL,
             },
             {
                 value: "upload",
-                name: this.QA_EDITOR.IMAGE.IMAGE_UPLOAD,
+                name: this.i18n.QA_EDITOR.IMAGE.IMAGE_UPLOAD,
             },
         ];
 
         this.videoSelectList = [
             {
                 value: "url",
-                name: this.QA_EDITOR.VIDEO.VIDEO_URL,
+                name: this.i18n.QA_EDITOR.VIDEO.VIDEO_URL,
             },
             {
                 value: "upload",
-                name: this.QA_EDITOR.VIDEO.VIDEO_UPLOAD,
+                name: this.i18n.QA_EDITOR.VIDEO.VIDEO_UPLOAD,
             },
         ];
     }
@@ -1285,7 +1285,7 @@ export class CardContentComponent implements OnInit {
         this.REPLY_QTY_MAX = !!~this.data.channel.indexOf("google") ? REPLY_QTY.GOOGLE_MAX : REPLY_QTY.MAX;
 
         this.cardSubtitle =
-            this.QA_EDITOR.PLACEHOLDER[
+            this.i18n.QA_EDITOR.PLACEHOLDER[
                 !!~this.data.channel.indexOf("google") ? "GOOGLE_CARD_SUBTITLE" : "CARD_SUBTITLE"
             ];
 

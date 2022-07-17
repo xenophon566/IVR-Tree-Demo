@@ -56,6 +56,8 @@ export class QaTextComponent implements OnInit {
         });
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @ViewChild("body") body: ElementRef;
 
     @ViewChild(TextareaLoaderDirective, { static: true })

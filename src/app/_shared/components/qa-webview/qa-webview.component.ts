@@ -26,6 +26,8 @@ export class QaWebviewComponent implements OnInit {
         private verifyService: VerifyService
     ) {}
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     /**
      * webview HTMLElement
      *

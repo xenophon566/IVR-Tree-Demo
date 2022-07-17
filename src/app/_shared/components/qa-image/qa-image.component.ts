@@ -40,6 +40,8 @@ export class QaImageComponent implements OnInit {
         this.previewImgFormat = [];
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @ViewChild("uploadFile") uploadFile: ElementRef<HTMLElement>;
     @ViewChild("file") file: ElementRef<HTMLElement>;
     @ViewChild("linkImageFile") linkImageFile: ElementRef<HTMLElement>;

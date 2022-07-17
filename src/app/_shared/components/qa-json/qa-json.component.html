@@ -2,8 +2,8 @@
     <cbe-shared-operator [data]="data"></cbe-shared-operator>
     <div class="header">
         <div>
-            <label>{{ QA_EDITOR.JSON.JSON }}</label>
-            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.JSON.JSON_LIMIT"></nb-icon>
+            <label>{{ i18n.QA_EDITOR.JSON.JSON }}</label>
+            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="i18n.QA_EDITOR.JSON.JSON_LIMIT"></nb-icon>
         </div>
     </div>
     <div class="body" #body>
@@ -13,7 +13,7 @@
             fullWidth
             class="text-area"
             rows="5"
-            [placeholder]="QA_EDITOR.PLACEHOLDER.JSON_INPUT"
+            [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.JSON_INPUT"
             [ngClass]="{ error: !this.verifyState.json.state }"
         ></textarea>
         <div class="error-wording">{{ this.verifyState.json.errMsg }}</div>

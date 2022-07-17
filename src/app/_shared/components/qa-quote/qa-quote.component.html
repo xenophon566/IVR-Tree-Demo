@@ -2,8 +2,8 @@
     <cbe-shared-operator [data]="data"></cbe-shared-operator>
     <div class="header">
         <div>
-            <label>{{ QA_EDITOR.QUOTE.QUOTE_SMARTQA  }}</label>
-            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="QA_EDITOR.QUOTE.QUOTE_REMIND"></nb-icon>
+            <label>{{ i18n.QA_EDITOR.QUOTE.QUOTE_SMARTQA }}</label>
+            <nb-icon class="info-tooltip" icon="info" [nbTooltip]="i18n.QA_EDITOR.QUOTE.QUOTE_REMIND"></nb-icon>
         </div>
     </div>
     <input
@@ -11,7 +11,7 @@
         type="text"
         nbInput
         fullWidth
-        [placeholder]="QA_EDITOR.PLACEHOLDER.QUOTE_SMARTQA"
+        [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.QUOTE_SMARTQA"
         [ngClass]="{ error: !this.verifyState.quote.state }"
         readonly
         (click)="openSmartQAList()"

@@ -21,6 +21,8 @@ export class QaTextIndependentComponent implements OnInit {
         });
     }
 
+    i18n = JSON.parse(localStorage.getItem("languages"));
+
     @ViewChild("body") body: ElementRef;
 
     @Input() data: any;

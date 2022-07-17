@@ -1,12 +1,12 @@
 <div id="{{ componentId }}" class="link qa-block">
     <cbe-shared-operator [data]="data"></cbe-shared-operator>
-    <label>{{ QA_EDITOR.LINK.LINK  }}</label>
+    <label>{{ i18n.QA_EDITOR.LINK.LINK  }}</label>
     <input
         #link
         type="text"
         nbInput
         fullWidth
-        [placeholder]="QA_EDITOR.PLACEHOLDER.EXTERNAL_URL"
+        [placeholder]="i18n.QA_EDITOR.PLACEHOLDER.EXTERNAL_URL"
         [ngClass]="{ error: !this.verifyState.link.state }"
     />
     <div class="error-wording">{{ this.verifyState.link.errMsg }}</div>
