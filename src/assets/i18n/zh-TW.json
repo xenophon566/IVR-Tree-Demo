@@ -1,22 +1,458 @@
 {
-  "HEADER": {
-      "TITLE": "我的測試",
-      "LANG": {
-          "US": "英文",
-          "TW": "中文"
-      },
-      "THEME": {
-          "DEFAULT": "預設",
-          "DARK": "黑色",
-          "CORPORATE": "企業",
-          "COSMIC": "宇宙",
-          "CUSTOM": "客製化"
-      }
-  },
-  "FOOTER": {
-      "TITLE": "NGX 公司"
-  },
-  "HOME": {
-      "CONTENT": "你在首頁"
-  }
+    "HEADER": {
+        "LANG": {
+            "US": "英文",
+            "TW": "中文"
+        }
+    },
+    "FOOTER": {
+        "TITLE": "NGX 公司"
+    },
+    "HOME": {
+        "TITLE": "首頁",
+        "MENU_ITEMS": {
+            "DASHBOARD": "Dashboard",
+            "ACCOUNT": "我的帳戶",
+            "PERMISSION_GROUP": {
+                "PERMISSION_GROUP_LIST": "授權群組列表",
+                "PERMISSION_GROUP_CREATE": "新增授權群組",
+                "PERMISSION_GROUP_DETAIL": "授權群組表單"
+            },
+            "TENANT_MANAGEMENT_TITLE": "租戶管理",
+            "TENANT_MANAGEMENT": {
+                "TENANT": {
+                    "TENANT_LIST": "租戶列表",
+                    "TENANT_CREATE": "新增租戶",
+                    "TENANT_DETAIL": "租戶表單"
+                }
+            },
+            "TENANT": {
+                "ENTERPRISE_LIST": "企業列表",
+                "USER_LIST": "使用者列表",
+                "PERMISSION_GROUP_LIST": "授權群組列表",
+                "TENANT_LIST": "租戶列表",
+                "APPLICATION": "應用管理",
+                "MY_ROBOT": "我的服務機器人"
+            },
+            "ROBOT_TITLE": "機器人管理",
+            "ROBOT": {
+                "TYPE": "機器人方案",
+                "SETTING": "機器人設定",
+                "QUESTION_SATISFACTION": "智能問答滿意度",
+                "CHANNEL": "通路綁定",
+                "CALENDAR": "活動管理",
+                "PUSHNOTIFICATION_TITLE": "推播管理",
+                "PUSHNOTIFICATION": {
+                    "DIALOG": "對話推播"
+                },
+                "SMARTQA": "問答意圖管理",
+                "PURPOSE": "對話管理",
+                "DIALOG": "語意理解",
+                "SUBSTANCE": "實體管理",
+                "DICTIONARY": "實體字典管理",
+                "TRAINING": "訓練",
+                "QAVERICATION": "問答驗證",
+                "HOTOPIC": "關注問題",
+                "REPORT": "報表"
+            },
+            "ANALYZER_TITLE": "Analyzer",
+            "ANALYZER": {
+                "ACTIVE_USER": "活躍用戶數分析",
+                "QUESTION_CLASS_TREND": "用戶提問類別分析",
+                "HIT_TYPE_RATIO": "命中類型佔比分析",
+                "QUESTION_TREND": "熱門問題分析",
+                "GET_QUESTION_CLASS": "提問類別趨勢分析",
+                "QUESTION_TYPE_TREND": "命中類型整合分析",
+                "USER_RETENTION": "黏著度分析",
+                "USER_INTERACTIVE": "用戶互動分析",
+                "CHAT_FLOW": "全對話流程分析",
+                "TRANSFER_AGENT": "轉真人對話行為分析",
+                "SUBSTANCE_CHAT_FLOW": "多輪對話異常行為分析"
+            },
+            "PUSH_NOTIFICATION": {
+                "PUSH_NOTIFICATION": "對話推播",
+                "PUSH_NOTIFICATION_LIST": "對話推播清單",
+                "PUSH_NOTIFICATION_CREATE": "新建對話推播",
+                "PUSH_NOTIFICATION_DETAIL": "編輯對話推播"
+            }
+        }
+    },
+    "SMART_QA_EDITOR": {
+        "TITLE": "答案編輯",
+        "CHECK": "確認",
+        "WARN": "警告",
+        "ERROR": "錯誤",
+        "OOPS": "Oops!",
+        "SUCCESS": "成功",
+        "CANCEL": "取消",
+        "SAVE": "儲存",
+        "SAVE_SUCCESS": "儲存成功",
+        "SAVE_FAIL": "儲存失敗",
+        "VERIFY_INVAILD": "請檢查各答案格式是否設定完全",
+        "LINKED_SMARTQA_SATISFACTION": "已關聯智能問答滿意度",
+        "SMARTQA_SATISFACTION_CONFLICT": "智能問答滿意度與答案格式衝突",
+        "SATISFACTION_TOOLTIP": "智能問題已與智能問答滿意度調查關聯，各通路答案格式不可包含 Json",
+        "LABEL_GRAY_HINT": "灰色代表貼標無資料。",
+        "LABEL_GREEN_HINT": "綠色代表貼標有資料。"
+    },
+    "DIALOG": {
+        "ALERT_DIALOG": {
+            "TITLE": "系統訊息",
+            "CLOSE": "關閉"
+        },
+        "CONFIRM_DIALOG": {
+            "TITLE": "操作即將重置畫面",
+            "CONTENT": "是否確定？",
+            "SAVE": "儲存",
+            "CONFIRM": "確定",
+            "CANCEL": "取消"
+        },
+        "CROPPER_DIALOG": {
+            "TITLE": "裁切圖像",
+            "CONFIRM": "確定",
+            "CANCEL": "取消",
+            "RESET": "重新上傳",
+            "APPLICABLE_TO_1_1": "適用LINE,Messenger,Instagram",
+            "APPLICABLE_TO_1_151": "適用LINE",
+            "APPLICABLE_TO_1_191": "適用Messenger",
+            "APPLICABLE_TO_1_251": "適用robot",
+            "TIP_MESSAGE": "若長寬比並非該通路所能呈現的，就會遭到縮放或裁切。"
+        }
+    },
+    "PUSH_NOTIFICATION": {
+        "IDLE_TIMEOUT": "當前閒置超時斷線時間為",
+        "MINUTE": "分鐘",
+        "ADD_PUSH": "新增推播",
+        "CREATE": "創建",
+        "UPDATE": "更新",
+        "DELETE": "刪除",
+        "DELETE_SUCCESS": "刪除成功",
+        "SAVE": "儲存",
+        "SUCCESS": "成功",
+        "SERIAL_NO": "編號",
+        "TITLE": "標題",
+        "TITLE_LIMIT": "標題上限100字",
+        "FIELD_REQUIRED": "此為必填欄位",
+        "CHANNEL": "通路",
+        "PUSH_MESSAGE": "推播訊息",
+        "SELECT_PUSH_MESSAGE": "---請選擇推播訊息---",
+        "IDLE_TIME": "閒置時間(分鐘)",
+        "TIMEOUT_PUSH_MESSAGE": "斷線當下推播的訊息",
+        "FIELD_REQUIRED_INTEGER": "此為必填欄位，僅能輸入整數數字",
+        "PUSH": "推播",
+        "ENABLE": "啟用",
+        "ERROR": "錯誤",
+        "MODE": "推播方式",
+        "CYCLE": "循環式",
+        "ONCE": "一次性",
+        "CONFIRM_FIELD": "請確認必填欄位資訊",
+        "AT_LEAST_ONE_CHANNEL": "至少選擇一個通路",
+        "IDLE_TIME_CANNOT_LESS": "閒置時間(分鐘)不可小於 1(分鐘)",
+        "IDLE_TIME_MUST_LESS": "閒置時間(分鐘)必須小於",
+        "IDLE_TIME_MUST_DIFFERENT": "且不可有相同 閒置時間(分鐘) 的推播訊息。",
+        "IDLE_TIME_MUST_INTEGER": "閒置時間(分鐘)須為整數值"
+    },
+    "QA_EDITOR": {
+        "GREETING": {
+            "TITLE": "招呼語",
+            "CHECK": "確認",
+            "WARN": "警告",
+            "ERROR": "錯誤",
+            "OOPS": "Oops!",
+            "SUCCESS": "成功",
+            "CANCEL": "取消",
+            "SAVE_SUCCESS": "儲存成功",
+            "SAVE_FAIL": "儲存失敗",
+            "VERIFY_INVAILD": "請檢查答案格式是否設定完全"
+        },
+        "COMMON": {
+            "UPLOAD": "上傳",
+            "REUPLOAD": "重新上傳",
+            "BUTTON": "按鈕",
+            "ADD_ANSWER": "新增答案",
+            "COMFIRM": "確認",
+            "CANCEL": "取消",
+            "ERROR": "錯誤",
+            "NOT_SUPPORT_FILETYPE": "不支援此格式",
+            "TRIGGER_RELOAD": "操作即將重置畫面",
+            "IS_COMFIRM": "是否確定？",
+            "DAMAGED_FILE": "此檔案已毀損，請重新上傳其他檔案",
+            "UPLOAD_MAX_LIMITED_ERROR": "上傳檔案大小已超過限制",
+            "LABEL_GRAY_HINT": "灰色代表貼標無資料。",
+            "LABEL_GREEN_HINT": "綠色代表貼表有資料。",
+            "MAX_MIN_HAS_BIGGER_ZERO": "最大值與最小值皆須大於 0",
+            "MAX_HAS_BIGGER_THAN_MIN": "最大值不能小於最小值",
+            "IG_NO_QUICK_REPLY": "Instagram通路最後一個答案非文字格式，不支援快速回覆"
+        },
+        "PLACEHOLDER": {
+            "AUDIO_URL": "請輸入目標音訊檔案位置，https://",
+            "AUDIO_TITLE": "音檔標題",
+            "AUDIO_HINT": "圖檔描述(預設文字:內容描述)",
+            "TEXT_HINT": "提示訊息(必填)，限 40 個字。",
+            "CARD_TEXT_TO_SPEECH": "語音文字(必填)，限 40 個字，僅第一張卡片生效。",
+            "EXTERNAL_URL": "請輸入外部知識 URL，http:// 或者 https://",
+            "TEXT_INPUT": "請輸入文字(必填)",
+            "IMAGE_URL": "請輸入目標圖片檔案位置，https://",
+            "LINK_URL": "請輸入鏈結網址，https://",
+            "FILE_URL": "請輸入目標檔案位置，https",
+            "JSON_INPUT": "請輸入 json 格式",
+            "IMAGE_CLICK_URL": "請輸入點擊圖片連結，https://",
+            "IMAGE_THUMBNAIL_URL": "請輸入預覽圖檔案位置，https://",
+            "CARD_TITLE": "標題(必填)，限 40 個字。",
+            "CARD_SUBTITLE": "副標題(非必填)，限 60 個字。",
+            "GOOGLE_CARD_SUBTITLE": "卡片說明文字(非必填)，限60個字。",
+            "REPLY_BUTTON": "請輸入按鈕名稱",
+            "TEXT_TO_SPEECH": "語音文字(必填)",
+            "REPLY_DISPLAY_TEXT": "請輸入通路上顯示的文字",
+            "REPLY_SELECT_Q": "請選擇對應的問題",
+            "REPLY_OPTION_INPUT": "請輸入指令",
+            "URL": "請輸入 URL，https://",
+            "VIDEO_URL": "請輸入目標影片檔案位置，https://",
+            "VOICE_TEXTAREA": "請輸入語音內容，限 500 個字",
+            "SELECT": "---請選擇---",
+            "MEDIACARD_FB_URL": "請輸入目標檔案位置(需為FB網址)，https://",
+            "QUOTE_SMARTQA": "請點擊此以關聯智能問題",
+            "TEXT_IMAGE": "請輸入點擊圖片後送出文字"
+        },
+        "AUDIO": {
+            "AUDIO": "音訊",
+            "AUDIO_URL": "音訊路徑",
+            "AUDIO_UPLOAD": "音訊上傳",
+            "LINE_LIMIT": "Line僅支援 M4A",
+            "MESSENGER_LIMIT": "Messenger 需於 60 秒內上傳完畢",
+            "GOOGLE_LIMIT": "OK Google僅支援 MP3",
+            "AUDIO_LIMIT": "支援 MP3、M4A 音訊，檔案需為 10MB 以下",
+            "FILENAME": "檔名"
+        },
+        "TEXT": {
+            "TEXT": "文字",
+            "RANDOM": "隨機",
+            "INQUIRY_INFORMATION": "智能問答滿意度詢問資訊",
+            "MESSAGE_AFTER_CLICK": "智能問答滿意度點選後回覆訊息",
+            "FIELD_LENGTH_LIMIT": "此欄位長度限制為 2000 字",
+            "FIELD_REQUIRED": "此欄位為必填欄位",
+            "GOOGLE_DEFAULT_TEXT": "此處會自動帶入應答產生關連該實體選項所設定反問句內容"
+        },
+        "IMAGE": {
+            "IMAGE": "圖片",
+            "PURE_IMAGE": "純圖片",
+            "LINK_IMAGE": "圖片帶連結",
+            "TEXT_IMAGE": "圖片帶文字",
+            "IMAGE_URL": "圖片路徑",
+            "IMAGE_UPLOAD": "圖片上傳",
+            "GOOGLE_IMAGE": "Google 上傳音訊圖片(非必填)",
+            "THUMBNAIL_URL": "預覽圖路徑",
+            "THUMBNAIL_UPLOAD": "預覽圖上傳",
+            "THUMBNAIL_SYSTEM": "預覽圖系統生成",
+            "MESSENGER_LIMIT": "Messenger與Instagram請設定該通路專用格式",
+            "MESSENGER_NO_PREVIEW": "Messenger與Instagram不支援設定預覽圖",
+            "MESSENGER_NO_LINKIMAGE": "Messenger與Instagram不支援設定圖片帶連結",
+            "IMAGE_LIMIT_PRE": "圖片大小為 ",
+            "IMAGE_LIMIT_POST": " MB 以下"
+        },
+        "CARD": {
+            "CARD": "卡片"
+        },
+        "MEDIA_CARD": {
+            "MEDIA_CARD": "多媒體卡片",
+            "LINE_LIMIT": "Line 不支援此格式"
+        },
+        "VIDEO": {
+            "VIDEO": "影片",
+            "VIDEO_URL": "影片路徑",
+            "VIDEO_UPLOAD": "影片上傳",
+            "VIDEO_LIMIT": "支援MP4影片，檔案需為 10 MB 以下",
+            "IMAGE_LIMIT": "圖片大小為 10 MB 以下",
+            "PREVIEW_IMAGE_LIMIT": "圖片大小為 1 MB 以下",
+            "MESSENGER_LIMIT": "Messenger 不支援設定預覽圖。",
+            "VIDEO_HINT": "支援 1 分鐘以下 MP4 影片且檔案需為 10 MB 以下",
+            "IMAGE_HINT": "圖片大小為 1 MB 以下"
+        },
+        "REPLY": {
+            "OPTION": "指令",
+            "REPLY": "快速回覆",
+            "SMARTQA_SATISFACTION_SURVEY": "智能問答滿意度調查項目"
+        },
+        "LINK": {
+            "LINK": "外部知識"
+        },
+        "FILE": {
+            "FILE": "檔案",
+            "FILE_LIMIT": "檔案大小為 3MB 以下",
+            "LINE_LIMIT": "Line 不支援檔案格式"
+        },
+        "JSON": {
+            "JSON": "Json",
+            "JSON_LIMIT": "此答案類型僅支援該通路的原生格式"
+        },
+        "QUOTE": {
+            "QUOTE_SMARTQA": "轉問",
+            "QUOTE_REMIND": "若轉問之題目所設答案為此通路不支援的問答格式，將可能導致無法正常回覆！"
+        },
+        "ROBOT_SETTING": {
+            "ROBOT_SETTING": "機器人設定",
+            "BOW": "鞠躬",
+            "FALL": "由上方進入畫面",
+            "IDLE": "站立",
+            "LEAVE_1": "離開畫面",
+            "DEFAULT": "預設",
+            "ACTIVE": "活潑",
+            "AWARE_LEFT": "注視左側",
+            "AWARE_RIGHT": "注視右側",
+            "QBI_ROBOT": "Qbi 動畫機器人",
+            "ZENBO_ROBOT": "Zenbo 實體機器人",
+            "ACTION": "動作",
+            "EXPRESSION": "表情",
+            "VOICE": "語音"
+        },
+        "PLAY": {
+            "TRANSFER": "轉接服務",
+            "RELEASE_CALL": "掛斷",
+            "ADD_COMMAND": "新增指令",
+            "PH_COMMAND": "請輸入參數設定",
+            "PH_PLAY": "請輸入播音參數",
+            "PLAY": "播音參數",
+            "COMMAND": "指令",
+            "ERROR_EMPTY_OBJ": "請填寫正確的參數，不可為空物件",
+            "ERROR_JSON_FORMAT": "格式不相符，此欄位僅支援 JSON 格式",
+            "ERROR_REQUIRED": "此欄位為必填欄位",
+            "RHETORICAL_QUESTION": "播音後串接句",
+            "RHETORICAL_QUESTION_TOOLTIP": "串接句會在唸完答案後自動補上 '您還有甚麼問題想詢問嗎? 想參考其他問題，可以說查詢主選單' 語句。若要設定此文字須至 Phone Connector 設定。此功能不支援搭配播放音檔使用",
+            "PLAY_TYPE": "播放類型",
+            "FIXED_AUDIO": "音檔",
+            "FIXED_AUDIO_TOOLTIP": "使用音檔，請在文字框內輸入音檔位置",
+            "SYNTHESIZED_SPEECH": "文字轉語音",
+            "KEY_INTERRUPT": "播音時 - 按鍵中斷",
+            "NO_INTERRUPT": "不可中斷",
+            "INTERRUPT": "可以中斷",
+            "INTERRUPT_NO_CLEAR_BUFFER": "可以中斷且不清空 buffer",
+            "COLLECT_STATUS": "播音及辨識處理",
+            "ONLY_PLAY": "純播音",
+            "DTMF_OR_ASR": "播音時可收碼或語音辨識",
+            "DTMF": "收碼",
+            "ASR": "語音辨識",
+            "DTMF_AND_ASR": "收碼並語音辨識",
+            "ASR_SETTING": "語音辨識設定",
+            "ASR_AFTER_PLAY_FINISH": "先播音，等播音完畢後開始語音辨識",
+            "PLAY_INTERRUPT_AFTER_RECOGNITION_RESULT": "播音和語音辨識同時開始，有辨識結果時中斷播音",
+            "PLAY_INTERRUPT_WHEN_START_RECOGNITION": "播音和語音辨識同時開始，開始辨識時中斷播音，開始辨識後則等待有辨識結果或逾時返回",
+            "DESIGNATED_INTERRUPT_KEY": "指定中斷按鍵",
+            "ANY_KEY": "任意鍵",
+            "END_KEY": "收碼 - 終止鍵",
+            "NOT_SET": "無設定",
+            "CANCEL_KEY": "收碼 - 取消鍵",
+            "COMMAND_Q": "背景音樂觸發智能問題",
+            "TIMEOUT_Q": "總背景音樂逾時後觸發智能問題",
+            "COMMAND_Q_TOOLTIP": "當播放背景音樂時，會將此問題詢問引擎 ",
+            "TIMEOUT_Q_TOOLTIP": "當背景音樂逾時時，會將此問題詢問引擎",
+            "DTMF_STRING": "按鍵對應智能問題",
+            "DTMF_STRING_TOOLTIP": "收到按鍵則會去與按鍵號碼做比對，若比對成功將對應智能問題後送給 Gateway。按鍵對應智能問題最多僅能使用 9 組",
+            "KEY_NUMBER": "按鍵號碼",
+            "SMART_Q": "智能問題",
+            "PH_SMART_Q": "請選擇智能問題",
+            "ADD_DTMF_STRING": "新增按鍵對應智能問題",
+            "BACKGROUND_SOUND": "背景音樂",
+            "PLAY_SECONDS": "播音秒數",
+            "AUDIO_LINK": "音檔位置",
+            "ADD_BACKGROUND_SOUND": "新增背景音樂",
+            "BACKGROUND_SOUND_TOOLTIP": "時間總長請設定小於 QbiCRM Gateway 逾時時間，否則會造成播音期間逾時而中斷聊天室。背景音最多僅能使用 10 個音檔",
+            "PH_PLAY_SECONDS": "請輸入介於 1 ~ 300 範圍內的數字",
+            "PH_DTMF_LENGTH": "請輸入介於 1 ~ 20 範圍內的數字",
+            "PH_DOMAINID": "請輸入辨識模型",
+            "PH_MIN": "請輸入收碼長度最小值",
+            "PH_MAX": "請輸入收碼長度最大值",
+            "PH_INT": "此欄位僅支援正整數",
+            "PH_DTMF": "請輸入最大長度為 20 位數的正整數",
+            "PH_INTERVAL": "此欄位僅支援正整數",
+            "PH_MUSIC": "僅支援 8k 16bit 單聲道且副檔名為 mp3、wav 音檔",
+            "RECORD": "錄音",
+            "TRASFER_NUMBER": "轉接號碼",
+            "CTI_DATA": "CTI 資料",
+            "RECORD_FILE_NAME": "錄音檔案名稱",
+            "RECORD_END_KEY": "錄音結束按鍵",
+            "ATLEASTE_ONE_MUSIC": "至少設定一首背景音樂",
+            "ENABLE_BACKGROUND_SOUND": "啟用背景音",
+            "ENABLE_BACKGROUND_SOUND_TOOLTIP": "啟用背景音，不須設定文字框",
+            "DTMF_MAX": "收碼最大值",
+            "DTMF_MIN": "收碼最小值",
+            "DOMAIN": "Domain"
+        }
+    },
+    "VERIFY_SERVICE": {
+        "IS_REQUIRED": "此欄位為必填欄位",
+        "MAXLENGTH_LIMIT": "此欄位最大字數限制為",
+        "MAXLENGTH_CURRENT": " 字，目前字數為 ",
+        "MAXLENGTH_WORD": " 字",
+        "HAS_HTTPS": "請輸入包含 https:// 的完整網址",
+        "HAS_HTTP": "請輸入包含 http:// 或 https:// 的完整網址",
+        "MAXSIZE_LIMIT": "上傳檔案最大限制為",
+        "MINBTN_COUNT": "至少新增 ",
+        "MINBTN_UNIT": " 個按鈕",
+        "LEAST_CARD_NUMBER": " 張卡片",
+        "IS_FB_URL": "請輸入目標檔案位置(需為FB網址)，https://",
+        "NUMBER_RANGE": "請輸入介於",
+        "AND": " ~ ",
+        "RANGE": "範圍內的數字",
+        "LINE_CARD_SUBTITLE": "因LINE通路任何一張卡片有填寫副標題，所以此欄位為必填",
+        "GOOGLE_CARD_FILE": "此欄位與卡片說明文字至少擇一填寫",
+        "GOOGLE_CARD_SUBTITLE": "此欄位與圖片至少擇一填寫"
+    },
+    "TAB_COMPONENT": {
+        "ERROR": "錯誤",
+        "CLONE_NOT_SUPPORT_TYPE": "此複製格式包含不支援格式。",
+        "CONFIRM": "確認",
+        "LINE_LIMIT": "LINE 通路不支援多媒體卡片格式與檔案格式",
+        "ANDROID_LIMIT": "Android 通路不支援 JSON 格式",
+        "IOS_LIMIT": "Ios 通路不支援 JSON 格式",
+        "PHONE_LIMIT": "內容含有 Phone 通路不支援的格式",
+        "MESSENGER_LIMIT": "Messenger 通路不支援圖片帶連結格式",
+        "INSTAGRAM_LIMIT": "Instagram 通路不支援圖片帶連結格式、音訊格式、檔案格式、影片格式及多媒體卡片格式",
+        "NORMAL": "常態",
+        "ACTIVITY": "活動",
+        "SYSTEM_HINT": "系統提示",
+        "VERIFY_INVAILD": "請檢查各答案格式是否設定完全",
+        "CLEAR_ANSWER": "是否確定清除此頁籤的全部答案",
+        "CHANNEL_ALERT": " 通道複製，只保留被複製通道的第一個答案，若不符合通道所支援的格式，則答案清空為空白文字格式",
+        "UNABLE_CLONE": "此通路為特殊格式，無法進行複製功能"
+    },
+    "HTTP_SERVICE": {
+        "ERROR": "錯誤",
+        "SUCCESS": "成功",
+        "WARN": "警告",
+        "PROMPT": "提示",
+        "INFO": "資訊",
+        "COMFIRM": "確認",
+        "CANCEL": "取消"
+    },
+    "COMPONENTS": {
+        "PAGINATION": {
+            "SHOW": "顯示",
+            "TO": "至",
+            "OF": "項結果，共",
+            "ITEM": "項。",
+            "JUMP_TO": "跳轉至第",
+            "PAGE_TOTAL": "頁，共",
+            "PAGE": "頁",
+            "NEXT": "下一頁",
+            "PREVIOUS": "上一頁",
+            "FIRST_PAGE": "第一頁",
+            "LAST_PAGE": "最後一頁"
+        },
+        "LABELEDITOR": {
+            "CONFIRM": "確認",
+            "CANCEL": "取消",
+            "HINT": "確認後，請記得儲存題目或答案才會生效唷！",
+            "EDIT_VARIABLE": "編輯變數",
+            "VARIABLE": "變數",
+            "VARIABLE_VALUE": "變數值",
+            "REQUIRED_FIELD": "此欄位為必填欄位",
+            "PLACEHOLDER_KEY": "請輸入變數 Ex.特徵",
+            "PLACEHOLDER_VALUE": "請輸入變數值 Ex.溫和",
+            "VARIABLE_TYPE": "變數型態",
+            "LABEL_VARIABLE": "標籤變數",
+            "CUSTOM_VARIABLE": "自訂變數",
+            "POPOVER_LABEL": "標籤變數：可累積同時擁有多個標籤變數值",
+            "POPOVER_CUSTOM_VARIABLE": "自訂變數：僅可同時擁有1個自訂變數值，後面收集到的自訂變數值會取代前者"
+        }
+    }
 }
