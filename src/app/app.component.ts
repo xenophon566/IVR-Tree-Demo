@@ -30,8 +30,8 @@ export class AppComponent {
         });
 
         // register icon from assets
-        // this.nbIconLibraries.registerSvgPack("card-operators", {
-        //     resize: '<img src="assets/images/resize.svg" style="width: 0.8rem; margin-bottom: 0.2rem;"/>',
-        // });
+        this.nbIconLibraries.registerSvgPack("card-operators", {
+            resize: '<img src="assets/images/resize.svg" style="width: 0.8rem; margin-bottom: 0.2rem;"/>',
+        });
     }
 }
