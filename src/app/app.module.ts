@@ -73,7 +73,7 @@ export function createTranslateLoader(http: HttpClient) {
         FormsModule,
         ReactiveFormsModule,
         MatNativeDateModule,
-        MaterialModule,
+        // MaterialModule,
         NbEvaIconsModule,
         NbThemeModule.forRoot(),
         ...NEBULAR_ROOT,
