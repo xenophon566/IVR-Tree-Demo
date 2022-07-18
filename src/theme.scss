@@ -1,37 +1,185 @@
-// Angular Material
+// ng-select styles
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use "@angular/material" as mat;
-// Plus imports for other components in your app.
+// nebular styles
+@import "~@nebular/theme/styles/theming";
+@import "~@nebular/theme/styles/themes/default";
+@import "~@nebular/theme/styles/globals";
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
+$ec-primary-color: #337ab7;
+$ec-primary-background-color: #ffffff;
+$ec-primary-hover-color: #598bff;
+$ec-primary-error-color: #ff0000;
+$ec-primary-warning-color: #f39c12;
+$ec-primary-warning-color: #f39c12;
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$theme-primary: mat.define-palette(mat.$indigo-palette);
-$theme-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// Colors
+$ec-dark-color: #212529;
+$ec-muted-color: #6c757d;
 
-// The warn palette is optional (defaults to red).
-$theme-warn: mat.define-palette(mat.$red-palette);
+// Forms
+$ec-primary-button-color: #3c8dbc;
+$ec-basic-text-color: rgb(68, 68, 68);
+$ec-basic-disabled-text-color: #222b45;
+$ec-basic-text-hover-color: #a7a8bf;
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$theme: mat.define-light-theme(
+// Input
+$ec-primary-input-color: #ffffff;
+$ec-basic-input-placeholder-color: #999999;
+$ec-primary-input-border-color: #e4e9f2;
+
+// Select
+$ec-basic-select-border-color: #333333;
+
+// Card
+$ec-basic-card-background-color: #f8f8f8;
+$ec-basic-card-border-color: #dfe0e2;
+$ec-basic-card-shadow-color: rgba(206, 206, 206, 1);
+
+// Upload frame
+$ec-basic-frame-border-color: rgba(0, 0, 0, 0.4);
+
+// Reply
+$ec-basic-reply-button-border-color: #cccccc;
+
+// Table
+$ec-basic-table-background-color: #f0f0f0;
+$ec-basic-table-header-color: #222b45;
+$ec-basic-table-row-color: #333333;
+
+// Toastr
+$ec-toastr-background-color: #d9edf7;
+$ec-toastr-color: #31708f;
+
+// Button
+$ec-icon-button-background-color: #6c757d;
+
+// APP Icon
+$ec-app-robot: #212529;
+$ec-app-sms: #ffaa00;
+$ec-app-line: #06c755;
+$ec-app-messenger: #006aff;
+$ec-app-instagram: #fd1d1d;
+
+/**
+* ### Global Styles & Nebular
+*
+* #### Global Typography
+*/
+// font family
+$ec-font-family: cwTeXYen, sourcehansans-tc, 微軟正黑體, "Noto Sans TC", "Source Sans Pro", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+
+// font size
+$font-size-large: 1.125rem;
+$font-size-normal: 1rem;
+$font-size-medium: 0.875rem;
+$font-size-small: 0.8125rem;
+$font-size-smaller: 0.75rem;
+
+// font weight
+$font-weight-normal: 400;
+$font-weight-light-bold: 500;
+$font-weight-bold: 700;
+
+// setting by component
+$ec-basic-card-text-font-size: 0.875rem;
+$button-text-font-size: 1rem;
+
+$nb-themes: nb-register-theme(
     (
-        color: (
-            primary: $theme-primary,
-            accent: $theme-accent,
-            warn: $theme-warn,
-        ),
-    )
+        // layout styles
+        layout-background-color: $cbe-primary-background-color,
+        layout-window-mode-background-color: $cbe-primary-background-color,
+        footer-background-color: $cbe-primary-background-color,
+        // toggle styles
+        toggle-width: 3.125rem,
+        toggle-height: 1.25rem,
+        toggle-switcher-size: 1.15rem,
+        toggle-border-radius: 3rem,
+        toggle-basic-checked-background-color: $cbe-primary-button-color,
+        toggle-basic-checked-border-color: $cbe-primary-button-color,
+        toggle-basic-checked-switcher-checkmark-color: $cbe-primary-button-color,
+        toggle-info-focus-checked-background-color: $cbe-primary-button-color,
+        toggle-basic-hover-checked-background-color: $cbe-primary-button-color,
+        toggle-basic-hover-checked-border-color: $cbe-primary-button-color,
+        toggle-basic-focus-checked-background-color: $cbe-primary-button-color,
+        // checkbox styles
+        checkbox-text-font-family: $cbe-font-family,
+        checkbox-text-font-size: $font-size-medium,
+        // button styles
+        button-text-font-family: $cbe-font-family,
+        button-filled-info-background-color: $cbe-primary-button-color,
+        button-filled-info-border-color: $cbe-primary-button-color,
+        button-filled-text-transform: unset,
+        button-outline-info-background-color: rgba(0, 149, 255, 0.01),
+        button-outline-info-border-color: $cbe-primary-button-color,
+        button-outline-info-text-color: $cbe-primary-button-color,
+        button-outline-info-focus-background-color: $cbe-primary-input-color,
+        // radio styles
+        radio-text-font-family: $cbe-font-family,
+        // select styles
+        select-text-font-family: $cbe-font-family,
+        select-placeholder-text-font-family: $cbe-font-family,
+        select-medium-text-font-size: $font-size-medium,
+        select-medium-text-font-weight: $font-weight-normal,
+        select-outline-basic-background-color: $cbe-primary-background-color,
+        select-outline-basic-hover-background-color: $cbe-primary-background-color,
+        select-outline-basic-border-color: $cbe-basic-frame-border-color,
+        select-outline-basic-hover-border-color: $cbe-basic-frame-border-color,
+        // tabset styles
+        tabset-tab-active-text-color: $cbe-primary-color,
+        tabset-tab-active-underline-color: $cbe-primary-color,
+        tabset-tab-text-color: $cbe-basic-text-color,
+        tabset-background-color: $cbe-primary-background-color,
+        tabset-tab-text-font-size: $font-size-smaller,
+        tabset-tab-padding: 0.8rem 1.6rem,
+        // radio styles
+        radio-basic-checked-border-color: $cbe-primary-color,
+        radio-basic-inner-circle-color: $cbe-primary-color,
+        // input styles
+        input-text-font-family: $cbe-font-family,
+        input-basic-background-color: $cbe-primary-background-color,
+        input-basic-text-color: $cbe-basic-text-color,
+        input-basic-placeholder-text-color: $cbe-basic-input-placeholder-color,
+        input-basic-hover-background-color: $cbe-primary-background-color,
+        input-medium-text-font-size: $font-size-medium,
+        input-medium-text-font-weight: $font-weight-normal,
+        // card styles
+        card-header-text-font-family: $cbe-font-family,
+        card-text-font-family: $cbe-font-family,
+        card-text-font-size: $cbe-basic-card-text-font-size,
+        // menu styles
+        menu-text-font-family: $cbe-font-family,
+        menu-text-font-size: $font-size-medium,
+        menu-text-font-weight: $font-weight-normal,
+        // list styles
+        list-item-font-family: $cbe-font-family,
+        list-item-font-size: $font-size-medium,
+        list-item-font-weight: $font-weight-normal,
+        // tree grid styles
+        tree-grid-header-background-color: $cbe-basic-table-background-color,
+        tree-grid-header-text-font-family: $cbe-font-family,
+        tree-grid-header-text-font-size: $font-size-medium,
+        tree-grid-header-text-font-weight: $font-weight-bold,
+        tree-grid-row-text-color: $cbe-basic-table-row-color,
+        tree-grid-row-text-font-family: $cbe-font-family,
+        tree-grid-row-text-font-size: $font-size-medium,
+        tree-grid-row-text-font-weight: $font-weight-normal,
+        tree-grid-header-text-line-height: 1.25rem,
+        tree-grid-row-text-line-height: 1.25rem,
+        tree-grid-cell-padding: 0.5rem,
+        // toastr styles
+        toastr-basic-background-color: $cbe-toastr-background-color,
+        toastr-icon-basic-background-color: $cbe-toastr-background-color,
+        toastr-destroyable-basic-hover-background-color: $cbe-toastr-background-color,
+        toastr-basic-text-color: $cbe-toastr-color
+    ),
+    default,
+    default
 );
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($theme);
+// install the framework styles
+@include nb-install() {
+    @include nb-theme-global();
+}
