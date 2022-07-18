@@ -6,60 +6,46 @@
 @import "~@nebular/theme/styles/themes/default";
 @import "~@nebular/theme/styles/globals";
 
-$ec-primary-color: #337ab7;
-$ec-primary-background-color: #ffffff;
-$ec-primary-hover-color: #598bff;
-$ec-primary-error-color: #ff0000;
-$ec-primary-warning-color: #f39c12;
-$ec-primary-warning-color: #f39c12;
-
-// Colors
-$ec-dark-color: #212529;
-$ec-muted-color: #6c757d;
+// primary
+$cbe-primary-color: #337ab7;
+$cbe-primary-background-color: #ffffff;
+$cbe-primary-hover-color: #598bff;
+$cbe-primary-error-color: #ff0000;
+$cbe-primary-warning-color: #f39c12;
+$cbe-primary-warning-color: #f39c12;
 
 // Forms
-$ec-primary-button-color: #3c8dbc;
-$ec-basic-text-color: rgb(68, 68, 68);
-$ec-basic-disabled-text-color: #222b45;
-$ec-basic-text-hover-color: #a7a8bf;
+$cbe-primary-button-color: #3c8dbc;
+$cbe-basic-text-color: rgb(68, 68, 68);
+$cbe-basic-text-hover-color: #a7a8bf;
 
 // Input
-$ec-primary-input-color: #ffffff;
-$ec-basic-input-placeholder-color: #999999;
-$ec-primary-input-border-color: #e4e9f2;
+$cbe-primary-input-color: #ffffff;
+$cbe-basic-input-placeholder-color: #999999;
+$cbe-primary-input-border-color: #e4e9f2;
 
 // Select
-$ec-basic-select-border-color: #333333;
+$cbe-basic-select-border-color: #333333;
 
 // Card
-$ec-basic-card-background-color: #f8f8f8;
-$ec-basic-card-border-color: #dfe0e2;
-$ec-basic-card-shadow-color: rgba(206, 206, 206, 1);
+$cbe-basic-card-background-color: #f8f8f8;
+$cbe-basic-card-border-color: #dfe0e2;
+$cbe-basic-card-shadow-color: rgba(206, 206, 206, 1);
 
 // Upload frame
-$ec-basic-frame-border-color: rgba(0, 0, 0, 0.4);
+$cbe-basic-frame-border-color: rgba(0, 0, 0, 0.4);
 
 // Reply
-$ec-basic-reply-button-border-color: #cccccc;
+$cbe-basic-reply-button-border-color: #cccccc;
 
 // Table
-$ec-basic-table-background-color: #f0f0f0;
-$ec-basic-table-header-color: #222b45;
-$ec-basic-table-row-color: #333333;
+$cbe-basic-table-background-color: #f0f0f0;
+$cbe-basic-table-header-color: #222b45;
+$cbe-basic-table-row-color: #333333;
 
 // Toastr
-$ec-toastr-background-color: #d9edf7;
-$ec-toastr-color: #31708f;
-
-// Button
-$ec-icon-button-background-color: #6c757d;
-
-// APP Icon
-$ec-app-robot: #212529;
-$ec-app-sms: #ffaa00;
-$ec-app-line: #06c755;
-$ec-app-messenger: #006aff;
-$ec-app-instagram: #fd1d1d;
+$cbe-toastr-background-color: #d9edf7;
+$cbe-toastr-color: #31708f;
 
 /**
 * ### Global Styles & Nebular
@@ -67,7 +53,7 @@ $ec-app-instagram: #fd1d1d;
 * #### Global Typography
 */
 // font family
-$ec-font-family: cwTeXYen, sourcehansans-tc, 微軟正黑體, "Noto Sans TC", "Source Sans Pro", "Helvetica Neue", Helvetica,
+$cbe-font-family: cwTeXYen, sourcehansans-tc, 微軟正黑體, "Noto Sans TC", "Source Sans Pro", "Helvetica Neue", Helvetica,
     Arial, sans-serif;
 
 // font size
@@ -83,7 +69,7 @@ $font-weight-light-bold: 500;
 $font-weight-bold: 700;
 
 // setting by component
-$ec-basic-card-text-font-size: 0.875rem;
+$cbe-basic-card-text-font-size: 0.875rem;
 $button-text-font-size: 1rem;
 
 $nb-themes: nb-register-theme(
