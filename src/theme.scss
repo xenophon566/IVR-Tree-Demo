@@ -39,11 +39,8 @@
 // ==============================================================
 
 @forward "@nebular/theme/styles/theming";
-
-// framework component styles
-// @use "@nebular/theme/styles/globals" as *;
 @use "@nebular/theme/styles/theming" as *;
-@use "@nebular/theme/styles/prebuilt/default";
+@use "@nebular/theme/styles/themes/default";
 
 // primary
 $cbe-primary-color: #337ab7;
