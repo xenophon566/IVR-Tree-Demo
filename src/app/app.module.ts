@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgSelectModule } from "@ng-select/ng-select";
@@ -51,7 +51,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    schemas: [NO_ERRORS_SCHEMA],
     declarations: [
         AppComponent,
         HomeComponent,
