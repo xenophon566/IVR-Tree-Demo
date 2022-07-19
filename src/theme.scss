@@ -42,6 +42,14 @@
 // @use "@nebular/theme/styles/theming" as *;
 // @use "@nebular/theme/styles/themes/default";
 
+// ng-select styles
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// nebular styles
+@import "~@nebular/theme/styles/theming";
+@import "~@nebular/theme/styles/themes/default";
+@import "~@nebular/theme/styles/globals";
+
 // primary
 $cbe-primary-color: #337ab7;
 $cbe-primary-background-color: #ffffff;
