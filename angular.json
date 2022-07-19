@@ -28,11 +28,7 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": [
-                            "node_modules/@nebular/theme/styles/prebuilt/default.css",
-                            "src/theme.scss",
-                            "_styles/styles.scss"
-                        ],
+                        "styles": ["./src/default.css", "./src/theme.scss", "./_styles/styles.scss"],
                         "scripts": []
                     },
                     "configurations": {
@@ -94,11 +90,7 @@
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": [
-                            "node_modules/@nebular/theme/styles/prebuilt/default.css",
-                            "src/theme.scss",
-                            "_styles/styles.scss"
-                        ],
+                        "styles": ["./src/default.css", "./src/theme.scss", "./_styles/styles.scss"],
                         "scripts": []
                     }
                 },
