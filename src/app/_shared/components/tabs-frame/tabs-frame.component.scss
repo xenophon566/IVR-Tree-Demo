@@ -45,7 +45,9 @@ $font-weight-normal: 400;
     }
 
     .item {
-        @extend %tabs-font-style;
+        font-family: $cbe-font-family;
+        font-size: $font-size-medium;
+        font-weight: $font-weight-normal;
         display: inline-block;
         margin: 0 2%;
         padding: 2%;
@@ -54,13 +56,17 @@ $font-weight-normal: 400;
         cursor: pointer;
 
         &.active {
-            @extend %tabs-font-style;
+            font-family: $cbe-font-family;
+            font-size: $font-size-medium;
+            font-weight: $font-weight-normal;
             border-bottom: 3px solid $cbe-primary-color;
             color: rgb(51, 51, 51);
         }
 
         &:hover {
-            @extend %tabs-font-style;
+            font-family: $cbe-font-family;
+            font-size: $font-size-medium;
+            font-weight: $font-weight-normal;
             border-bottom: 3px solid $cbe-primary-hover-color;
             color: $cbe-primary-hover-color;
         }
