@@ -8,16 +8,6 @@ $cbe-primary-hover-color: #598bff;
 $font-size-medium: 0.875rem;
 $font-weight-normal: 400;
 
-%font-medium-normal {
-    font-size: $font-size-medium;
-    font-weight: $font-weight-normal;
-}
-
-%tabs-font-style {
-    font-family: $cbe-font-family;
-    @extend %font-medium-normal;
-}
-
 .tabs-frame {
     border-bottom: 1px solid #edf1f7;
     padding: 0;
