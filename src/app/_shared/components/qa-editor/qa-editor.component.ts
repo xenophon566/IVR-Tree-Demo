@@ -1026,6 +1026,8 @@ export class QaEditorComponent implements OnInit {
                 this.isReplyHide = !resp.isTextAns;
             }
         });
+
+        localStorage.removeItem("channelExist");
     }
 
     async ngAfterViewInit() {
