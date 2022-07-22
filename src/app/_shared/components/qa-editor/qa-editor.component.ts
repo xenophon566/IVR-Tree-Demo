@@ -791,7 +791,7 @@ export class QaEditorComponent implements OnInit {
         const lastAnswer = qaEditorAnswers[qaEditorAnswers.length - 1];
 
         if (localStorage.getItem("channelExist") === "web") return;
-        localStorage.setItem("channelExist", channel);
+        localStorage.setItem("channelExist", "web");
 
         console.debug(qaEditorAnswers);
 
