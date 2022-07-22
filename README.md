@@ -1,6 +1,6 @@
 # [IVR Tree Demo] Workspace
 
-## Start service before you checkout Frontend(IVR Tree, smartQaEditor) / Backend(Mockserver)
+### Frontend(IVR Tree, smartQaEditor) / Backend(Mockserver)
 
 -   IVR Tree - https://tgt3dv-angular-rz1jnf-lxyphxps--4200.local.webcontainer.io/
 -   smartQaEditor - https://tgt3dv-angular-rz1jnf-lxyphxps--4200.local.webcontainer.io/smartQaEditor
