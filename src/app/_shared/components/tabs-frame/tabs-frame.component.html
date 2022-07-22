@@ -6,7 +6,7 @@
         [class.active]="channelActive[tab.tabTitle] === 'active'"
         cbeDebounceClick
     >
-        <span>
+        <span style="display:flex; align-items: center;">
             {{ channelName[tab.tabTitle] }}
             <span class="tab-close" *ngIf="tab.isCloseable" (click)="closeTab(tab, null, true)">
                 <nb-icon icon="close-outline"></nb-icon>
@@ -53,7 +53,7 @@
         [class.active]="channelActive[tabActivity] === 'active'"
         cbeDebounceClick
     >
-        <span class="activityName">
+        <span class="activityName" style="display:flex; align-items: center;">
             {{ i18n?.TAB_COMPONENT?.ACTIVITY }}
             <span class="tab-close" (click)="closeTab(tab, true, true)">
                 <nb-icon icon="close-outline"></nb-icon>
