@@ -790,9 +790,6 @@ export class QaEditorComponent implements OnInit {
         const qaEditorAnswers = args[1] || [];
         const lastAnswer = qaEditorAnswers[qaEditorAnswers.length - 1];
 
-        if (localStorage.getItem("channelExist") === "web") return;
-        localStorage.setItem("channelExist", "web");
-
         console.debug(qaEditorAnswers);
 
         this.curActivitySelected = this.data.data.activitySelected || null;
@@ -867,6 +864,11 @@ export class QaEditorComponent implements OnInit {
 
     async ngOnInit() {
         this.toggleMask();
+
+        if (localStorage.getItem("channelExist") === "web") {
+            localStorage.removeItem("channelExist");
+            return;
+        } else localStorage.setItem("channelExist", "web");
 
         if (!!~environment.env.indexOf("stage")) {
             let tenantList: any = localStorage.getItem("tenantList") || "[]";
@@ -1026,8 +1028,6 @@ export class QaEditorComponent implements OnInit {
                 this.isReplyHide = !resp.isTextAns;
             }
         });
-
-        localStorage.removeItem("channelExist");
     }
 
     async ngAfterViewInit() {
